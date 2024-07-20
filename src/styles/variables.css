@@ -1,0 +1,62 @@
+/* variables.css */
+:root {
+	/* Base font size */
+	font-size: 16px; /* This can be adjusted for your needs */
+
+	/* Colors */
+	--color-primary: #6200ee;
+	--color-secondary: #03dac6;
+	--color-background: #121212;
+	--color-text: #ffffff;
+
+	/* Light mode colors */
+	--color-background-light: #ffffff;
+	--color-text-light: #000000;
+
+	/* Dark mode colors */
+	--color-background-dark: #121212;
+	--color-text-dark: #ffffff;
+
+	/* Spacing */
+	--spacing-xs: 0.25rem; /* 4px */
+	--spacing-sm: 0.5rem; /* 8px */
+	--spacing-md: 1rem; /* 16px */
+	--spacing-lg: 2rem; /* 32px */
+	--spacing-xl: 4rem; /* 64px */
+
+	--gutters: 2rem;
+
+	/* Typography */
+	--font-size-xs: 0.75rem; /* 12px */
+	--font-size-sm: 0.875rem; /* 14px */
+	--font-size-md: 1rem; /* 16px */
+	--font-size-lg: 2rem; /* 20px */
+	--font-size-xl: 2.5rem; /* 24px */
+	--line-height: 1.5;
+
+	/* Heading Font Sizes */
+	--font-size-h1: 2.5rem; /* 40px */
+	--font-size-h2: 2rem; /* 32px */
+	--font-size-h3: 1.75rem; /* 28px */
+	--font-size-h4: 1.5rem; /* 24px */
+	--font-size-h5: 1.25rem; /* 20px */
+	--font-size-h6: 1rem; /* 16px */
+
+	/* Breakpoints */
+	--breakpoint-sm: 30rem; /* 480px */
+	--breakpoint-md: 48rem; /* 768px */
+	--breakpoint-lg: 64rem; /* 1024px */
+
+	/* Transitions */
+	--transition-fs: 0.15s ease-in-out;
+	--transition-md: 0.3s ease-in-out;
+
+	/* Border radius */
+	--border-radius-md: 4px;
+}
+
+@media (max-width: var(--breakpoint-md)) {
+	html {
+		font-size: 14px;
+	}
+}

@@ -1,0 +1,79 @@
+body {
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-size: var(--font-size-md);
+	line-height: var(--line-height);
+	margin: 0;
+	padding: 0;
+	transition: all var(--transition-md);
+}
+
+[data-theme='light'] {
+	--color-background: var(--color-background-light);
+	--color-text: var(--color-text-light);
+}
+
+/* Heading styles */
+
+h1 {
+	font-size: var(--font-size-h1);
+}
+
+h2 {
+	font-size: var(--font-size-h2);
+}
+
+h3 {
+	font-size: var(--font-size-h3);
+}
+
+h4 {
+	font-size: var(--font-size-h4);
+}
+
+h5 {
+	font-size: var(--font-size-h5);
+}
+
+h6 {
+	font-size: var(--font-size-h6);
+}
+
+p {
+	margin-bottom: var(--spacing-md);
+}
+
+.container {
+	padding: var(--spacing-lg);
+}
+
+@media (max-width: var(--breakpoint-md)) {
+	body {
+		font-size: var(--font-size-sm);
+	}
+
+	h1 {
+		font-size: calc(var(--font-size-h1) * 0.8); /* Adjust as needed for responsiveness */
+	}
+
+	h2 {
+		font-size: calc(var(--font-size-h2) * 0.8); /* Adjust as needed for responsiveness */
+	}
+
+	h3 {
+		font-size: calc(var(--font-size-h3) * 0.9); /* Adjust as needed for responsiveness */
+	}
+
+	/* Adjust other headings as necessary */
+}
+
+/* Link styles */
+
+a {
+	color: var(--color-text);
+	transition: all var(--transition-fs);
+}
+
+a:hover {
+	color: var(--color-secondary);
+}
