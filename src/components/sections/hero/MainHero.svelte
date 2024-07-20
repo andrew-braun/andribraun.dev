@@ -14,6 +14,7 @@
 		display: grid;
 		grid-template-columns: 1fr 2fr;
 		grid-template-areas: 'text other';
+		padding: var(--gutters) var(--spacing-lg);
 
 		.text {
 			grid-area: text;
@@ -23,7 +24,7 @@
 			}
 
 			.impact {
-				font-size: var(--font-size-xl);
+				font-size: var(--font-size-h1);
 				font-weight: 600;
 			}
 		}

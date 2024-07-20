@@ -23,12 +23,18 @@
 		transition: all var(--transition-md);
 		background-color: var(--color-background);
 		color: var(--color-text);
+
 		font-size: var(--font-size-md);
 	}
 
 	.btn-filled {
 		background-color: var(--color-primary);
 		color: var(--color-text-dark);
+
+		&:hover {
+			background-color: var(--color-secondary);
+			color: var(--color-text-light);
+		}
 	}
 
 	.btn-outline {

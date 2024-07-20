@@ -1,16 +1,32 @@
 body {
-	background-color: var(--color-background);
-	color: var(--color-text);
-	font-size: var(--font-size-md);
-	line-height: var(--line-height);
 	margin: 0;
 	padding: 0;
+	background-color: var(--color-background);
+	color: var(--color-text);
+	font-family: 'Fira Code', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	font-size: var(--font-size-md);
+	line-height: var(--line-height);
 	transition: all var(--transition-md);
 }
 
 [data-theme='light'] {
 	--color-background: var(--color-background-light);
 	--color-text: var(--color-text-light);
+}
+
+/* Set font on all elements */
+p,
+a,
+span,
+div,
+button,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-family: 'Fira Code';
 }
 
 /* Heading styles */
