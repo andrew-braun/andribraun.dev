@@ -1,10 +1,14 @@
+<script>
+	import Button from '$components/ui/buttons/Button.svelte';
+</script>
+
 <section class="hero">
 	<div class="text">
-		<p class="impact">Code.</p>
-		<p class="impact">Websites.</p>
-		<p class="impact">Nerd things.</p>
-		<p class="subtitle">That's pretty much what I do!</p>
-		<p class="subtitle">Got something cool you want you want to build? Let's talk!</p>
+		<p class="impact">I</p>
+		<p class="impact">write code,</p>
+		<p class="impact">build websites,</p>
+		<p class="impact">and do other nerd things.</p>
+		<Button>Do Nerd Things for Me</Button>
 	</div>
 	<div class="other"></div>
 </section>
@@ -15,6 +19,11 @@
 		grid-template-columns: 1fr 2fr;
 		grid-template-areas: 'text other';
 		padding: var(--gutters) var(--spacing-lg);
+
+		// @media (max-width: $breakpoint-sm) {
+		// 	grid-template-columns: 1fr;
+		// 	grid-template-areas: 'text' 'other';
+		// }
 
 		.text {
 			grid-area: text;
