@@ -1,8 +1,9 @@
 <script lang="ts">
 	//@ts-ignore
 
-	import { setInitialTheme } from '$lib/utils/theme/toggle';
 	import { siteData } from '$data/site/site-data';
+	import { setInitialTheme } from '$lib/utils/theme/toggle';
+	import '$styles/fonts.css';
 	import '$styles/global.css';
 	import '$styles/variables.css';
 	// import '$styles/scss-variables.scss';

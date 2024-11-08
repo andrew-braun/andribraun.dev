@@ -1,6 +1,6 @@
 <script>
-	import Logo from '$components/layout/Logo.svelte';
 	import Nav from '$components/layout/HeaderNav.svelte';
+	import Logo from '$components/layout/Logo.svelte';
 	import ThemeToggle from '$components/ui/theme/ThemeToggle.svelte';
 </script>
 
@@ -17,7 +17,7 @@
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		padding: var(--spacing-md);
+		padding: var(--spacing-md) var(--spacing-gutters);
 		background-color: var(--background-color);
 		backdrop-filter: brightness(1.5);
 		color: white;
