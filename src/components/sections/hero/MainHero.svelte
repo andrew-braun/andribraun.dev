@@ -6,10 +6,11 @@
 <section class="hero">
 	<Title superTitle="Hi! I'm" title="Andri Braun" tagAttributes={{ id: 'hero-title' }} />
 	<div class="text">
-		<p class="impact">I&nbsp;</p>
-		<p class="impact">write code,&nbsp;</p>
-		<p class="impact">build websites,&nbsp;</p>
-		<p class="impact">and do other nerd things.</p>
+		<p>
+			I write <span class="emocionante">code</span>, build
+			<span class="emocionante">websites</span>,&nbsp and do other
+			<span class="emocionante">nerd things</span>.
+		</p>
 	</div>
 	<Button>Do Nerd Things for Me</Button>
 </section>
@@ -21,5 +22,18 @@
 
 	.text {
 		display: flex;
+		gap: var(--spacing-xs);
+		align-items: center;
+		margin-bottom: var(--spacing-vertical-section);
+		vertical-align: top;
+		line-height: 50px;
+
+		p {
+			margin: 0;
+		}
+
+		.emocionante {
+			@include emocionante-text;
+		}
 	}
 </style>
