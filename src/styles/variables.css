@@ -27,7 +27,8 @@
 	--spacing-gutters: 2rem;
 	--spacing-vertical-section: 2rem;
 
-	/* Typography */
+	--spacing-block: var(--spacing-md); /* Typography */
+
 	--font-size-xs: 0.75rem; /* 12px */
 	--font-size-sm: 1rem; /* 16px */
 	--font-size-md: 1.125rem; /* 18px */
@@ -54,6 +55,9 @@
 
 	/* Border radius */
 	--border-radius-md: 4px;
+
+	/* Limit site max width */
+	--site-max-width: 1920px;
 }
 
 @media (max-width: var(--breakpoint-md)) {

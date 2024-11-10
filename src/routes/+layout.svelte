@@ -27,5 +27,20 @@
 
 <Header />
 
-<slot></slot>
-<footer></footer>
+<main class="main">
+	<slot></slot>
+</main>
+
+<footer class="footer"></footer>
+
+<style lang="scss">
+	.main {
+		max-width: var(--site-max-width);
+		margin: auto;
+	}
+
+	.footer {
+		max-width: var(--site-max-width);
+		margin: auto;
+	}
+</style>

@@ -23,6 +23,10 @@
 		margin: 0;
 		font-size: var(--font-size-h1);
 		font-weight: 600;
+
+		@media (max-width: $breakpoint-xs) {
+			text-align: center;
+		}
 	}
 
 	.title-small {
