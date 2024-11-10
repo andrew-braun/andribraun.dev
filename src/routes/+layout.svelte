@@ -1,6 +1,5 @@
 <script lang="ts">
 	//@ts-ignore
-	import { configureCloudinary } from 'svelte-cloudinary';
 
 	import { siteData } from '$data/site/site-data';
 	import { setInitialTheme } from '$lib/utils/theme/toggle';
@@ -10,11 +9,6 @@
 	import '$styles/variables.css';
 	// import '$styles/scss-variables.scss';
 	import Header from '$components/layout/Header.svelte';
-	import { PUBLIC_CLOUDINARY_CLOUD_NAME } from '$env/static/public';
-
-	configureCloudinary({
-		cloudName: PUBLIC_CLOUDINARY_CLOUD_NAME
-	});
 
 	setInitialTheme();
 </script>
