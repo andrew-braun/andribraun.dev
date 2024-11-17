@@ -4,18 +4,18 @@
 	font-size: 16px; /* This can be adjusted for your needs */
 
 	/* Colors */
-	--color-primary: #6200ee;
-	--color-secondary: #03dac6;
-	--color-background: #121212;
-	--color-text: #ffffff;
+	--color-primary: hsl(324, 84%, 65%);
+	--color-secondary: hsl(172, 100%, 48%);
+	--color-background: hsla(0, 0%, 7%, 1);
+	--color-text: hsl(0, 0%, 100%);
 
 	/* Light mode colors */
-	--color-background-light: #ffffff;
-	--color-text-light: #000000;
+	--color-background-light: hsl(0, 0%, 100%);
+	--color-text-light: hsl(0, 0%, 0%);
 
 	/* Dark mode colors */
-	--color-background-dark: #121212;
-	--color-text-dark: #ffffff;
+	--color-background-dark: hsl(0, 0%, 7%);
+	--color-text-dark: hsl(0, 0%, 100%);
 
 	/* Spacing */
 	--spacing-xs: 0.25rem; /* 4px */
@@ -50,8 +50,16 @@
 	--breakpoint-lg: 64rem; /* 1024px */
 
 	/* Transitions */
+	--transition-instant: 0s;
 	--transition-fs: 0.15s ease-in-out;
 	--transition-md: 0.3s ease-in-out;
+
+	/* Borders */
+	--border-md: 2px solid var(--color-text);
+
+	[data-theme="light"] {
+		--border-md: 2px solid var(--color-text-light);
+	}
 
 	/* Border radius */
 	--border-radius-md: 4px;

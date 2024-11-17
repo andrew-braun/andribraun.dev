@@ -1,9 +1,8 @@
 <script>
 	// You can define your navigation items here or fetch them dynamically if needed
 	let navItems = [
-		{ name: 'Home', href: '/' },
-		{ name: 'About', href: '/about' },
-		{ name: 'Contact', href: '/contact' }
+		{ name: "About", href: "#about" },
+		{ name: "Contact", href: "#contact" }
 	];
 </script>
 
@@ -22,9 +21,9 @@
 	.nav-link {
 		color: var(--color-text);
 		text-decoration: none;
-		font-size: var(--font-size-lg);
+		font-size: var(--font-size-md);
 		font-weight: 500;
-		transition: all var(--transition-md);
+		transition: all var(--transition-instant);
 		border-top: 4px solid transparent;
 		border-bottom: 4px solid transparent;
 
