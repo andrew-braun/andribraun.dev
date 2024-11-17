@@ -6,6 +6,12 @@
 	/* Colors */
 	--color-primary: hsl(324, 84%, 65%);
 	--color-secondary: hsl(172, 100%, 48%);
+	--color-accent-1: hsl(52, 99%, 62%);
+	--color-accent-1-text: var(--color-text-light);
+	--color-accent-2: hsl(195, 100%, 49%);
+	--color-accent-2-text: var(--color-text-light);
+	--color-accent-3: hsl(267, 72%, 63%);
+	--color-accent-3-text: var(--color-text-dark);
 	--color-background: hsla(0, 0%, 7%, 1);
 	--color-text: hsl(0, 0%, 100%);
 

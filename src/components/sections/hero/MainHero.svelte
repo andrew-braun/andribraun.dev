@@ -1,20 +1,26 @@
 <script>
-	import Title from '$components/text/Title.svelte';
-	import Button from '$components/ui/buttons/Button.svelte';
-	import AndriProfilePicture from '$lib/assets/img/profile/andri-in-milan-square.png?enhanced';
+	import ExcitingText from "$components/text/ExcitingText.svelte";
+	import Title from "$components/text/Title.svelte";
+	import Button from "$components/ui/buttons/Button.svelte";
+	import AndriProfilePicture from "$lib/assets/img/profile/andri-in-milan-square.png?enhanced";
 </script>
 
 <section class="hero">
 	<section class="hero-section left">
-		<Title superTitle="Hi! I'm" title="Andri Braun" tagAttributes={{ id: 'hero-title' }} />
+		<Title superTitle="Hi! I'm" title="Andri Braun" tagAttributes={{ id: "hero-title" }} />
 		<div class="text">
 			<p>
-				I write <span class="emocionante">code</span>, build
-				<span class="emocionante">websites</span>,&nbsp and do other
-				<span class="emocionante">nerd things</span>.
+				I <span style="display: inline-block"
+					>write <ExcitingText size="large">code</ExcitingText> ,</span
+				>
+				<span style="display: inline-block"
+					>build <ExcitingText color="accent-2" size="large">websites</ExcitingText>
+				</span>
+				, and do other
+				<ExcitingText color="accent-3" size="large">nerd things</ExcitingText>
 			</p>
 		</div>
-		<Button>Do Nerd Things for Me</Button>
+		<Button variant="outline">Do Nerd Things for Me</Button>
 	</section>
 	<section class="hero-section right">
 		<enhanced:img
@@ -29,24 +35,20 @@
 	.hero {
 		display: grid;
 		grid-template-columns: 4fr 3fr;
-		grid-template-areas: 'left right';
+		grid-template-areas: "left right";
 		padding: var(--spacing-vertical-section) var(--spacing-gutters);
 		gap: var(--spacing-lg) var(--spacing-block);
 
 		@media (max-width: $breakpoint-sm) {
 			grid-template-columns: 1fr;
 			grid-template-areas:
-				'right'
-				'left';
+				"right"
+				"left";
 		}
 
 		.hero-section {
 			&.left {
 				padding-top: var(--spacing-lg);
-
-				@media (max-width: $breakpoint-xs) {
-					text-align: center;
-				}
 
 				.text {
 					display: flex;
@@ -59,10 +61,6 @@
 
 					p {
 						margin: 0;
-					}
-
-					.emocionante {
-						@include emocionante-text;
 					}
 				}
 			}

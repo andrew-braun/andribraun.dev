@@ -25,8 +25,8 @@
 		border: none;
 		text-align: center;
 		transition: all var(--transition-md);
-		background-color: var(--color-background);
-		color: var(--color-text);
+		background-color: var(--color-text);
+		color: var(--color-background);
 		font-size: var(--font-size-md);
 
 		&:active {
@@ -46,6 +46,7 @@
 
 	.btn-outline {
 		background-color: transparent;
+		color: var(--color-text);
 		border: 1px solid var(--color-secondary);
 	}
 
@@ -75,20 +76,22 @@
 	.btn {
 		&.btn-flashyBackgroundSlide {
 			position: relative;
-			color: var(--color-text-light);
+			/* color: var(--color-text-light); */
 			text-align: center;
 			border: var(--border-md);
 			overflow: hidden;
 			transition:
 				box-shadow 0.4s cubic-bezier(0.55, 0, 0.1, 1),
 				background 0.6s cubic-bezier(0.55, 0, 0.1, 1),
-				transform 0.1s cubic-bezier(0.55, 0, 0.1, 1);
+				transform 0.1s cubic-bezier(0.55, 0, 0.1, 1),
+				color 0.2s cubic-bezier(0.55, 0, 0.1, 1);
 			cursor: pointer;
 			box-shadow: rgb(51, 51, 51) 0px 0px 0px;
-			background: var(--color-primary);
+			font-weight: 600;
 
 			&:hover {
 				background: transparent;
+				color: var(--color-text-light);
 				box-shadow:
 					var(--color-primary) 8px 8px 0px,
 					var(--color-primary) -8px -8px 0px;
