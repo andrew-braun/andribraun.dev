@@ -1,4 +1,6 @@
 <script>
+	import Link from "$components/ui/Link/Link.svelte";
+
 	// You can define your navigation items here or fetch them dynamically if needed
 	let navItems = [
 		{ name: "About", href: "#about" },
@@ -8,7 +10,7 @@
 
 <nav>
 	{#each navItems as item}
-		<a href={item.href} class="nav-link">{item.name}</a>
+		<Link href={item.href} class="nav-link">{item.name}</Link>
 	{/each}
 </nav>
 

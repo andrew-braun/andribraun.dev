@@ -1,9 +1,9 @@
 <script lang="ts">
-	export let tag = 'h1';
+	export let tag = "h1";
 	export let tagAttributes = {};
-	export let superTitle = '';
-	export let title = '';
-	export let subtitle = '';
+	export let superTitle = "";
+	export let title = "";
+	export let subtitle = "";
 </script>
 
 <svelte:element this={tag} class="title" {...tagAttributes}>
@@ -30,7 +30,7 @@
 	}
 
 	.title-small {
-		font-size: var(--font-size-md);
+		font-size: var(--font-size-lg);
 		font-weight: 400;
 	}
 
