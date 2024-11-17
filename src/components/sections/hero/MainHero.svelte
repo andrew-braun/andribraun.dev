@@ -3,6 +3,8 @@
 	import Title from "$components/text/Title.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
 	import AndriProfilePicture from "$lib/assets/img/profile/andri-in-milan-square.png?enhanced";
+	import FeArrowDown from "~icons/fe/arrow-down";
+	import OcticonRocket24 from "~icons/octicon/rocket-24";
 </script>
 
 <section class="hero">
@@ -20,7 +22,10 @@
 				<ExcitingText color="accent-3" size="large">nerd things</ExcitingText>
 			</p>
 		</div>
-		<Button variant="outline">Do Nerd Things for Me</Button>
+		<div class="cta-container">
+			<Button variant="gradient" size="large" icon={OcticonRocket24}>Get in touch</Button>
+			<Button variant="outline" size="large" icon={FeArrowDown}>Go down the rabbit hole</Button>
+		</div>
 	</section>
 	<section class="hero-section right">
 		<enhanced:img
@@ -54,7 +59,7 @@
 					display: flex;
 					gap: var(--spacing-xs);
 					align-items: center;
-					margin-bottom: var(--spacing-vertical-section);
+					margin: var(--spacing-md) 0 var(--spacing-vertical-section) 0;
 					vertical-align: top;
 					line-height: 50px;
 					font-size: var(--font-size-md);
@@ -62,6 +67,15 @@
 					p {
 						margin: 0;
 					}
+				}
+
+				.cta-container {
+					display: flex;
+					justify-content: center;
+					flex-wrap: wrap;
+					gap: var(--spacing-md);
+					margin-top: var(--spacing-xl);
+					text-align: center;
 				}
 			}
 
