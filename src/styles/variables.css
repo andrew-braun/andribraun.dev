@@ -63,6 +63,7 @@
 
 	/* Border radius */
 	--border-radius-md: 4px;
+	--border-radius-xl: 40px;
 
 	/* Limit site max width */
 	--site-max-width: 1920px;
