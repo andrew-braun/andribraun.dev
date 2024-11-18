@@ -23,7 +23,7 @@
 			</p>
 		</div>
 		<div class="cta-container">
-			<Button variant="gradient" size="large" icon={OcticonRocket24}>Get in touch</Button>
+			<Button variant="filled" size="large" icon={OcticonRocket24}>Get in touch</Button>
 			<Button variant="outline" size="large" icon={FeArrowDown}>Go down the rabbit hole</Button>
 		</div>
 	</section>

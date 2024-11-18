@@ -73,7 +73,7 @@
 	.btn-outline {
 		background-color: transparent;
 		color: var(--color-text);
-		border: 2px solid var(--color-secondary) !important;
+		border: 2px solid var(--color-primary) !important;
 
 		&:hover {
 			background-color: var(--color-secondary);
