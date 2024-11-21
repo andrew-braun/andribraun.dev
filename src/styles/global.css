@@ -27,6 +27,14 @@ h6 {
 	transition: all var(--transition-md);
 }
 
+@media only screen and (max-width: 30rem) {
+	h1,
+	h2,
+	h3 {
+		line-height: 1.2em;
+	}
+}
+
 /* Heading styles */
 
 h1 {
@@ -62,7 +70,7 @@ p {
 	padding: var(--spacing-lg);
 }
 
-@media (max-width: var(--breakpoint-md)) {
+@media (max-width: 48rem) {
 	body {
 		font-size: var(--font-size-sm);
 	}
@@ -91,4 +99,11 @@ a {
 
 a:hover {
 	color: var(--color-secondary);
+}
+
+/* Responsive styles */
+@media (max-width: 24rem) {
+	.hide-on-xs {
+		display: none !important;
+	}
 }

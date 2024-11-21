@@ -12,13 +12,9 @@
 		<Title superTitle="Hi! I'm" title="Andri Braun" tagAttributes={{ id: "hero-title" }} />
 		<div class="text">
 			<p>
-				I <span style="display: inline-block"
-					>write <ExcitingText size="large">code</ExcitingText> ,</span
-				>
-				<span style="display: inline-block"
-					>build <ExcitingText color="accent-2" size="large">websites</ExcitingText>
-				</span>
-				, and do other
+				<span>I write <ExcitingText size="large">code</ExcitingText> ,</span>
+				<span>build <ExcitingText color="accent-2" size="large">websites</ExcitingText> , </span>
+				<span>and do other</span>
 				<ExcitingText color="accent-3" size="large">nerd things</ExcitingText>
 			</p>
 		</div>
@@ -53,7 +49,7 @@
 
 		.hero-section {
 			&.left {
-				padding-top: var(--spacing-lg);
+				// padding-top: var(--spacing-lg);
 
 				.text {
 					display: flex;
@@ -61,11 +57,20 @@
 					align-items: center;
 					margin: var(--spacing-md) 0 var(--spacing-vertical-section) 0;
 					vertical-align: top;
-					line-height: 50px;
+					line-height: 3.8em;
 					font-size: var(--font-size-md);
 
 					p {
 						margin: 0;
+
+						@media screen and (max-width: $breakpoint-xs) {
+							text-align: right;
+						}
+					}
+
+					span {
+						display: inline-block;
+						vertical-align: bottom;
 					}
 				}
 

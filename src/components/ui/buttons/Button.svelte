@@ -44,7 +44,7 @@
 
 	.btn-filled {
 		background-color: var(--color-primary);
-		color: var(--color-text-dark);
+		color: var(--color-text-light);
 
 		&:hover {
 			background-color: var(--color-secondary);
