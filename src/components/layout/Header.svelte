@@ -1,14 +1,16 @@
 <script>
-	import Nav from "$components/layout/HeaderNav.svelte";
+	import HeaderNav from "$components/layout/HeaderNav.svelte";
 	import Logo from "$components/layout/Logo.svelte";
 	import ThemeToggle from "$components/ui/theme/ThemeToggle.svelte";
+
+	import { primaryNavItems } from "$data/site/menus/primary-nav"
 </script>
 
 <header class="header">
 	<div class="header-content">
 		<Logo />
-		<div class="nav-actions">
-			<Nav />
+		<div class="nav-actions desktop">
+			<HeaderNav navItems={primaryNavItems}/>
 			<ThemeToggle />
 		</div>
 	</div>

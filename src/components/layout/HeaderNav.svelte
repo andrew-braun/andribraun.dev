@@ -1,11 +1,9 @@
-<script>
+<script lang="ts">
 	import Link from "$components/ui/Link/Link.svelte";
+	import { NavItem } from "$root/ts/site-data"
 
-	// You can define your navigation items here or fetch them dynamically if needed
-	let navItems = [
-		{ name: "About", href: "#about" },
-		{ name: "Contact", href: "#contact" }
-	];
+	export let navItems: NavItem[] = [];
+
 </script>
 
 <nav>
