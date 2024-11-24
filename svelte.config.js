@@ -17,8 +17,8 @@ const config = {
 			$styles: "./src/styles",
 			$stores: "./src/stores",
 			$utils: "./src/utils",
-			$data: "./src/lib/data",
-			$root: "./"
+			$root: "./",
+			$ts: "./src/ts"
 		}
 	}
 };

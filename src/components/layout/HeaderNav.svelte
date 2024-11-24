@@ -1,9 +1,8 @@
 <script lang="ts">
 	import Link from "$components/ui/Link/Link.svelte";
-	import { NavItem } from "$root/ts/site-data"
+	import type { NavItem } from "$ts/site-data";
 
 	export let navItems: NavItem[] = [];
-
 </script>
 
 <nav>

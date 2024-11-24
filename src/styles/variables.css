@@ -12,15 +12,18 @@
 	--color-accent-2-text: var(--color-text-light);
 	--color-accent-3: hsl(267, 72%, 63%);
 	--color-accent-3-text: var(--color-text-dark);
-	--color-background: hsla(0, 0%, 7%, 1);
-	--color-text: hsl(0, 0%, 100%);
+	--color-background: var(--color-background-dark);
+	--color-background-mid: var(--color-background-dark-mid);
+	--color-text: var(--color-text-dark);
 
 	/* Light mode colors */
 	--color-background-light: hsl(0, 0%, 100%);
+	--color-background-light-mid: hsl(0, 0%, 95%);
 	--color-text-light: hsl(0, 0%, 0%);
 
 	/* Dark mode colors */
 	--color-background-dark: hsl(0, 0%, 7%);
+	--color-background-dark-mid: hsl(0, 0%, 30%);
 	--color-text-dark: hsl(0, 0%, 100%);
 
 	/* Spacing */
