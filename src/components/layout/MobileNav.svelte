@@ -4,15 +4,24 @@
 
 	export const navItems: NavItem[] = [];
 
-	let isOpen = false;
+	let isOpen = $state(false);
 
 	const toggleMenu = () => {
 		isOpen = !isOpen;
 	};
+
+	// // Custom event
+	// let { drawerToggle } = $props<"open" | "closed">();
+
+	// 	if (isOpen) {
+	// 		drawerToggle("open");
+	// 	} else {
+	// 		drawerToggle("closed");
+	// 	}
 </script>
 
 <div>
-	<button class="menu-button {isOpen ? 'open' : ''}" on:click={toggleMenu} aria-label="Toggle Menu">
+	<button class="menu-button {isOpen ? 'open' : ''}" onclick={toggleMenu} aria-label="Toggle Menu">
 		<span></span>
 		<span></span>
 		<span></span>
@@ -21,7 +30,7 @@
 	<Drawer {isOpen} position="right">
 		<div class="nav-links">
 			{#each navItems as { href, label }}
-				<a {href} on:click={() => (isOpen = false)}>{label}</a>
+				<a {href} onclick={() => (isOpen = false)}>{label}</a>
 			{/each}
 		</div>
 	</Drawer>

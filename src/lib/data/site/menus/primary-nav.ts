@@ -1,4 +1,4 @@
 export const primaryNavItems = [
-	{ name: "About", href: "#about" },
-	{ name: "Contact", href: "#contact" }
+	{ label: "About", href: "#about" },
+	{ label: "Contact", href: "#contact" }
 ];

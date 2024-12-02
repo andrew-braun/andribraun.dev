@@ -1,17 +1,29 @@
 <script lang="ts">
+	import { portal } from "$root/src/lib/hooks/portal";
+
 	export let isOpen: boolean = false;
 	export let position: "right" | "left" = "right"; // Can be 'left' or 'right'
 
 	const closeDrawer = () => {
 		isOpen = false;
-
-		// Emit a custom event to notify the parent component
-		dispatch("drawerClose");
 	};
+
+	function handleCloseKeyDown(event: KeyboardEvent) {
+		if (event.key === "Enter" || event.key === "Space") {
+			closeDrawer();
+		}
+	}
 </script>
 
-<div class="drawer-container">
-	<div class="overlay" class:active={isOpen} on:click={closeDrawer} />
+<div class="drawer-container" use:portal={{ portalId: "mobile-nav-portal" }}>
+	<div
+		class="overlay"
+		class:active={isOpen}
+		on:click={closeDrawer}
+		on:keydown={handleCloseKeyDown}
+		role="button"
+		tabindex="0"
+	></div>
 
 	<div
 		class="drawer"
@@ -43,14 +55,17 @@
 			padding: var(--spacing-sm);
 			background: var(--color-background-mid);
 			box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
-			clip-path: inset(0 0 0 100%);
-			transition: clip-path 0.3s ease-in-out;
+			// clip-path: inset(0 0 0 100%);
+			// transition: clip-path 0.3s ease-in-out;
+			transform: translateX(calc(var(--drawer-width) * 1.4));
+			transition: transform var(--transition-duration);
 
 			&.right {
 				right: 0;
 
 				&.open {
-					clip-path: inset(0 0 0 0);
+					// clip-path: inset(0 0 0 0);
+					transform: translateX(0);
 				}
 			}
 

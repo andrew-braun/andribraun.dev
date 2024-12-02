@@ -7,7 +7,7 @@
 
 <nav>
 	{#each navItems as item}
-		<Link href={item.href} class="nav-link">{item.name}</Link>
+		<Link href={item.href} class="nav-link">{item.label}</Link>
 	{/each}
 </nav>
 
