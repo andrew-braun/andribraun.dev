@@ -3,9 +3,11 @@
 
 	export let isOpen: boolean = false;
 	export let position: "right" | "left" = "right"; // Can be 'left' or 'right'
+	export let onClose: () => void;
 
 	const closeDrawer = () => {
 		isOpen = false;
+		onClose();
 	};
 
 	function handleCloseKeyDown(event: KeyboardEvent) {

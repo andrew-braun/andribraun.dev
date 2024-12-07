@@ -10,6 +10,10 @@
 		isOpen = !isOpen;
 	};
 
+	const handleClose = () => {
+		isOpen = false;
+	};
+
 	// // Custom event
 	// let { drawerToggle } = $props<"open" | "closed">();
 
@@ -27,7 +31,7 @@
 		<span></span>
 	</button>
 
-	<Drawer {isOpen} position="right">
+	<Drawer {isOpen} position="right" onClose={handleClose}>
 		<div class="nav-links">
 			{#each navItems as { href, label }}
 				<a {href} onclick={() => (isOpen = false)}>{label}</a>
