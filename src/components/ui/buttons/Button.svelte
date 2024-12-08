@@ -84,16 +84,19 @@
 	.btn-small {
 		font-size: var(--font-size-sm);
 		padding: var(--spacing-xs) var(--spacing-sm);
+		min-width: 180px;
 	}
 
 	.btn-medium {
 		font-size: var(--font-size-md);
 		padding: var(--spacing-sm) var(--spacing-md);
+		min-width: 220px;
 	}
 
 	.btn-large {
 		font-size: var(--font-size-lg);
 		padding: var(--spacing-sm) var(--spacing-lg);
+		width: clamp(220px, 100%, 300px);
 	}
 
 	/* Disabled state */

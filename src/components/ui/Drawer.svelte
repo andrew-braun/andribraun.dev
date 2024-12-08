@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { portal } from "$root/src/lib/hooks/portal";
+	import MenuButton from "./buttons/MenuButton.svelte";
 
 	export let isOpen: boolean = false;
 	export let position: "right" | "left" = "right"; // Can be 'left' or 'right'
@@ -34,6 +35,7 @@
 		class:open={isOpen}
 		aria-hidden={!isOpen}
 	>
+		<MenuButton {isOpen} onClick={closeDrawer} />
 		<slot></slot>
 	</div>
 </div>

@@ -1,8 +1,8 @@
 <script>
-	import HeaderNav from "$components/layout/HeaderNav.svelte";
-	import Logo from "$components/layout/Logo.svelte";
+	import HeaderNav from "$components/layout/header/HeaderNav.svelte";
+	import Logo from "$components/layout/header/Logo.svelte";
+	import MobileNav from "$components/layout/header/MobileNav.svelte";
 	import ThemeToggle from "$components/ui/theme/ThemeToggle.svelte";
-	import MobileNav from "$components/layout/MobileNav.svelte";
 	import { primaryNavItems } from "$lib/data/site/menus/primary-nav";
 </script>
 
@@ -14,7 +14,7 @@
 			<ThemeToggle />
 		</div>
 		<div class="nav-actions mobile">
-			<MobileNav />
+			<MobileNav navItems={primaryNavItems} />
 		</div>
 	</div>
 </header>

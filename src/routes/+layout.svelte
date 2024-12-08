@@ -8,7 +8,7 @@
 	import "$styles/global.css";
 	import "$styles/variables.css";
 	// import '$styles/scss-variables.scss';
-	import Header from "$components/layout/Header.svelte";
+	import Header from "$components/layout/header/Header.svelte";
 
 	setInitialTheme();
 </script>
