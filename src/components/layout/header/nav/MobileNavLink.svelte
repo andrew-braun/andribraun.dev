@@ -18,7 +18,7 @@
 
 <style lang="scss">
 	.mobile-nav-link {
-		padding: var(--spacing-sm);
+		padding: var(--spacing-md);
 		font-size: var(--font-size-md);
 		text-decoration: none;
 

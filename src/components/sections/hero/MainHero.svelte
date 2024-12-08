@@ -7,15 +7,17 @@
 	import OcticonRocket24 from "~icons/octicon/rocket-24";
 </script>
 
-<section class="hero">
+<section class="page-section hero">
 	<section class="hero-section left">
 		<Title superTitle="Hi! I'm" title="Andri Braun" tagAttributes={{ id: "hero-title" }} />
 		<div class="text">
 			<p>
 				<span>I write <ExcitingText size="large">code</ExcitingText> ,</span>
 				<span>build <ExcitingText color="accent-2" size="large">websites</ExcitingText> , </span>
-				<span>and do other</span>
-				<ExcitingText color="accent-3" size="large">nerd things</ExcitingText>
+				<span
+					>and do other
+					<ExcitingText color="accent-3" size="large">nerd things</ExcitingText></span
+				>
 			</p>
 		</div>
 		<div class="cta-container">
@@ -37,7 +39,6 @@
 		display: grid;
 		grid-template-columns: 4fr 3fr;
 		grid-template-areas: "left right";
-		padding: var(--spacing-vertical-section) var(--spacing-gutters);
 		gap: var(--spacing-lg) var(--spacing-block);
 
 		@media (max-width: $breakpoint-sm) {

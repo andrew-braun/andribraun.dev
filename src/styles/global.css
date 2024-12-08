@@ -108,3 +108,8 @@ a:hover {
 		display: none !important;
 	}
 }
+
+/* Section styles */
+.page-section {
+	padding: var(--spacing-vertical-section) var(--spacing-gutters);
+}
