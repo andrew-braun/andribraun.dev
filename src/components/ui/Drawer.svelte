@@ -1,10 +1,17 @@
 <script lang="ts">
 	import { portal } from "$root/src/lib/hooks/portal";
+	import type { Snippet } from "svelte";
 	import MenuButton from "./buttons/MenuButton.svelte";
 
-	export let isOpen: boolean = false;
-	export let position: "right" | "left" = "right"; // Can be 'left' or 'right'
-	export let onClose: () => void;
+	interface DrawerProps {
+		isOpen: boolean;
+		position: "right" | "left";
+		onClose: () => void;
+		header?: Snippet;
+		children: Snippet;
+	}
+
+	let { isOpen, position, onClose, header, children }: DrawerProps = $props();
 
 	const closeDrawer = () => {
 		isOpen = false;
@@ -22,8 +29,8 @@
 	<div
 		class="overlay"
 		class:active={isOpen}
-		on:click={closeDrawer}
-		on:keydown={handleCloseKeyDown}
+		onclick={closeDrawer}
+		onkeydown={handleCloseKeyDown}
 		role="button"
 		tabindex="0"
 	></div>
@@ -35,8 +42,13 @@
 		class:open={isOpen}
 		aria-hidden={!isOpen}
 	>
+		{#if header}
+			<header class="drawer-header">
+				{@render header()}
+			</header>
+		{/if}
 		<MenuButton {isOpen} onClick={closeDrawer} />
-		<slot></slot>
+		{@render children()}
 	</div>
 </div>
 
@@ -56,7 +68,6 @@
 			gap: 10px;
 			width: var(--drawer-width);
 			height: 100vh;
-			padding: var(--spacing-sm);
 			background: var(--color-background-mid);
 			box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
 			// clip-path: inset(0 0 0 100%);
@@ -80,6 +91,10 @@
 				&.open {
 					transform: translateX(var(--drawer-width));
 				}
+			}
+
+			.drawer-header {
+				padding: var(--spacing-sm);
 			}
 		}
 	}

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/stores";
 	import Link from "$components/ui/Link/Link.svelte";
 	import type { NavItem } from "$ts/site-data";
 
@@ -7,7 +8,7 @@
 
 <nav>
 	{#each navItems as item}
-		<Link href={item.href}>{item.label}</Link>
+		<Link href={item.href} active={$page.url.hash === item.href}>{item.label}</Link>
 	{/each}
 </nav>
 

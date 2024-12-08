@@ -1,18 +1,33 @@
 <script lang="ts">
-	let className = "";
-	export { className as class };
-	export let href = "";
-	export let text = "";
-	export let underlineColor = "var(--color-primary)";
+	import type { HTMLLinkAttributes } from "svelte/elements";
+
+	interface LinkProps {
+		className?: string;
+		href: string;
+		underlineColor?: string;
+		active?: boolean;
+		restProps?: any;
+		children: any;
+	}
+
+	let {
+		className,
+		href,
+		underlineColor = "var(--color-accent-1)",
+		active,
+		restProps,
+		children
+	}: LinkProps = $props();
 </script>
 
 <a
-	{...$$restProps}
+	{...restProps}
 	{href}
 	class="animated-link {className}"
+	class:active-link={active}
 	style="--underline-color: {underlineColor}"
 >
-	<slot>{text}</slot>
+	{@render children()}
 </a>
 
 <style lang="scss">
@@ -52,6 +67,12 @@
 		&:focus-visible {
 			outline: 2px solid var(--underline-color);
 			outline-offset: 4px;
+		}
+	}
+	.active-link {
+		&::after {
+			transform: scaleX(1);
+			transform-origin: bottom left;
 		}
 	}
 </style>

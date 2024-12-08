@@ -1,7 +1,7 @@
 <script>
-	import HeaderNav from "$components/layout/header/HeaderNav.svelte";
 	import Logo from "$components/layout/header/Logo.svelte";
-	import MobileNav from "$components/layout/header/MobileNav.svelte";
+	import HeaderNav from "$components/layout/header/nav/HeaderNav.svelte";
+	import MobileNav from "$components/layout/header/nav/MobileNav.svelte";
 	import ThemeToggle from "$components/ui/theme/ThemeToggle.svelte";
 	import { primaryNavItems } from "$lib/data/site/menus/primary-nav";
 </script>
