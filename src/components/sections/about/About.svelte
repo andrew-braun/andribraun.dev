@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Title from "$components/text/Title.svelte";
 	import Tabbed from "$components/ui/Tabbed.svelte";
 
 	const tabs = [
@@ -24,5 +25,10 @@
 </script>
 
 <section id="about" class="page-section">
+	<Title
+		title="About Me"
+		tag="h2"
+		subtitle="Choose your own adventure: my motto and also what you can do with the tabs below!"
+	/>
 	<Tabbed {tabs} />
 </section>
