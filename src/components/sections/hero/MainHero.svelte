@@ -39,7 +39,7 @@
 		display: grid;
 		grid-template-columns: 4fr 3fr;
 		grid-template-areas: "left right";
-		gap: var(--spacing-lg) var(--spacing-block);
+
 
 		@media (max-width: $breakpoint-sm) {
 			grid-template-columns: 1fr;
@@ -77,7 +77,7 @@
 
 				.cta-container {
 					display: flex;
-					justify-content: center;
+					// justify-content: center;
 					flex-wrap: wrap;
 					gap: var(--spacing-md);
 					margin-top: var(--spacing-xl);
