@@ -1,10 +1,11 @@
 <script lang="ts">
 	import { Tabs } from "bits-ui";
 
-	export interface Tab {
+	interface Tab {
 		value: string;
 		label: string;
 		content: any;
+		props?: Record<string, any>;
 	}
 
 	interface TabbedProps {
@@ -27,7 +28,13 @@
 		</Tabs.List>
 	</div>
 	{#each tabs as tab}
-		<Tabs.Content value={tab.value}>{tab.content}</Tabs.Content>
+		<Tabs.Content value={tab.value}>
+			{#if typeof tab.content === "function"}
+				<tab.content {...tab.props} />
+			{:else}
+				{tab.content}
+			{/if}
+		</Tabs.Content>
 	{/each}
 </Tabs.Root>
 
@@ -84,7 +91,7 @@
 				position: absolute;
 				bottom: 0;
 				left: 0;
-				width: 100%;
+				width: 0%;
 				height: 100%;
 				content: "";
 				border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
@@ -99,6 +106,7 @@
 
 				&::after {
 					opacity: 1;
+					width: 100%;
 				}
 			}
 		}

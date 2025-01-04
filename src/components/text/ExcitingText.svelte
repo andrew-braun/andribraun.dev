@@ -1,8 +1,6 @@
 <script lang="ts">
 	export let color: "accent-1" | "accent-2" | "accent-3" = "accent-1";
 	export let size: "normal" | "large" = "normal";
-
-	console.log("size: ", size);
 </script>
 
 <span class={`emocionante ${color} font-size-${size}`}><slot /></span>
