@@ -21,15 +21,15 @@
 
 {#snippet imageSnippet()}
 	<div class="image-wrapper">
-		<enhanced:img src={image.src} alt={image.alt} class="image" {...imageProps} />
+		<enhanced:img src={image.src} alt={image.alt} class="image" {...imageProps} loading="lazy" />
 	</div>
 {/snippet}
 
-{#snippet textSnippet()}
+<!-- {#snippet textSnippet()}
 	<p>{text}</p>
-{/snippet}
+{/snippet} -->
 
-<TwoColumn {smallColumn} {widerSide} leftContent={imageSnippet} rightContent={textSnippet} />
+<TwoColumn {smallColumn} {widerSide} leftContent={imageSnippet} rightContent={text} />
 
 <style lang="scss">
 	.image-wrapper {

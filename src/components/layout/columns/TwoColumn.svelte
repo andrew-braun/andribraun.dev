@@ -17,14 +17,14 @@
 >
 	<div class="column left">
 		{#if typeof leftContent === "string"}
-			<p>{leftContent}</p>
+			<div>{leftContent}</div>
 		{:else}
 			{@render leftContent()}
 		{/if}
 	</div>
 	<div class="column right">
 		{#if typeof rightContent === "string"}
-			<p>{rightContent}</p>
+			<div>{rightContent}</div>
 		{:else}
 			{@render rightContent()}
 		{/if}
