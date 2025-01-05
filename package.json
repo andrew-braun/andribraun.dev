@@ -36,6 +36,8 @@
 	},
 	"type": "module",
 	"dependencies": {
-		"bits-ui": "^0.22.0"
+		"bits-ui": "^0.22.0",
+		"isomorphic-dompurify": "^2.19.0",
+		"marked": "^15.0.5"
 	}
 }

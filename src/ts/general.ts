@@ -1,4 +1,4 @@
 export interface ImageDataProps {
-    alt: string;
-    src: string;
+	alt: string;
+	src: any;
 }

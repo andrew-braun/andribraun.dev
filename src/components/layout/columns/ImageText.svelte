@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { ImageDataProps } from "$root/src/ts/general";
+	import DOMPurify from "isomorphic-dompurify";
+	import { marked } from "marked";
 	import TwoColumn from "./TwoColumn.svelte";
 
 	interface ImageTextProps {
@@ -17,6 +19,8 @@
 		smallColumn = "33%",
 		imageProps = {}
 	}: ImageTextProps = $props();
+
+	const markdownText = marked.parse(text);
 </script>
 
 {#snippet imageSnippet()}
@@ -25,11 +29,11 @@
 	</div>
 {/snippet}
 
-<!-- {#snippet textSnippet()}
-	<p>{text}</p>
-{/snippet} -->
+{#snippet textSnippet()}
+	{@html markdownText}
+{/snippet}
 
-<TwoColumn {smallColumn} {widerSide} leftContent={imageSnippet} rightContent={text} />
+<TwoColumn {smallColumn} {widerSide} leftContent={imageSnippet} rightContent={textSnippet} />
 
 <style lang="scss">
 	.image-wrapper {
