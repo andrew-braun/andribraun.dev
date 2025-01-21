@@ -1,18 +1,8 @@
 <script lang="ts">
+	import TabContent from "./TabContent.svelte";
 	import TabList from "./TabList.svelte";
 
-	interface Tab {
-		label: string;
-		value: string;
-		content: any;
-	}
-
-	interface TabsProps {
-		tabs: Tab[];
-		initialTab?: number;
-	}
-
-	const { tabs, initialTab = 0, children } = $props();
+	const { tabs, initialTab = 0 } = $props();
 
 	let currentTab = $state(initialTab);
 
@@ -23,12 +13,26 @@
 
 <div class="tabs">
 	<TabList {tabs} {currentTab} {setActiveTab} />
-	{@render children()}
+	<div class="tabs-container">
+		{#each tabs as tab, index}
+			<TabContent {currentTab} {index}>
+				<tab.content {...tab.props} />
+			</TabContent>
+		{/each}
+	</div>
 </div>
 
 <style lang="scss">
 	.tabs {
 		display: flex;
 		flex-direction: column;
+
+		.tabs-container {
+			position: relative;
+			display: grid;
+			grid-template-columns: 100%;
+			grid-template-rows: 1fr;
+			margin-top: var(--spacing-md);
+		}
 	}
 </style>

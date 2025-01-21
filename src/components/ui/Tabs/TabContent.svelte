@@ -9,25 +9,33 @@
 
 	const { currentTab, index, children }: TabContentProps = $props();
 
-	let isActive = $state(currentTab === index);
-	let direction = $state(currentTab < index ? "right" : "left");
+	let isActive = $derived(currentTab === index);
+	let direction = $derived(currentTab < index ? "right" : "left");
 </script>
 
-{#if isActive}
-	<div
-		class="tab-content"
-		in:fly={{ x: direction === "left" ? -100 : 100 }}
-		out:fly={{ x: direction === "left" ? 100 : -100 }}
-	>
-		{@render children()}
-	</div>
-{/if}
+<div
+	class="tab-content"
+	class:active={isActive}
+	in:fly={{ x: direction === "left" ? -100 : 100 }}
+	out:fly={{ x: direction === "left" ? 100 : -100 }}
+>
+	{@render children()}
+</div>
 
-<style>
+<style lang="scss">
 	.tab-content {
-		position: absolute;
-		top: 0;
-		left: 0;
-		width: 100%;
+		grid-column: 1;
+		grid-row: 1;
+		z-index: -1;
+		overflow: auto;
+		visibility: hidden;
+		opacity: 0;
+		transition: all var(--transition-md);
+
+		&.active {
+			z-index: 10;
+			opacity: 1;
+			visibility: visible;
+		}
 	}
 </style>

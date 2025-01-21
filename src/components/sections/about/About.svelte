@@ -2,6 +2,7 @@
 	import ImageText from "$components/layout/columns/ImageText.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Tabbed from "$components/ui/Tabbed.svelte";
+	import Tabs from "$components/ui/Tabs/Tabs.svelte";
 
 	import { aboutData } from "./about-data";
 
@@ -23,8 +24,6 @@
 				}
 			};
 		});
-
-	console.log(aboutTabs);
 
 	// const tabs = [
 	// 	{
@@ -71,5 +70,6 @@
 
 <section id="about" class="page-section">
 	<Title title="About Me" tag="h2" />
-	<Tabbed tabs={aboutTabs} />
+	<Tabs tabs={aboutTabs} />
+	<!-- <Tabbed tabs={aboutTabs} /> -->
 </section>
