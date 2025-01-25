@@ -38,7 +38,7 @@
 
 		display: grid;
 		grid-template-columns: var(--large-width) var(--small-width);
-		gap: var(--spacing-md);
+		gap: var(--spacing-lg);
 		container-type: block-size;
 
 		@container (width < $breakpoint-sm) {

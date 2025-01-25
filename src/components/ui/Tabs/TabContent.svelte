@@ -17,6 +17,7 @@
 	class:active={isActive}
 	hidden={!isActive ? true : false}
 	role="tabpanel"
+	aria-labelledby={`tab-label-${index}`}
 >
 	{@render children()}
 </div>
@@ -34,6 +35,11 @@
 		&.active {
 			z-index: 10;
 			opacity: 1;
+			visibility: visible;
+		}
+
+		&[hidden] {
+			display: block;
 			visibility: visible;
 		}
 	}

@@ -48,10 +48,12 @@ h1 {
 
 h2 {
 	font-size: var(--font-size-h2);
+	margin-block: 0.6em;
 }
 
 h3 {
 	font-size: var(--font-size-h3);
+	margin-block: 0.4em;
 }
 
 h4 {
@@ -67,8 +69,13 @@ h6 {
 }
 
 p {
-	margin-bottom: var(--spacing-md);
+	margin-block: 0.4em;
+	line-height: 170%;
 	transition: all var(--transition-md);
+}
+
+li {
+	margin-block: 0.6em;
 }
 
 .container {

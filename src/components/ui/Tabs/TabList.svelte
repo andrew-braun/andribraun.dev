@@ -21,7 +21,7 @@
 	};
 </script>
 
-<div class="tab-list" role="tablist">
+<div class="tab-list" role="tablist" aria-label="About Me Tabs">
 	{#each tabs as tab, index}
 		<button
 			class="tab-trigger"
@@ -31,6 +31,7 @@
 			role="tab"
 			aria-selected={currentTab === index}
 			aria-controls={`tab-${index}`}
+			id={`tab-label-${index}`}
 		>
 			{tab.label}
 		</button>
