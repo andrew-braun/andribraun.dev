@@ -1,6 +1,4 @@
 <script lang="ts">
-	import { fly } from "svelte/transition";
-
 	interface TabContentProps {
 		currentTab: number;
 		index: number;
@@ -14,10 +12,11 @@
 </script>
 
 <div
+	id={`tab-${index}`}
 	class="tab-content"
 	class:active={isActive}
-	in:fly={{ x: direction === "left" ? -100 : 100 }}
-	out:fly={{ x: direction === "left" ? 100 : -100 }}
+	hidden={!isActive ? true : false}
+	role="tabpanel"
 >
 	{@render children()}
 </div>

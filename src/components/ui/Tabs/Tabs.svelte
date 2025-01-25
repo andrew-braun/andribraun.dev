@@ -9,9 +9,15 @@
 	const setActiveTab = (index: number) => {
 		currentTab = index;
 	};
+
+	const handleKeydown = (event: KeyboardEvent) => {
+		if (event.key === "Tab") {
+			console.log(event.target);
+		}
+	};
 </script>
 
-<div class="tabs">
+<div class="tabs" onkeydown={handleKeydown}>
 	<TabList {tabs} {currentTab} {setActiveTab} />
 	<div class="tabs-container">
 		{#each tabs as tab, index}

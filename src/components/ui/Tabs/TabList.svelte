@@ -30,6 +30,7 @@
 			onkeydown={(event) => handleKeydown({ event, currentTab })}
 			role="tab"
 			aria-selected={currentTab === index}
+			aria-controls={`tab-${index}`}
 		>
 			{tab.label}
 		</button>
