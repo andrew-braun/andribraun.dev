@@ -81,36 +81,45 @@ export const CodeIconWooCommerce = WooCommerceIcon;
 export const CodeIconWordPress = WordPressIcon;
 
 export const codeIcons = {
-	apollo: ApolloIcon,
-	aws: AWSIcon,
-	azure: AzureIcon,
-	css: CSSIcon,
-	express: ExpressIcon,
-	fastify: FastifyIcon,
-	firebase: FirebaseIcon,
-	graphql: GraphQLIcon,
-	heroku: HerokuIcon,
-	html: HTMLIcon,
-	javascript: JavaScriptIcon,
-	mariadb: MariaDBIcon,
-	mongodb: MongoDBIcon,
-	mysql: MySQLIcon,
-	netlify: NetlifyIcon,
-	next: NextIcon,
-	node: NodeIcon,
-	payload: PayloadIcon,
-	php: PHPIcon,
-	postgresql: PostgreSQLIcon,
-	python: PythonIcon,
-	react: ReactIcon,
-	sass: SassIcon,
-	shopify: ShopifyIcon,
-	sqlite: SQLiteIcon,
-	strapi: StrapiIcon,
-	svelte: SvelteIcon,
-	sveltekit: SvelteKitIcon,
-	typescript: TypeScriptIcon,
-	vercel: VercelIcon,
-	woocommerce: WooCommerceIcon,
-	wordpress: WordPressIcon
+	cms: {
+		payload: PayloadIcon,
+		shopify: ShopifyIcon,
+		strapi: StrapiIcon,
+		woocommerce: WooCommerceIcon,
+		wordpress: WordPressIcon
+	},
+	databases: {
+		firebase: FirebaseIcon,
+		graphql: GraphQLIcon,
+		mariadb: MariaDBIcon,
+		mongodb: MongoDBIcon,
+		mysql: MySQLIcon,
+		postgresql: PostgreSQLIcon,
+		sqlite: SQLiteIcon
+	},
+	devops: {
+		aws: AWSIcon,
+		azure: AzureIcon,
+		heroku: HerokuIcon,
+		netlify: NetlifyIcon,
+		vercel: VercelIcon
+	},
+	frameworks: {
+		express: ExpressIcon,
+		fastify: FastifyIcon,
+		next: NextIcon,
+		react: ReactIcon,
+		svelte: SvelteIcon,
+		sveltekit: SvelteKitIcon
+	},
+
+	languages: {
+		css: CSSIcon,
+		html: HTMLIcon,
+		javascript: JavaScriptIcon,
+		php: PHPIcon,
+		python: PythonIcon,
+		typescript: TypeScriptIcon,
+		sass: SassIcon
+	}
 };

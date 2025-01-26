@@ -3,7 +3,7 @@
 	import TwoColumn from "$components/layout/columns/TwoColumn.svelte";
 	import BlockRow from "$components/layout/rows/BlockRow.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
-	import { CodeIconJavaScript } from "$root/src/lib/data/icons";
+	import { CodeIconJavaScript, codeIcons } from "$root/src/lib/data/icons";
 	import type { ImageDataProps } from "$root/src/ts/general";
 
 	interface NerdModeProps {
@@ -23,9 +23,13 @@
 {#snippet rightColumn()}
 	<div class="text">
 		<Markdown {text} />
-		<BlockRow title="Languages" titleTag="h3">
-			<LabelledIcon Icon={CodeIconJavaScript} label="JavaScript" />
-		</BlockRow>
+		{#each Object.entries(codeIcons) as [key, icons]}
+			<BlockRow title={key} titleTag="h3">
+				{#each Object.entries(icons) as [key, icon]}
+					<LabelledIcon Icon={icon} label={key} />
+				{/each}
+			</BlockRow>
+		{/each}
 	</div>
 {/snippet}
 
