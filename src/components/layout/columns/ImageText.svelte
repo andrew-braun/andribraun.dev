@@ -1,6 +1,5 @@
 <script lang="ts">
 	import type { ImageDataProps } from "$root/src/ts/general";
-	import DOMPurify from "isomorphic-dompurify";
 	import { marked } from "marked";
 	import TwoColumn from "./TwoColumn.svelte";
 
@@ -37,6 +36,8 @@
 
 <style lang="scss">
 	.image-wrapper {
+		position: sticky;
+		top: var(--spacing-md);
 		align-self: start;
 		.image {
 			width: 100%;

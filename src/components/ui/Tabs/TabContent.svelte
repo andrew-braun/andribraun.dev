@@ -27,7 +27,6 @@
 		grid-column: 1;
 		grid-row: 1;
 		z-index: -1;
-		overflow: auto;
 		visibility: hidden;
 		opacity: 0;
 		transition: all var(--transition-md);

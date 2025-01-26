@@ -31,9 +31,11 @@ export const aboutData: AboutData = {
 Hello, I’m Andri Braun—an American full-stack web developer with a passion for building modern, efficient websites. Whether it’s creating new sites from scratch, optimizing outdated systems, or solving complex issues, I bring flexibility, reliability, and a problem-solving mindset to every project.
 
 I specialize in:
-- **JavaScript** – The backbone of modern web functionality.
-- **CSS** – Crafting visually stunning, responsive designs.
-- **WordPress/PHP** – Powering dynamic sites, from small blogs to major platforms.
+<ul style="list-style: none">
+	<li style="display: flex; align-items: center; gap: var(--spacing-md)"><img src="/icons/code/skill-icons--javascript.svg" width="36" height="36" /> <span><b>JavaScript</b> – The backbone of modern web functionality.</span></li>
+	<li style="display: flex; align-items: center; gap: var(--spacing-md)"><img src="/icons/code/skill-icons--css.svg" width="36" height="36" /> <span><b>CSS</b> – Crafting visually stunning, responsive designs.</span></li>
+	<li style="display: flex; align-items: center; gap: var(--spacing-md)"><img src="/icons/code/skill-icons--php-light.svg" width="36" height="36" /> <span><b>WordPress/PHP</b> – Powering dynamic sites, from small blogs to major platforms.</span></li>
+</ul>
 
 Want to dive deeper into the tech I use? Check out the "Nerd Mode" tab.
 

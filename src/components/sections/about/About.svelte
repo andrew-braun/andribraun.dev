@@ -1,16 +1,16 @@
 <script lang="ts">
 	import ImageText from "$components/layout/columns/ImageText.svelte";
 	import Title from "$components/text/Title.svelte";
-	import Tabbed from "$components/ui/Tabbed.svelte";
 	import Tabs from "$components/ui/Tabs/Tabs.svelte";
 
 	import { aboutData } from "./about-data";
+	import NerdMode from "./tabs/NerdMode.svelte";
 
 	const imageTextProps = {
 		widerSide: "right"
 	};
 
-	const aboutTabs = Object.values(aboutData?.descriptions)
+	const aboutTabs = [aboutData.descriptions.professional, aboutData.descriptions.personal]
 		.filter((mode) => mode.id || mode.text)
 		.map((mode) => {
 			return {
@@ -24,6 +24,20 @@
 				}
 			};
 		});
+
+	const nerdModeData = aboutData.descriptions.nerd;
+	const nerdModeTab = {
+		value: nerdModeData.id,
+		label: nerdModeData.title,
+		content: NerdMode,
+		props: {
+			...imageTextProps,
+			image: nerdModeData.image,
+			text: nerdModeData.text
+		}
+	};
+
+	aboutTabs.push(nerdModeTab);
 </script>
 
 <section id="about" class="page-section">

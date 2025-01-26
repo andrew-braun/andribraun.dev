@@ -3,15 +3,14 @@
 	import Title from "$components/text/Title.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
 	import AndriProfilePicture from "$lib/assets/img/profile/andri-in-milan-square.png?enhanced";
-	import FeArrowDown from "~icons/fe/arrow-down";
-	import OcticonRocket24 from "~icons/octicon/rocket-24";
+	import { RocketIcon } from "$lib/data/icons";
 </script>
 
 <section class="page-section hero">
 	<section class="hero-section left">
 		<Title superTitle="Hi! I'm" title="Andri Braun" tagAttributes={{ id: "hero-title" }} />
 		<div class="text">
-			<p>
+			<p style="line-height: unset">
 				<span>I write <ExcitingText size="large">code</ExcitingText> ,</span>
 				<span>build <ExcitingText color="accent-2" size="large">websites</ExcitingText> , </span>
 				<span
@@ -21,8 +20,7 @@
 			</p>
 		</div>
 		<div class="cta-container">
-			<Button variant="filled" size="large" icon={OcticonRocket24}>Get in touch</Button>
-			<Button variant="outline" size="large" icon={FeArrowDown}>Go down the rabbit hole</Button>
+			<Button variant="filled" size="100" Icon={RocketIcon}>Do nerd things for me</Button>
 		</div>
 	</section>
 	<section class="hero-section right">
@@ -39,7 +37,6 @@
 		display: grid;
 		grid-template-columns: 4fr 3fr;
 		grid-template-areas: "left right";
-
 
 		@media (max-width: $breakpoint-sm) {
 			grid-template-columns: 1fr;
@@ -76,12 +73,10 @@
 				}
 
 				.cta-container {
-					display: flex;
-					// justify-content: center;
-					flex-wrap: wrap;
-					gap: var(--spacing-md);
-					margin-top: var(--spacing-xl);
+					width: clamp(280px, 100%, 480px);
+					margin: var(--spacing-xl) auto 0 auto;
 					text-align: center;
+					font-size: var(--font-size-lg);
 				}
 			}
 

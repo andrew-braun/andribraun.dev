@@ -2,13 +2,18 @@
 	import type { Snippet } from "svelte";
 
 	interface TwoColumnProps {
-		smallColumn: "25%" | "33%" | "50%" | "66%" | "75%";
-		widerSide: "left" | "right";
+		smallColumn?: "25%" | "33%" | "50%" | "66%" | "75%";
+		widerSide?: "left" | "right";
 		leftContent: Snippet | string;
 		rightContent: Snippet | string;
 	}
 
-	let { smallColumn = "33%", widerSide, leftContent, rightContent }: TwoColumnProps = $props();
+	let {
+		smallColumn = "33%",
+		widerSide = "left",
+		leftContent,
+		rightContent
+	}: TwoColumnProps = $props();
 </script>
 
 <div
@@ -46,28 +51,18 @@
 		}
 
 		&.small-width-25 {
-			--small-width: 25%;
-			--large-width: 75%;
+			--small-width: 1fr;
+			--large-width: 3fr;
 		}
 
 		&.small-width-33 {
-			--small-width: 33%;
-			--large-width: 67%;
+			--small-width: 1fr;
+			--large-width: 2fr;
 		}
 
 		&.small-width-50 {
-			--small-width: 50%;
-			--large-width: 50%;
-		}
-
-		&.small-width-66 {
-			--small-width: 66%;
-			--large-width: 34%;
-		}
-
-		&.small-width-75 {
-			--small-width: 75%;
-			--large-width: 25%;
+			--small-width: 1fr;
+			--large-width: 1fr;
 		}
 
 		&.reverse {

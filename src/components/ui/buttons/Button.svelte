@@ -1,22 +1,47 @@
 <script lang="ts">
+	import type { Snippet } from "svelte";
 	import type { HTMLButtonAttributes } from "svelte/elements";
 
-	export let type: HTMLButtonAttributes["type"] = "button";
-	export let variant: "filled" | "outline" | "gradient" = "filled";
-	export let size = "medium";
-	export let disabled: boolean = false;
-	export let hoverEffect: "flashyBackgroundSlide" = "flashyBackgroundSlide";
-	export let icon: any = null;
+	// export let type: HTMLButtonAttributes["type"] = "button";
+	// export let variant: "filled" | "outline" | "gradient" = "filled";
+	// export let size = "medium";
+	// export let disabled: boolean = false;
+	// export let hoverEffect: "flashyBackgroundSlide" = "flashyBackgroundSlide";
+	// export let icon: any = null;
+
+	interface ButtonProps {
+		type?: HTMLButtonAttributes["type"];
+		variant?: "filled" | "outline" | "gradient";
+		size?: "small" | "medium" | "large" | "100";
+		disabled?: boolean;
+		hoverEffect?: "flashyBackgroundSlide";
+		Icon?: any;
+		onclick?: () => void;
+		children?: any;
+	}
+
+	let {
+		type = "button",
+		variant = "filled",
+		size = "medium",
+		disabled = false,
+		hoverEffect = "flashyBackgroundSlide",
+		Icon = null,
+		onclick,
+		children
+	}: ButtonProps = $props();
+
+	console.log(Icon);
 </script>
 
-<button {type} class={`btn btn-${variant} btn-${size} btn-${hoverEffect}`} {disabled} on:click>
-	<slot></slot>
+<button {type} class={`btn btn-${variant} btn-${size} btn-${hoverEffect}`} {disabled} {onclick}>
+	{@render children()}
 	<!-- {#if ["flashyBackgroundSlide"].includes(hoverEffect)}
 		<div class="btn-background-slide-bg"></div>
 	{/if} -->
-	{#if icon}
+	{#if Icon}
 		<span class="icon-container">
-			<svelte:component this={icon} class="icon" />
+			<Icon class="icon"></Icon>
 		</span>
 	{/if}
 </button>
@@ -27,6 +52,7 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
+		min-height: 2.5em;
 		padding: var(--btn-padding, 0.5rem 1rem);
 		border-radius: var(--border-radius-md);
 		cursor: pointer;
@@ -97,6 +123,11 @@
 		font-size: var(--font-size-lg);
 		padding: var(--spacing-sm) var(--spacing-md);
 		width: 280px;
+	}
+
+	.btn-100 {
+		width: 100%;
+		font-size: inherit;
 	}
 
 	/* Disabled state */
