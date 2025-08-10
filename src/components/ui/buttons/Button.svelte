@@ -30,8 +30,6 @@
 		onclick,
 		children
 	}: ButtonProps = $props();
-
-	console.log(Icon);
 </script>
 
 <button {type} class={`btn btn-${variant} btn-${size} btn-${hoverEffect}`} {disabled} {onclick}>

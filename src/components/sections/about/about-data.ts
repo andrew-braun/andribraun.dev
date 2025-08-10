@@ -28,7 +28,7 @@ export const aboutData: AboutData = {
 				alt: "Profile picture of Andri Braun in 'professional mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
 			},
 			text: `
-Hello, I’m Andri Braun—an American full-stack web developer with a passion for building modern, efficient websites. Whether it’s creating new sites from scratch, optimizing outdated systems, or solving complex issues, I bring flexibility, reliability, and a problem-solving mindset to every project.
+Hi! I’m Andri Braun—an American full-stack web developer with a passion for building modern, efficient websites. Whether it’s creating new sites from scratch, optimizing outdated systems, or solving complex issues, I bring flexibility, reliability, and a problem-solving mindset to every project.
 
 I specialize in:
 <ul style="list-style: none">
@@ -38,16 +38,6 @@ I specialize in:
 </ul>
 
 Want to dive deeper into the tech I use? Check out the "Nerd Mode" tab.
-
----
-
-### What Does Working Together Look Like?
-Every project is unique, but here’s a general workflow:
-1. **Initial Contact**: You share your project details.
-2. **Feasibility Review**: I evaluate the scope and ask follow-up questions if needed.
-3. **Proposal**: I provide a time estimate, projected completion date, and hourly rate.
-4. **Project Execution**: I track progress using tools like Trello and keep you updated regularly.
-5. **Completion & Support**: Once the project is live, I offer ongoing maintenance and support tailored to your needs—ranging from occasional updates to more dedicated time for complex systems.
 
 ---
 

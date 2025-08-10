@@ -3,7 +3,7 @@
 	import TwoColumn from "$components/layout/columns/TwoColumn.svelte";
 	import BlockRow from "$components/layout/rows/BlockRow.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
-	import { CodeIconJavaScript, codeIcons } from "$root/src/lib/data/icons";
+	import { codeIcons } from "$root/src/lib/data/icons";
 	import type { ImageDataProps } from "$root/src/ts/general";
 
 	interface NerdModeProps {

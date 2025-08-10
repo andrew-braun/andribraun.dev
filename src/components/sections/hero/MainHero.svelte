@@ -74,7 +74,7 @@
 
 				.cta-container {
 					width: clamp(280px, 100%, 480px);
-					margin: var(--spacing-xl) auto 0 auto;
+					margin: var(--spacing-xl) auto;
 					text-align: center;
 					font-size: var(--font-size-lg);
 				}
