@@ -46,8 +46,8 @@
 		gap: var(--spacing-lg);
 		container-type: block-size;
 
-		@container (width < $breakpoint-sm) {
-			grid-template-columns: 1fr;
+		@media (max-width: $breakpoint-sm) {
+			grid-template-columns: 1fr !important;
 		}
 
 		&.small-width-25 {
@@ -67,6 +67,10 @@
 
 		&.reverse {
 			grid-template-columns: var(--small-width) var(--large-width);
+
+			@media (max-width: $breakpoint-sm) {
+				grid-template-columns: 1fr !important;
+			}
 		}
 
 		.column {

@@ -42,6 +42,23 @@
 	.tab-list {
 		display: flex;
 
+		@media (max-width: $breakpoint-xs) {
+			flex-direction: column;
+			gap: var(--spacing-sm);
+
+			.tab-trigger {
+				flex: 0;
+				min-width: fit-content;
+				border-radius: 0;
+			}
+
+			@for $index from 1 through 5 {
+				button:nth-of-type(#{$index}) {
+					width: calc(90% / 3 * $index);
+				}
+			}
+		}
+
 		.tab-trigger {
 			position: relative;
 			margin: 0 var(--spacing-xs);
@@ -56,6 +73,10 @@
 			z-index: 10;
 
 			&:nth-child(1) {
+				margin-left: 0;
+			}
+
+			@media (max-width: $breakpoint-xs) {
 				margin-left: 0;
 			}
 
