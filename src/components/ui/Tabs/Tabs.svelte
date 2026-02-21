@@ -4,7 +4,8 @@
 
 	const { tabs, initialTab = 0 } = $props();
 
-	let currentTab = $state(initialTab);
+	// @svelte-ignore state_referenced_locally
+	let currentTab = $derived(initialTab);
 
 	const setActiveTab = (index: number) => {
 		currentTab = index;

@@ -7,7 +7,7 @@
 
 	let { text }: MarkdownProps = $props();
 
-	const markdownText = marked.parse(text);
+	const markdownText = $derived(marked.parse(text));
 </script>
 
 {@html markdownText}

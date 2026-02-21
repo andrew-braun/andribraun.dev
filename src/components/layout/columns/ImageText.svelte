@@ -19,7 +19,7 @@
 		imageProps = {}
 	}: ImageTextProps = $props();
 
-	const markdownText = marked.parse(text);
+	const markdownText = $derived(marked.parse(text));
 </script>
 
 {#snippet imageSnippet()}

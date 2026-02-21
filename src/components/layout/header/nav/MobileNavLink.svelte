@@ -8,12 +8,10 @@
 	}
 
 	let { navItem, onClick }: MobileNavLinkProps = $props();
-
-	let { href, label } = navItem;
 </script>
 
-<a {href} class="mobile-nav-link" class:active-link={$page.url.hash === href} onclick={onClick}
-	>{label}</a
+<a href={navItem.href} class="mobile-nav-link" class:active-link={$page.url.hash === navItem.href} onclick={onClick}
+	>{navItem.label}</a
 >
 
 <style lang="scss">
