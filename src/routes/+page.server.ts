@@ -1,0 +1,7 @@
+import { getProjects } from "$lib/cms/payload";
+import type { PageServerLoad } from "./$types";
+
+export const load: PageServerLoad = async () => {
+	const projects = await getProjects();
+	return { projects: projects.docs };
+};
