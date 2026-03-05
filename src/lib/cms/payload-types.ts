@@ -231,6 +231,13 @@ export interface Project {
 	githubLink?: string | null;
 	thumbnail?: (number | null) | Media;
 	images?: (number | Media)[] | null;
+	display?: {
+		featured?: boolean | null;
+		hide?: boolean | null;
+		order?: number | null;
+		card_type?: ("visual" | "text") | null;
+		card_size?: ("small" | "wide" | "tall") | null;
+	};
 	updatedAt: string;
 	createdAt: string;
 }
@@ -623,6 +630,14 @@ export interface ProjectsSelect<T extends boolean = true> {
 	githubLink?: T;
 	thumbnail?: T;
 	images?: T;
+	display?:
+		| T
+		| {
+				featured?: T;
+				hide?: T;
+				order?: T;
+				card_type?: T;
+		  };
 	updatedAt?: T;
 	createdAt?: T;
 }

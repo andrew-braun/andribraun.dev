@@ -5,6 +5,15 @@ import type { Config, Project } from "./payload-types";
 // Re-export types consumers are likely to need
 export type { Media, Project, Technology } from "./payload-types";
 
+/**
+ * Converts a relative Payload media URL (e.g. /api/media/file/...)
+ * to an absolute URL using the configured CMS base URL.
+ */
+export function cmsMediaUrl(relativeUrl: string): string {
+	if (relativeUrl.startsWith("http")) return relativeUrl;
+	return `${CMS_URL}${relativeUrl}`;
+}
+
 // ---------------------------------------------------------------------------
 // SDK singleton
 // ---------------------------------------------------------------------------

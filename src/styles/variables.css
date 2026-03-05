@@ -2,13 +2,18 @@
 :root {
 	/* Colors */
 	--color-primary: hsl(324, 84%, 65%);
+	--color-primary-surface: hsl(324, 28%, 16%); /* muted dark shade for use as surfaces */
 	--color-secondary: hsl(172, 100%, 48%);
+	--color-secondary-surface: hsl(172, 22%, 15%);
 	--color-secondary-text: var(--color-text-light);
 	--color-accent-1: hsl(52, 99%, 62%);
+	--color-accent-1-surface: hsl(52, 22%, 16%);
 	--color-accent-1-text: var(--color-text-light);
 	--color-accent-2: hsl(195, 100%, 49%);
+	--color-accent-2-surface: hsl(195, 22%, 17%);
 	--color-accent-2-text: var(--color-text-light);
 	--color-accent-3: hsl(267, 72%, 63%);
+	--color-accent-3-surface: hsl(267, 22%, 17%);
 	--color-accent-3-text: var(--color-text-dark);
 	--color-background: var(--color-background-dark);
 	--color-background-mid: var(--color-background-dark-mid);
@@ -21,6 +26,7 @@
 
 	/* Dark mode colors */
 	--color-background-dark: hsl(0, 0%, 7%);
+	--color-background-dark-raised: hsl(0, 0%, 14%); /* slightly elevated surface, e.g. terminal header */
 	--color-background-dark-mid: hsl(0, 0%, 30%);
 	--color-text-dark: hsl(0, 0%, 100%);
 
@@ -68,6 +74,13 @@
 
 	[data-theme="light"] {
 		--border-md: 2px solid var(--color-text-light);
+
+		/* Light mode surface shades */
+		--color-primary-surface: hsl(324, 50%, 94%);
+		--color-secondary-surface: hsl(172, 40%, 93%);
+		--color-accent-1-surface: hsl(52, 50%, 94%);
+		--color-accent-2-surface: hsl(195, 45%, 93%);
+		--color-accent-3-surface: hsl(267, 40%, 94%);
 	}
 
 	/* Border radius */
