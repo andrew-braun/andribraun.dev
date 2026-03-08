@@ -1,11 +1,11 @@
 <script lang="ts">
-	import type { Project, Technology } from "$lib/cms/payload";
 	import Title from "$components/text/Title.svelte";
-	import TerminalPlaceholderCard from "./cards/TerminalPlaceholderCard.svelte";
-	import ProjectCard from "./cards/ProjectCard.svelte";
-	import VisualProjectCard from "./cards/VisualProjectCard.svelte";
-	import TestimonialCard from "./cards/TestimonialCard.svelte";
+	import type { Project, Technology } from "$lib/cms/payload";
+	import BasicProjectCard from "./cards/BasicProjectCard.svelte";
 	import CtaCard from "./cards/CtaCard.svelte";
+	import TerminalCard from "./cards/TerminalCard.svelte";
+	import TestimonialCard from "./cards/TestimonialCard.svelte";
+	import VisualProjectCard from "./cards/VisualProjectCard.svelte";
 	import { testimonials } from "./projects-data";
 
 	interface Props {
@@ -40,9 +40,7 @@
 
 	function getTechnologies(project: Project): Technology[] {
 		if (!project.metadata?.technologies) return [];
-		return project.metadata.technologies.filter(
-			(t): t is Technology => typeof t === "object"
-		);
+		return project.metadata.technologies.filter((t): t is Technology => typeof t === "object");
 	}
 
 	function excerpt(markdown: string | null | undefined, maxLength = 160): string {
@@ -83,8 +81,7 @@
 			// Use CMS card_size if set; otherwise default:
 			// visual cards → wide, text cards alternate small/tall for visual rhythm
 			const size: CardSize =
-				project.display?.card_size ??
-				(showImage ? "wide" : i % 2 === 0 ? "small" : "tall");
+				project.display?.card_size ?? (showImage ? "wide" : i % 2 === 0 ? "small" : "tall");
 
 			items.push({
 				type: "project",
@@ -111,7 +108,7 @@
 		{#each gridItems as item (item.type === "project" ? item.project.id : item.type === "testimonial" ? item.testimonial.author : item.type)}
 			{#if item.type === "terminal"}
 				<div class="cell cell--terminal">
-					<TerminalPlaceholderCard />
+					<TerminalCard />
 				</div>
 			{:else if item.type === "project"}
 				<div
@@ -122,30 +119,15 @@
 					{#if item.showImage}
 						{@const image = getFirstImage(item.project)}
 						{#if image}
-							<VisualProjectCard
-								title={item.project.title ?? ""}
-								imageUrl={image.url}
-								imageAlt={image.alt}
-								href={getHref(item.project)}
-							/>
+							<VisualProjectCard project={item.project} />
 						{/if}
 					{:else}
-						<ProjectCard
-							title={item.project.title ?? ""}
-							description={excerpt(item.project.description_markdown)}
-							technologies={getTechnologies(item.project)}
-							href={getHref(item.project)}
-							color={getColor(item.colorIndex)}
-						/>
+						<BasicProjectCard project={item.project} color={getColor(item.colorIndex)} />
 					{/if}
 				</div>
 			{:else if item.type === "testimonial"}
 				<div class="cell cell--wide">
-					<TestimonialCard
-						quote={item.testimonial.quote}
-						author={item.testimonial.author}
-						context={item.testimonial.context}
-					/>
+					<TestimonialCard testimonial={item.testimonial} />
 				</div>
 			{:else if item.type === "cta"}
 				<div class="cell">

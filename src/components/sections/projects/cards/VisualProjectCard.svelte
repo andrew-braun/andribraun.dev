@@ -1,24 +1,34 @@
 <script lang="ts">
+	import type { Project } from "$lib/cms/payload";
+
 	interface Props {
-		title: string;
-		imageUrl: string;
-		imageAlt: string;
-		href: string;
+		project: Project;
 	}
 
-	let { title, imageUrl, imageAlt, href }: Props = $props();
+	const { project }: Props = $props();
 
-	const isExternal = href.startsWith("http");
+	// svelte-ignore state_referenced_locally
+	let { title, images, thumbnail, liveLink } = project;
+
+	let image = $state({
+		url: "",
+		alt: ""
+	});
+
+	if (thumbnail && typeof thumbnail === "object" && thumbnail.url) {
+		image = { url: thumbnail.url, alt: thumbnail.alt };
+	}
+	if (images && images.length > 0) {
+		const first = images[0];
+		if (typeof first === "object" && first.url) {
+			image = { url: first.url, alt: first.alt };
+		}
+	}
 </script>
 
-<a
-	class="card"
-	{href}
-	target={isExternal ? "_blank" : undefined}
-	rel={isExternal ? "noopener noreferrer" : undefined}
->
+<a class="card" href={liveLink} target="_blank" rel={"noopener noreferrer"}>
 	<div class="image-wrapper">
-		<img src={imageUrl} alt={imageAlt} class="card-image" loading="lazy" />
+		<img src={image.url} alt={image.alt} class="card-image" loading="lazy" />
 	</div>
 	<div class="overlay">
 		<span class="title">{title}</span>

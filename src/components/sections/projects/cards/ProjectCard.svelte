@@ -1,139 +1,23 @@
 <script lang="ts">
-	import type { Technology } from "$lib/cms/payload";
-
-	type ColorVariant = "primary" | "secondary" | "accent-1" | "accent-2" | "accent-3";
+	import type { Project } from "$lib/cms/payload";
+	import BasicProjectCard from "./BasicProjectCard.svelte";
+	import VisualProjectCard from "./VisualProjectCard.svelte";
 
 	interface Props {
-		title: string;
-		description: string;
-		technologies: Technology[];
-		href: string;
-		color?: ColorVariant;
+		project: Project;
+		color: string;
 	}
 
-	let { title, description, technologies, href, color = "primary" }: Props = $props();
+	const { project, color }: Props = $props();
 
-	const isExternal = href.startsWith("http");
+	// Detect project card type
+	// svelte-ignore state_referenced_locally
+	const { display } = project || {};
+	const cardType = display?.card_type;
 </script>
 
-<a
-	class="card card--{color}"
-	{href}
-	target={isExternal ? "_blank" : undefined}
-	rel={isExternal ? "noopener noreferrer" : undefined}
->
-	<div class="card-content">
-		<h3 class="title">{title}</h3>
-		{#if description}
-			<p class="description">{description}</p>
-		{/if}
-		<div class="footer">
-			{#if technologies.length > 0}
-				<ul class="tech-pills" aria-label="Technologies used">
-					{#each technologies.slice(0, 5) as tech}
-						<li class="pill">{tech.name}</li>
-					{/each}
-				</ul>
-			{/if}
-			<span class="arrow" aria-hidden="true">→</span>
-		</div>
-	</div>
-</a>
-
-<style lang="scss">
-	.card {
-		display: block;
-		height: 100%;
-		border-radius: var(--border-radius-lg);
-		text-decoration: none;
-		color: var(--color-text);
-		overflow: hidden;
-		transition: background-color var(--transition-md);
-
-		&--primary {
-			background-color: var(--color-primary-surface);
-			&:hover { background-color: var(--color-primary-surface); filter: brightness(1.2); }
-		}
-		&--secondary {
-			background-color: var(--color-secondary-surface);
-			&:hover { background-color: var(--color-secondary-surface); filter: brightness(1.2); }
-		}
-		&--accent-1 {
-			background-color: var(--color-accent-1-surface);
-			&:hover { background-color: var(--color-accent-1-surface); filter: brightness(1.2); }
-		}
-		&--accent-2 {
-			background-color: var(--color-accent-2-surface);
-			&:hover { background-color: var(--color-accent-2-surface); filter: brightness(1.2); }
-		}
-		&--accent-3 {
-			background-color: var(--color-accent-3-surface);
-			&:hover { background-color: var(--color-accent-3-surface); filter: brightness(1.2); }
-		}
-
-		&:hover .arrow {
-			opacity: 1;
-			transform: translateX(0);
-		}
-	}
-
-	.card-content {
-		display: flex;
-		flex-direction: column;
-		height: 100%;
-		padding: var(--spacing-lg);
-		gap: var(--spacing-sm);
-	}
-
-	.title {
-		margin: 0;
-		font-size: var(--font-size-h4);
-		font-weight: 700;
-		line-height: 1.2;
-	}
-
-	.description {
-		margin: 0;
-		font-size: var(--font-size-sm);
-		line-height: 1.6;
-		flex: 1;
-		opacity: 0.8;
-	}
-
-	.footer {
-		display: flex;
-		align-items: flex-end;
-		justify-content: space-between;
-		gap: var(--spacing-sm);
-		margin-top: auto;
-	}
-
-	.tech-pills {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--spacing-xs);
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-
-	.pill {
-		font-size: var(--font-size-xs);
-		padding: 2px var(--spacing-sm);
-		border-radius: var(--border-radius-xl);
-		background-color: color-mix(in srgb, currentColor 12%, transparent);
-		border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-		white-space: nowrap;
-	}
-
-	.arrow {
-		font-size: var(--font-size-lg);
-		opacity: 0;
-		transform: translateX(-8px);
-		transition:
-			opacity var(--transition-md),
-			transform var(--transition-md);
-		flex-shrink: 0;
-		line-height: 1;
-	}
-</style>
+{#if cardType === "visual"}
+	<VisualProjectCard {project} />
+{:else}
+	<BasicProjectCard {project} />
+{/if}

@@ -1,11 +1,18 @@
 <script lang="ts">
-	interface Props {
+	interface Testimonial {
 		quote: string;
 		author: string;
 		context: string;
 	}
 
-	let { quote, author, context }: Props = $props();
+	interface Props {
+		testimonial: Testimonial;
+	}
+
+	let { testimonial }: Props = $props();
+
+	// svelte-ignore state_referenced_locally
+	let { quote, author, context } = testimonial;
 </script>
 
 <blockquote class="testimonial-card">

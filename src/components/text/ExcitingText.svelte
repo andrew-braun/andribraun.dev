@@ -13,6 +13,7 @@
 		border-radius: var(--border-radius-md);
 		font-family: "Raleway";
 		font-weight: 700;
+		box-sizing: content-box;
 
 		&.accent-1 {
 			background: var(--color-accent-1);
