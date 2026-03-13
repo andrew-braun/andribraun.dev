@@ -3,6 +3,7 @@
 	/* Colors */
 	--color-primary: hsl(324, 84%, 65%);
 	--color-primary-surface: hsl(324, 28%, 16%); /* muted dark shade for use as surfaces */
+	--color-primary-text: var(--color-text-light);
 	--color-secondary: hsl(172, 100%, 48%);
 	--color-secondary-surface: hsl(172, 22%, 15%);
 	--color-secondary-text: var(--color-text-light);
@@ -18,6 +19,7 @@
 	--color-background: var(--color-background-dark);
 	--color-background-mid: var(--color-background-dark-mid);
 	--color-text: var(--color-text-dark);
+	--color-text-contrast: var(--color-text-light);
 
 	/* Light mode colors */
 	--color-background-light: hsl(0, 0%, 100%);
@@ -26,7 +28,11 @@
 
 	/* Dark mode colors */
 	--color-background-dark: hsl(0, 0%, 7%);
-	--color-background-dark-raised: hsl(0, 0%, 14%); /* slightly elevated surface, e.g. terminal header */
+	--color-background-dark-raised: hsl(
+		0,
+		0%,
+		14%
+	); /* slightly elevated surface, e.g. terminal header */
 	--color-background-dark-mid: hsl(0, 0%, 30%);
 	--color-text-dark: hsl(0, 0%, 100%);
 
@@ -90,6 +96,13 @@
 
 	/* Limit site max width */
 	--site-max-width: 1920px;
+
+	/* transitions */
+	--transition-fs: 0.1s ease-in-out;
+	--transition-mf: 0.2s ease-in-out;
+	--transition-md: 0.3s ease-in-out;
+	--transition-ms: 0.4s ease-in-out;
+	--transition-slow: 0.5s ease-in-out;
 }
 
 @media (max-width: 62rem) {

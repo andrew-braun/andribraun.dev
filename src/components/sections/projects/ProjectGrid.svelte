@@ -3,6 +3,8 @@
 	import type { ComponentProps } from "svelte";
 
 	import Title from "$components/text/Title.svelte";
+	import type { ColorVariant } from "$root/src/ts/style";
+	import { assignColor, colorVariants } from "$styles/variables";
 	import GridItem from "./cards/GridItem.svelte";
 
 	interface Props {
@@ -70,9 +72,9 @@
 <section id="projects" class="page-section">
 	<Title title="Projects" tag="h2" />
 	<div class="bento-grid">
-		{#each gridItems as item}
+		{#each gridItems as item, index}
 			<div class={["cell", item.type].join(" ")}>
-				<GridItem {...item} />
+				<GridItem {...item} color={assignColor(index)} />
 			</div>
 		{/each}
 	</div>

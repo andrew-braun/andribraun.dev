@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Project } from "$lib/cms/payload";
-
-	type ColorVariant = "primary" | "secondary" | "accent-1" | "accent-2" | "accent-3";
+	import type { ColorVariant } from "$root/src/ts/style";
 
 	interface Props {
 		project: Project;
@@ -46,41 +45,44 @@
 		text-decoration: none;
 		color: var(--color-text);
 		overflow: hidden;
-		transition: background-color var(--transition-md);
+		transition: var(--transition-md);
 
 		&--primary {
-			background-color: var(--color-primary-surface);
+			background-color: var(--color-primary);
+			color: var(--color-primary-text);
 			&:hover {
-				background-color: var(--color-primary-surface);
-				filter: brightness(1.2);
+				filter: brightness(1.1);
 			}
 		}
 		&--secondary {
-			background-color: var(--color-secondary-surface);
+			background-color: var(--color-secondary);
+			color: var(--color-secondary-text);
 			&:hover {
-				background-color: var(--color-secondary-surface);
-				filter: brightness(1.2);
+				filter: brightness(1.1);
 			}
 		}
 		&--accent-1 {
-			background-color: var(--color-accent-1-surface);
+			background-color: var(--color-accent-1);
+			color: var(--color-accent-1-text);
 			&:hover {
-				background-color: var(--color-accent-1-surface);
-				filter: brightness(1.2);
+				background-color: var(--color-accent-1);
+				filter: brightness(1.1);
 			}
 		}
 		&--accent-2 {
-			background-color: var(--color-accent-2-surface);
+			background-color: var(--color-accent-2);
+			color: var(--color-accent-2-text);
 			&:hover {
-				background-color: var(--color-accent-2-surface);
-				filter: brightness(1.2);
+				background-color: var(--color-accent-2);
+				filter: brightness(1.1);
 			}
 		}
 		&--accent-3 {
-			background-color: var(--color-accent-3-surface);
+			background-color: var(--color-accent-3);
+			color: var(--color-accent-3-text);
 			&:hover {
-				background-color: var(--color-accent-3-surface);
-				filter: brightness(1.2);
+				background-color: var(--color-accent-3);
+				filter: brightness(1.1);
 			}
 		}
 
@@ -96,21 +98,21 @@
 		height: 100%;
 		padding: var(--spacing-lg);
 		gap: var(--spacing-sm);
-	}
 
-	.title {
-		margin: 0;
-		font-size: var(--font-size-h4);
-		font-weight: 700;
-		line-height: 1.2;
-	}
+		.title {
+			margin: 0;
+			font-size: var(--font-size-h4);
+			font-weight: 700;
+			line-height: 1.2;
+		}
 
-	.description {
-		margin: 0;
-		font-size: var(--font-size-sm);
-		line-height: 1.6;
-		flex: 1;
-		opacity: 0.8;
+		.description {
+			margin: 0;
+			font-size: var(--font-size-sm);
+			line-height: 1.6;
+			flex: 1;
+			opacity: 0.8;
+		}
 	}
 
 	.footer {
@@ -128,15 +130,15 @@
 		list-style: none;
 		margin: 0;
 		padding: 0;
-	}
 
-	.pill {
-		font-size: var(--font-size-xs);
-		padding: 2px var(--spacing-sm);
-		border-radius: var(--border-radius-xl);
-		background-color: color-mix(in srgb, currentColor 12%, transparent);
-		border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
-		white-space: nowrap;
+		.pill {
+			font-size: var(--font-size-xs);
+			padding: 2px var(--spacing-sm);
+			border-radius: var(--border-radius-xl);
+			background-color: color-mix(in srgb, currentColor 12%, transparent);
+			border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+			white-space: nowrap;
+		}
 	}
 
 	.arrow {

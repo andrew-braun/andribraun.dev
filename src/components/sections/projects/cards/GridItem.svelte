@@ -1,5 +1,6 @@
 <script lang="ts">
 	import type { Project } from "$root/src/lib/cms/payload-types";
+	import type { ColorVariant } from "$root/src/ts/style";
 	import CtaCard from "./CtaCard.svelte";
 	import ProjectCard from "./ProjectCard.svelte";
 	import TerminalCard from "./TerminalCard.svelte";
@@ -9,7 +10,7 @@
 		type: "project" | "testimonial" | "cta" | "terminal";
 		project?: Project;
 		testimonial?: any;
-		color?: string;
+		color?: ColorVariant;
 	}
 
 	const { type, project, testimonial, color }: Props = $props();

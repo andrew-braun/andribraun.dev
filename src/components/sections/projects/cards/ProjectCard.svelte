@@ -1,11 +1,12 @@
 <script lang="ts">
 	import type { Project } from "$lib/cms/payload";
+	import type { ColorVariant } from "$root/src/ts/style";
 	import BasicProjectCard from "./BasicProjectCard.svelte";
 	import VisualProjectCard from "./VisualProjectCard.svelte";
 
 	interface Props {
 		project: Project;
-		color: string;
+		color: ColorVariant;
 	}
 
 	const { project, color }: Props = $props();
@@ -19,5 +20,5 @@
 {#if cardType === "visual"}
 	<VisualProjectCard {project} />
 {:else}
-	<BasicProjectCard {project} />
+	<BasicProjectCard {project} {color} />
 {/if}
