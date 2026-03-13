@@ -2,20 +2,27 @@
 	import type { Tab } from "./tabs";
 
 	interface TabListProps {
+		// Full set of tabs to render as clickable triggers.
 		tabs: Tab[];
+		// Index of currently active tab.
 		currentTab: number;
+		// Callback supplied by Tabs.svelte to start transitions.
 		setActiveTab: (index: number) => void;
 	}
 
 	const { tabs, currentTab, setActiveTab }: TabListProps = $props();
 
+	// Simple click handler wrapper for template readability.
 	const selectTab = (index: number) => {
 		setActiveTab(index);
 	};
 
+	// Horizontal arrow navigation with wrap-around behavior.
+	// This keeps keyboard interaction fast and predictable.
 	const handleKeydown = ({ event, currentTab }: { event: KeyboardEvent; currentTab: number }) => {
 		const direction = event.key === "ArrowLeft" ? -1 : event.key === "ArrowRight" ? 1 : 0;
 		if (direction !== 0) {
+			// Modular arithmetic wraps index at boundaries (first/last tab).
 			setActiveTab((currentTab + direction + tabs.length) % tabs.length);
 		}
 	};
@@ -23,6 +30,8 @@
 
 <div class="tab-list" role="tablist" aria-label="About Me Tabs">
 	{#each tabs as tab, index}
+		<!-- Active class is visual only; semantic active state uses aria-selected. -->
+		<!-- Bidirectional ARIA links connect trigger to its tabpanel by id. -->
 		<button
 			class="tab-trigger"
 			class:active={currentTab === index}
@@ -43,6 +52,7 @@
 		display: flex;
 
 		@media (max-width: $breakpoint-xs) {
+			// Stack triggers vertically for narrow screens.
 			flex-direction: column;
 			gap: var(--spacing-sm);
 
@@ -53,6 +63,7 @@
 			}
 
 			@for $index from 1 through 5 {
+				// Slightly stagger trigger widths to maintain visual rhythm on mobile.
 				button:nth-of-type(#{$index}) {
 					width: calc(90% / 3 * $index);
 				}
@@ -81,6 +92,7 @@
 			}
 
 			&::before {
+				// Gradient border effect drawn via mask compositing.
 				content: "";
 				position: absolute;
 				inset: 0;
@@ -99,6 +111,7 @@
 			}
 
 			&::after {
+				// Active background fill that animates from left to right.
 				position: absolute;
 				bottom: 0;
 				left: 0;
@@ -113,6 +126,7 @@
 			}
 
 			&.active {
+				// Active trigger text color needs high contrast over gradient fill.
 				color: var(--color-secondary-text);
 
 				&::after {
