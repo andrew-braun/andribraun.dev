@@ -3,8 +3,8 @@
 	import type { ComponentProps } from "svelte";
 
 	import Title from "$components/text/Title.svelte";
-	import type { ColorVariant } from "$root/src/ts/style";
-	import { assignColor, colorVariants } from "$styles/variables";
+	import Bento from "$components/ui/layouts/Bento.svelte";
+	import { assignColor } from "$styles/variables";
 	import GridItem from "./cards/GridItem.svelte";
 
 	interface Props {
@@ -71,65 +71,9 @@
 
 <section id="projects" class="page-section">
 	<Title title="Projects" tag="h2" />
-	<div class="bento-grid">
-		{#each gridItems as item, index}
-			<div class={["cell", item.type].join(" ")}>
-				<GridItem {...item} color={assignColor(index)} />
-			</div>
-		{/each}
-	</div>
+	<Bento items={gridItems}>
+		{#snippet cellSnippet(item: any, index: number)}
+			<GridItem {...item} color={assignColor(index)} />
+		{/snippet}
+	</Bento>
 </section>
-
-<style lang="scss">
-	.bento-grid {
-		display: grid;
-		grid-template-columns: repeat(12, 1fr);
-		grid-gap: var(--spacing-sm);
-
-		@media (max-width: $breakpoint-md) {
-			grid-template-columns: 1fr 1fr 1fr;
-		}
-		@media (max-width: $breakpoint-sm) {
-			grid-template-columns: 1fr 1fr;
-		}
-		@media (max-width: $breakpoint-xs) {
-			grid-template-columns: 1fr;
-		}
-
-		.cell {
-			grid-column: span 4;
-
-			&:nth-of-type(2),
-			&:nth-of-type(3) {
-				grid-column: span 3;
-
-				@media (max-width: $breakpoint-md) {
-					grid-column: span 1;
-				}
-			}
-
-			&:nth-of-type(4) {
-				grid-column: span 6;
-				@media (max-width: $breakpoint-md) {
-					grid-column: span 1;
-				}
-			}
-
-			@media (max-width: $breakpoint-md) {
-				grid-column: span 1;
-			}
-		}
-
-		.terminal {
-			grid-column: span 6;
-			grid-row: span 2;
-
-			@media (max-width: $breakpoint-md) {
-				grid-column: span 2;
-			}
-			@media (max-width: $breakpoint-xs) {
-				grid-column: span 1;
-			}
-		}
-	}
-</style>
