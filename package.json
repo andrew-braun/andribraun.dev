@@ -39,6 +39,7 @@
 		"@payloadcms/sdk": "^3.77.0",
 		"bits-ui": "^2.16.2",
 		"isomorphic-dompurify": "^3.0.0",
-		"marked": "^17.0.3"
+		"marked": "^17.0.3",
+		"typewriter-effect": "^2.22.0"
 	}
 }

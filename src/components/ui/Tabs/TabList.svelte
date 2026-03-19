@@ -66,6 +66,11 @@
 				// Slightly stagger trigger widths to maintain visual rhythm on mobile.
 				button:nth-of-type(#{$index}) {
 					width: calc(90% / 3 * $index);
+
+					@media (max-width: 378px) {
+						min-width: 0;
+						width: 100%;
+					}
 				}
 			}
 		}
