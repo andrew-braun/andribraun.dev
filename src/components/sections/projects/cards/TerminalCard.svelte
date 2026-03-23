@@ -1,5 +1,78 @@
-<script>
-	import Typewriter from "$components/ui/content/text/Typewriter.svelte";
+<script lang="ts">
+	import TerminalLine, {
+		type Props as TerminalLineProps
+	} from "$components/ui/content/text/TerminalLine.svelte";
+
+	const randomCommands = [
+		{
+			command: "$  help",
+			output:
+				"If I could help, I would, but I'm just a fake terminal.\nTry contacting Andri instead!"
+		},
+		{
+			command: "$  secretLevel",
+			output:
+				"Congratulations! You've found the secret level! But there's nothing here...\nexcept your newfound sense of accomplishment, maybe?"
+		},
+		{
+			command: "$  cat cat_pics",
+			output:
+				"Here are some cat pictures, but since this is a terminal, you'll have to imagine them:\n\n(=^.^=) (o^.^o) (^-^=) (=^-^=) (o^.^o)"
+		},
+		{
+			command: "$  games",
+			output:
+				"  Quick, think of a number between 1 and 100 and I'll guess it!\n  It's okay, I'll wait... come on... pick a real good number.\n  No, not that one, that's too obvious. You can do better than that!\n  Okay, are you ready? Here I go...\n  ... ... ... ... ... ...\n  Is it... " +
+				Math.round(Math.random() * 100 + 1) +
+				"? \n  If I was right, you should be amazed.\n  If I was wrong, well... maybe next time!",
+			typeOutput: true
+		}
+	];
+	const randomComand = randomCommands[Math.floor(Math.random() * randomCommands.length)];
+
+	const lines: TerminalLineProps[] = [
+		{
+			command: "$ ls home",
+			output: "projects games cat_pics",
+			startDelay: 500,
+			outputDelay: "projects games cat_pics".length * 30,
+			withCursor: false
+		},
+		// {
+		// 	command: "$  help",
+		// 	output: "Available commands: home, about, projects, contact, help, secretLevel",
+		// 	startDelay: 500,
+		// 	withCursor: false
+		// },
+		{
+			...randomComand,
+			withCursor: false
+		},
+		{
+			command: "$  ",
+			output: "",
+			withCursor: true
+		}
+	];
+
+	for (let i = 1; i < lines.length; i++) {
+		if (!lines[i].outputDelay) {
+			lines[i].outputDelay = 500;
+		}
+
+		const prev = lines[i - 1];
+		const prevStart = prev.startDelay ?? 0;
+		const prevCommandTime = prev.command.length * 60;
+		const prevOutputDelay = prev.outputDelay ?? 500;
+		const prevOutputTime = prev.typeOutput ? (prev.output?.length ?? 0) * 60 : 0;
+
+		lines[i].startDelay =
+			prevStart +
+			prevCommandTime +
+			prevOutputDelay +
+			prevOutputTime +
+			250;
+	}
 </script>
 
 <div class="terminal-card">
@@ -12,17 +85,16 @@
 		<span class="terminal-title">~/portfolio</span>
 	</div>
 	<div class="terminal-body">
-		<span class="line"><Typewriter text="$&nbsp;&nbsp;ls home" withCursor={false} /> </span>
-		<p class="line output">projects &nbsp; games &nbsp; cat_pics</p>
-		<span class="line"
-			><Typewriter text="$&nbsp;&nbsp;" withCursor={true} startDelay={1000} />
-		</span>
+		{#each lines as line (line.command)}
+			<TerminalLine {...line} />
+		{/each}
 	</div>
 </div>
 
 <style lang="scss">
 	.terminal-card {
 		height: 100%;
+		max-width: 90vw;
 		background-color: var(--color-background-dark);
 		border: 1px solid var(--color-background-dark-raised);
 		border-radius: var(--border-radius-lg);
@@ -75,29 +147,6 @@
 			flex-direction: column;
 			gap: 4px;
 			font-size: var(--font-size-xs);
-
-			.line {
-				margin: 0;
-
-				line-height: 1.8;
-				color: var(--color-text-dark);
-				white-space: pre;
-
-				&.output {
-					color: var(--color-background-dark-mid);
-					padding-left: calc(var(--font-size-xs) + var(--spacing-sm));
-				}
-
-				.cursor {
-					display: inline-block;
-					width: 2px;
-					background-color: var(--color-secondary);
-					color: transparent;
-					animation: blink 1.2s step-end infinite;
-					margin-left: var(--spacing-sm);
-					vertical-align: middle;
-				}
-			}
 		}
 	}
 

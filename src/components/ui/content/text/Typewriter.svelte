@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import TypeWriter from "typewriter-effect/dist/core";
 
 	interface Props {
@@ -9,28 +10,30 @@
 
 	let { text, withCursor = true, startDelay = 0 }: Props = $props();
 
-	function typewriter(node: HTMLElement) {
-		const tw = new TypeWriter(node, {
-			strings: [text],
+	let textRef: HTMLElement;
+
+	onMount(() => {
+		const tw = new TypeWriter(textRef, {
 			loop: false,
 			cursor: withCursor ? "|" : "",
 			delay: 60,
 			changeDelay: "natural",
-			cursorClassName: "cursor"
+			cursorClassName: "cursor",
+			autoStart: false
 		});
 
 		tw.pauseFor(startDelay).typeString(text).start();
-	}
+	});
 </script>
 
-<span class={["text", !withCursor ? "no-cursor" : ""]} use:typewriter></span>
+<span class={["text", !withCursor ? "no-cursor" : ""]} bind:this={textRef}></span>
 
 <style lang="scss">
 	.text {
 		position: relative;
 		width: 100%;
 		font-size: inherit;
-		white-space: nowrap;
+		white-space: pre;
 		overflow: hidden;
 		max-width: fit-content;
 		margin: 0;
