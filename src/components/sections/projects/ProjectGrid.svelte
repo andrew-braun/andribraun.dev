@@ -13,7 +13,6 @@
 
 	const { projects }: Props = $props();
 	// svelte-ignore state_referenced_locally
-	console.log(projects);
 
 	const gridItems = $derived.by(() => {
 		const items: ComponentProps<typeof GridItem>[] = [
@@ -69,7 +68,7 @@
 	});
 </script>
 
-<section id="projects" class="page-section">
+<section id="portfolio" class="page-section">
 	<Title title="Projects" tag="h2" />
 	<Bento items={gridItems}>
 		{#snippet cellSnippet(item: any, index: number)}

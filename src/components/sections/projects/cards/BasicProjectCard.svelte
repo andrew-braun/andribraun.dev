@@ -37,7 +37,7 @@
 	</div>
 </a>
 
-<style lang="scss">
+<style lang="scss" scoped>
 	.card {
 		display: block;
 		height: 100%;

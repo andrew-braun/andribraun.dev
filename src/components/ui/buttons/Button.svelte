@@ -1,26 +1,31 @@
 <script lang="ts">
-	import type { Snippet } from "svelte";
-	import type { HTMLButtonAttributes } from "svelte/elements";
+	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 
-	// export let type: HTMLButtonAttributes["type"] = "button";
-	// export let variant: "filled" | "outline" | "gradient" = "filled";
-	// export let size = "medium";
-	// export let disabled: boolean = false;
-	// export let hoverEffect: "flashyBackgroundSlide" = "flashyBackgroundSlide";
-	// export let icon: any = null;
-
-	interface ButtonProps {
-		type?: HTMLButtonAttributes["type"];
+	type SharedProps = {
 		variant?: "filled" | "outline" | "gradient";
 		size?: "small" | "medium" | "large" | "100";
-		disabled?: boolean;
 		hoverEffect?: "flashyBackgroundSlide";
 		Icon?: any;
-		onclick?: () => void;
 		children?: any;
-	}
+	};
+
+	type ButtonProps = SharedProps & {
+		href?: never;
+		type?: HTMLButtonAttributes["type"];
+		disabled?: boolean;
+		onclick?: () => void;
+	};
+
+	type LinkProps = SharedProps & {
+		href: string;
+		target?: HTMLAnchorAttributes["target"];
+		type?: never;
+		disabled?: never;
+		onclick?: never;
+	};
 
 	let {
+		href,
 		type = "button",
 		variant = "filled",
 		size = "medium",
@@ -28,21 +33,33 @@
 		hoverEffect = "flashyBackgroundSlide",
 		Icon = null,
 		onclick,
-		children
-	}: ButtonProps = $props();
+		children,
+		...rest
+	}: ButtonProps | LinkProps = $props();
+
+	const target = $derived((rest as LinkProps).target);
+	const classes = $derived(`btn btn-${variant} btn-${size} btn-${hoverEffect}`);
 </script>
 
-<button {type} class={`btn btn-${variant} btn-${size} btn-${hoverEffect}`} {disabled} {onclick}>
-	{@render children()}
-	<!-- {#if ["flashyBackgroundSlide"].includes(hoverEffect)}
-		<div class="btn-background-slide-bg"></div>
-	{/if} -->
-	{#if Icon}
-		<span class="icon-container">
-			<Icon class="icon"></Icon>
-		</span>
-	{/if}
-</button>
+{#if href}
+	<a {href} {target} class={classes}>
+		{@render children()}
+		{#if Icon}
+			<span class="icon-container">
+				<Icon class="icon"></Icon>
+			</span>
+		{/if}
+	</a>
+{:else}
+	<button {type} class={classes} {disabled} {onclick}>
+		{@render children()}
+		{#if Icon}
+			<span class="icon-container">
+				<Icon class="icon"></Icon>
+			</span>
+		{/if}
+	</button>
+{/if}
 
 <style scoped>
 	/* Base button styles */
@@ -60,6 +77,7 @@
 		background-color: var(--color-text);
 		color: var(--color-background);
 		font-size: var(--font-size-md);
+		text-decoration: none;
 
 		&:active {
 			transform: translate3d(2px, 2px, 0);
