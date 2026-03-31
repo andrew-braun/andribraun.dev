@@ -108,21 +108,21 @@
 	.terminal-card {
 		height: 100%;
 		max-width: 90vw;
-		background-color: var(--color-background-dark);
-		border: 1px solid var(--color-background-dark-raised);
+		background-color: var(--neutral-50);
+		border: 1px solid var(--neutral-100);
 		border-radius: var(--border-radius-lg);
 		overflow: hidden;
 		display: flex;
 		flex-direction: column;
-		font-family: "Fira Code", monospace;
+		font-family: var(--font-family-mono);
 
 		.terminal-header {
 			display: flex;
 			align-items: center;
-			gap: var(--spacing-sm);
-			padding: var(--spacing-sm) var(--spacing-md);
-			background-color: var(--color-background-dark-raised);
-			border-bottom: 1px solid var(--color-background-dark-raised);
+			gap: var(--space-sm);
+			padding: var(--space-sm) var(--space-md);
+			background-color: var(--neutral-100);
+			border-bottom: 1px solid var(--neutral-100);
 
 			.dots {
 				display: flex;
@@ -147,7 +147,7 @@
 
 			.terminal-title {
 				font-size: var(--font-size-xs);
-				color: var(--color-background-dark-mid);
+				color: var(--neutral-300);
 				margin-left: auto;
 				margin-right: auto;
 			}
@@ -155,7 +155,7 @@
 
 		.terminal-body {
 			flex: 1;
-			padding: var(--spacing-md);
+			padding: var(--space-md);
 			display: flex;
 			flex-direction: column;
 			gap: 4px;

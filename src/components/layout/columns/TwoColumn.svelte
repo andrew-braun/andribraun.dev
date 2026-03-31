@@ -43,7 +43,7 @@
 
 		display: grid;
 		grid-template-columns: var(--large-width) var(--small-width);
-		gap: var(--spacing-lg);
+		gap: var(--space-xl);
 		container-type: block-size;
 
 		@media (max-width: $breakpoint-sm) {

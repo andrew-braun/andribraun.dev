@@ -44,7 +44,7 @@
 		border-radius: var(--border-radius-lg);
 		overflow: hidden;
 		text-decoration: none;
-		color: var(--color-text-dark);
+		color: var(--neutral-1000);
 
 		&:hover .card-image {
 			transform: scale(1.04);
@@ -53,8 +53,8 @@
 		&:hover .overlay {
 			background: linear-gradient(
 				to top,
-				color-mix(in srgb, var(--color-background-dark) 80%, transparent),
-				color-mix(in srgb, var(--color-background-dark) 10%, transparent)
+				color-mix(in srgb, var(--neutral-50) 80%, transparent),
+				color-mix(in srgb, var(--neutral-50) 10%, transparent)
 			);
 		}
 	}
@@ -63,7 +63,7 @@
 		width: 100%;
 		height: 100%;
 		overflow: hidden;
-		background-color: var(--color-background-dark-raised);
+		background-color: var(--neutral-100);
 	}
 
 	.card-image {
@@ -81,10 +81,10 @@
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
-		padding: var(--spacing-lg);
+		padding: var(--space-xl);
 		background: linear-gradient(
 			to top,
-			color-mix(in srgb, var(--color-background-dark) 70%, transparent),
+			color-mix(in srgb, var(--neutral-50) 70%, transparent),
 			transparent
 		);
 		transition: background var(--transition-md);
@@ -93,7 +93,7 @@
 	.title {
 		font-size: var(--font-size-h4);
 		font-weight: 700;
-		line-height: 1.2;
+		line-height: var(--line-height-tight);
 	}
 
 	.arrow {

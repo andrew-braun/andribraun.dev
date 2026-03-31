@@ -94,7 +94,7 @@
 			}
 
 			.drawer-header {
-				padding: var(--spacing-md);
+				padding: var(--space-md);
 			}
 		}
 	}

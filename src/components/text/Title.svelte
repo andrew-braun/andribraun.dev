@@ -30,13 +30,13 @@
 
 <style lang="scss">
 	.title-container {
-		margin-bottom: var(--spacing-lg);
+		margin-bottom: var(--space-xl);
 		.title {
 			display: flex;
 			flex-direction: column;
 			margin: 0;
 			// font-size: var(--font-size-h1);
-			line-height: 1.2em;
+			line-height: var(--line-height-tight);
 			font-weight: 600;
 
 			@media (max-width: $breakpoint-xs) {

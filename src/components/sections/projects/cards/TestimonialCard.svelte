@@ -31,7 +31,7 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		padding: var(--spacing-lg);
+		padding: var(--space-xl);
 		margin: 0;
 		border-radius: var(--border-radius-lg);
 		background-color: var(--color-accent-3-surface);
@@ -41,21 +41,21 @@
 
 	.quotemark {
 		font-size: 6rem;
-		line-height: 1;
+		line-height: var(--line-height-none);
 		font-family: Georgia, serif;
 		color: var(--color-accent-3);
 		opacity: 0.4;
 		position: absolute;
-		top: var(--spacing-sm);
-		left: var(--spacing-md);
+		top: var(--space-sm);
+		left: var(--space-md);
 		pointer-events: none;
 	}
 
 	.quote {
 		margin: 0;
-		padding-top: var(--spacing-xl);
+		padding-top: var(--space-3xl);
 		font-size: var(--font-size-md);
-		line-height: 1.7;
+		line-height: var(--line-height-loose);
 		font-style: italic;
 		flex: 1;
 	}
@@ -64,7 +64,7 @@
 		display: flex;
 		flex-direction: column;
 		gap: 2px;
-		margin-top: var(--spacing-md);
+		margin-top: var(--space-md);
 	}
 
 	.author {

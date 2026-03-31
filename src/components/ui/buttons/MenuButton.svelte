@@ -12,8 +12,8 @@
 <style lang="scss">
 	.menu-button {
 		position: absolute;
-		top: var(--spacing-md);
-		right: var(--spacing-md);
+		top: var(--space-md);
+		right: var(--space-md);
 		z-index: 100;
 		display: flex;
 		flex-direction: column;

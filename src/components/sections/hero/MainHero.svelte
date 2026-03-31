@@ -47,13 +47,13 @@
 
 		.hero-section {
 			&.left {
-				// padding-top: var(--spacing-lg);
+				// padding-top: var(--space-xl);
 
 				.text {
 					display: flex;
-					gap: var(--spacing-xs);
+					gap: var(--space-xs);
 					align-items: center;
-					margin: var(--spacing-md) 0 var(--spacing-vertical-section) 0;
+					margin: var(--space-md) 0 var(--spacing-vertical-section) 0;
 					vertical-align: top;
 					line-height: 3.8em;
 					font-size: var(--font-size-md);
@@ -74,7 +74,7 @@
 
 				.cta-container {
 					width: clamp(280px, 100%, 480px);
-					margin: var(--spacing-xl) auto;
+					margin: var(--space-3xl) auto;
 					text-align: center;
 					font-size: var(--font-size-lg);
 				}

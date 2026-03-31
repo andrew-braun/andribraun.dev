@@ -21,7 +21,7 @@
 		align-items: center;
 
 		.label {
-			margin-top: var(--spacing-xs);
+			margin-top: var(--space-xs);
 			font-weight: 600;
 		}
 	}

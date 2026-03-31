@@ -15,6 +15,6 @@
 <style lang="scss">
 	nav {
 		display: flex;
-		gap: var(--spacing-md);
+		gap: var(--space-md);
 	}
 </style>

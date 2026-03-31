@@ -28,9 +28,12 @@
 			showLine = true;
 			if (output) {
 				const commandTypingTime = command.length * 60;
-				setTimeout(() => {
-					showOutput = true;
-				}, commandTypingTime + (outputDelay ?? 500));
+				setTimeout(
+					() => {
+						showOutput = true;
+					},
+					commandTypingTime + (outputDelay ?? 500)
+				);
 			}
 		}, startDelay ?? 0);
 	});
@@ -56,13 +59,13 @@
 	.line {
 		margin: 0;
 		text-wrap: balance;
-		line-height: 1.8;
-		color: var(--color-text-dark);
+		line-height: var(--line-height-wide);
+		color: var(--neutral-1000);
 		white-space: pre;
 
 		&.output {
-			color: var(--color-background-dark-mid);
-			padding-left: calc(var(--font-size-xs) + var(--spacing-sm));
+			color: var(--neutral-300);
+			padding-left: calc(var(--font-size-xs) + var(--space-sm));
 		}
 
 		.cursor {
@@ -71,7 +74,7 @@
 			background-color: var(--color-secondary);
 			color: transparent;
 			animation: blink 1.2s step-end infinite;
-			margin-left: var(--spacing-sm);
+			margin-left: var(--space-sm);
 			vertical-align: middle;
 		}
 	}

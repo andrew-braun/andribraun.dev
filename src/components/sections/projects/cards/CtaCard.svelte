@@ -20,7 +20,7 @@
 		flex-direction: column;
 		justify-content: space-between;
 		height: 100%;
-		padding: var(--spacing-lg);
+		padding: var(--space-xl);
 		border-radius: var(--border-radius-lg);
 		background-color: var(--color-primary-surface);
 		overflow: hidden;
@@ -32,16 +32,16 @@
 				margin: 0;
 				font-size: var(--font-size-h3);
 				font-weight: 700;
-				font-family: Raleway;
-				line-height: 1.2;
+				font-family: var(--font-family-heading);
+				line-height: var(--line-height-tight);
 			}
 
 			.subheading {
-				margin: var(--spacing-xs) 0 0;
+				margin: var(--space-xs) 0 0;
 				font-size: var(--font-size-h3);
 				font-weight: 700;
-				font-family: Raleway;
-				line-height: 1.2;
+				font-family: var(--font-family-heading);
+				line-height: var(--line-height-tight);
 				color: var(--color-primary);
 			}
 		}
@@ -49,8 +49,8 @@
 		.available-indicator {
 			display: flex;
 			align-items: center;
-			gap: var(--spacing-xs);
-			margin-top: var(--spacing-md);
+			gap: var(--space-xs);
+			margin-top: var(--space-md);
 			font-size: var(--font-size-xs);
 			opacity: 0.7;
 

@@ -165,7 +165,7 @@
 			display: grid;
 			grid-template-columns: minmax(0, 1fr);
 			grid-template-rows: auto;
-			margin-top: var(--spacing-md);
+			margin-top: var(--space-md);
 		}
 	}
 </style>

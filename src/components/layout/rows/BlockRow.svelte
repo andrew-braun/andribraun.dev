@@ -20,6 +20,6 @@
 		display: flex;
 		flex-wrap: wrap;
 		flex-direction: row;
-		gap: var(--spacing-md);
+		gap: var(--space-md);
 	}
 </style>

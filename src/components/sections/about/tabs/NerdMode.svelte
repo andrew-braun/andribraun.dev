@@ -38,7 +38,7 @@
 <style lang="scss">
 	.image-wrapper {
 		position: sticky;
-		top: var(--spacing-md);
+		top: var(--space-md);
 		align-self: start;
 		.image {
 			width: 100%;

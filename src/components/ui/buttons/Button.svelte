@@ -86,11 +86,11 @@
 
 	.btn-filled {
 		background-color: var(--color-primary);
-		color: var(--color-text-light);
+		color: var(--color-primary-fg);
 
 		&:hover {
 			background-color: var(--color-secondary);
-			color: var(--color-text-light);
+			color: var(--color-secondary-fg);
 		}
 	}
 
@@ -104,7 +104,7 @@
 		background-size: 200% 200%;
 		background-position: 10% 0%;
 		transition: all var(--transition-md);
-		color: var(--color-text-light);
+		color: var(--neutral-0);
 
 		&:hover {
 			/* background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); */
@@ -125,19 +125,19 @@
 	/* Size variants */
 	.btn-small {
 		font-size: var(--font-size-sm);
-		padding: var(--spacing-xs) var(--spacing-sm);
+		padding: var(--space-xs) var(--space-sm);
 		min-width: 160px;
 	}
 
 	.btn-medium {
 		font-size: var(--font-size-md);
-		padding: var(--spacing-sm) var(--spacing-md);
+		padding: var(--space-sm) var(--space-md);
 		min-width: 180px;
 	}
 
 	.btn-large {
 		font-size: var(--font-size-lg);
-		padding: var(--spacing-sm) var(--spacing-md);
+		padding: var(--space-sm) var(--space-md);
 		width: 280px;
 	}
 
@@ -159,14 +159,14 @@
 		display: inline-flex;
 		align-items: center;
 		justify-content: center;
-		margin-left: var(--spacing-md);
+		margin-left: var(--space-md);
 	}
 
 	/* Hover effects */
 	.btn {
 		&.btn-flashyBackgroundSlide {
 			position: relative;
-			/* color: var(--color-text-light); */
+			/* color: var(--neutral-0); */
 			text-align: center;
 			overflow: hidden;
 			border: 2px solid transparent;
@@ -181,8 +181,8 @@
 
 			&:hover {
 				/* background: transparent; */
-				color: var(--color-text-light);
-				border: var(--border-md);
+				color: var(--neutral-0);
+				border: var(--border-primary);
 				box-shadow:
 					var(--color-primary) 8px 8px 0px,
 					var(--color-secondary) -8px -8px 0px;

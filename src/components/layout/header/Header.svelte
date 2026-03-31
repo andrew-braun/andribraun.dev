@@ -21,13 +21,20 @@
 
 <style lang="scss">
 	.header {
-		padding: var(--spacing-md) var(--spacing-gutters);
+		z-index: 100;
+		position: sticky;
+		top: 0;
+		padding: var(--space-md) var(--spacing-gutters);
 		background-color: var(--color-background);
 		backdrop-filter: brightness(1.5);
 		color: var(--color-text);
 		transition:
 			background-color var(--transition-md),
 			color var(--transition-md);
+		/* Shrink headeer on scroll (works with newer browsers) */
+		// animation: shrink-header linear both;
+		// animation-timeline: scroll();
+		// animation-range: 0px 200px; /* Starts at 0px, finishes at 200px scroll */
 
 		.header-content {
 			display: flex;
@@ -36,11 +43,11 @@
 			width: 100%;
 			max-width: var(--site-max-width);
 			margin: auto;
-			padding: 0 var(--spacing-xs) var(--spacing-xs) 0;
+			padding: 0 var(--space-xs) var(--space-xs) 0;
 
 			.nav-actions {
 				display: flex;
-				gap: var(--spacing-md);
+				gap: var(--space-md);
 				align-items: center;
 
 				&.desktop {
@@ -58,4 +65,10 @@
 			}
 		}
 	}
+
+	// @keyframes shrink-header {
+	// 	to {
+	// 		height: 60px;
+	// 	}
+	// }
 </style>

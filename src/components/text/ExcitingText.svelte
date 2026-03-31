@@ -9,23 +9,23 @@
 	.emocionante {
 		display: inline-block;
 		max-height: 1.6em;
-		padding: var(--spacing-xs) var(--spacing-sm);
+		padding: var(--space-xs) var(--space-sm);
 		border-radius: var(--border-radius-md);
-		font-family: "Raleway";
+		font-family: var(--font-family-heading);
 		font-weight: 700;
 		box-sizing: content-box;
 
 		&.accent-1 {
 			background: var(--color-accent-1);
-			color: var(--color-accent-1-text);
+			color: var(--color-accent-1-fg);
 		}
 		&.accent-2 {
 			background: var(--color-accent-2);
-			color: var(--color-accent-2-text);
+			color: var(--color-accent-2-fg);
 		}
 		&.accent-3 {
 			background: var(--color-accent-3);
-			color: var(--color-accent-3-text);
+			color: var(--color-accent-3-fg);
 		}
 
 		&.font-size-normal {

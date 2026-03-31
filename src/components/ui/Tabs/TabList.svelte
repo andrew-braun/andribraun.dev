@@ -54,7 +54,7 @@
 		@media (max-width: $breakpoint-xs) {
 			// Stack triggers vertically for narrow screens.
 			flex-direction: column;
-			gap: var(--spacing-sm);
+			gap: var(--space-sm);
 
 			.tab-trigger {
 				flex: 0;
@@ -77,8 +77,8 @@
 
 		.tab-trigger {
 			position: relative;
-			margin: 0 var(--spacing-xs);
-			padding: var(--spacing-sm) var(--spacing-md);
+			margin: 0 var(--space-xs);
+			padding: var(--space-sm) var(--space-md);
 			border: none;
 			border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
 			background: transparent;
@@ -132,7 +132,7 @@
 
 			&.active {
 				// Active trigger text color needs high contrast over gradient fill.
-				color: var(--color-secondary-text);
+				color: var(--color-secondary-fg);
 
 				&::after {
 					opacity: 1;

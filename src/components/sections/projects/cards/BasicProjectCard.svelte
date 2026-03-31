@@ -49,21 +49,21 @@
 
 		&--primary {
 			background-color: var(--color-primary);
-			color: var(--color-primary-text);
+			color: var(--color-primary-fg);
 			&:hover {
 				filter: brightness(1.1);
 			}
 		}
 		&--secondary {
 			background-color: var(--color-secondary);
-			color: var(--color-secondary-text);
+			color: var(--color-secondary-fg);
 			&:hover {
 				filter: brightness(1.1);
 			}
 		}
 		&--accent-1 {
 			background-color: var(--color-accent-1);
-			color: var(--color-accent-1-text);
+			color: var(--color-accent-1-fg);
 			&:hover {
 				background-color: var(--color-accent-1);
 				filter: brightness(1.1);
@@ -71,7 +71,7 @@
 		}
 		&--accent-2 {
 			background-color: var(--color-accent-2);
-			color: var(--color-accent-2-text);
+			color: var(--color-accent-2-fg);
 			&:hover {
 				background-color: var(--color-accent-2);
 				filter: brightness(1.1);
@@ -79,7 +79,7 @@
 		}
 		&--accent-3 {
 			background-color: var(--color-accent-3);
-			color: var(--color-accent-3-text);
+			color: var(--color-accent-3-fg);
 			&:hover {
 				background-color: var(--color-accent-3);
 				filter: brightness(1.1);
@@ -96,20 +96,20 @@
 		display: flex;
 		flex-direction: column;
 		height: 100%;
-		padding: var(--spacing-lg);
-		gap: var(--spacing-sm);
+		padding: var(--space-xl);
+		gap: var(--space-sm);
 
 		.title {
 			margin: 0;
 			font-size: var(--font-size-h4);
 			font-weight: 700;
-			line-height: 1.2;
+			line-height: var(--line-height-tight);
 		}
 
 		.description {
 			margin: 0;
 			font-size: var(--font-size-sm);
-			line-height: 1.6;
+			line-height: var(--line-height-relaxed);
 			flex: 1;
 			opacity: 0.8;
 		}
@@ -119,21 +119,21 @@
 		display: flex;
 		align-items: flex-end;
 		justify-content: space-between;
-		gap: var(--spacing-sm);
+		gap: var(--space-sm);
 		margin-top: auto;
 	}
 
 	.tech-pills {
 		display: flex;
 		flex-wrap: wrap;
-		gap: var(--spacing-xs);
+		gap: var(--space-xs);
 		list-style: none;
 		margin: 0;
 		padding: 0;
 
 		.pill {
 			font-size: var(--font-size-xs);
-			padding: 2px var(--spacing-sm);
+			padding: 2px var(--space-sm);
 			border-radius: var(--border-radius-xl);
 			background-color: color-mix(in srgb, currentColor 12%, transparent);
 			border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
@@ -149,6 +149,6 @@
 			opacity var(--transition-md),
 			transform var(--transition-md);
 		flex-shrink: 0;
-		line-height: 1;
+		line-height: var(--line-height-none);
 	}
 </style>

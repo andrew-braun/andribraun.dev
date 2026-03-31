@@ -48,7 +48,7 @@
 
 		.tabs-list {
 			container-type: inline-size;
-			margin-bottom: var(--spacing-md);
+			margin-bottom: var(--space-md);
 
 			:global {
 				div[role="tablist"] {
@@ -61,8 +61,8 @@
 
 			.tab-trigger {
 				position: relative;
-				margin: 0 var(--spacing-xs);
-				padding: var(--spacing-sm) var(--spacing-md);
+				margin: 0 var(--space-xs);
+				padding: var(--space-sm) var(--space-md);
 				border: none;
 				border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
 				background: transparent;
@@ -110,7 +110,7 @@
 				}
 
 				&[data-state="active"] {
-					color: var(--color-secondary-text);
+					color: var(--color-secondary-fg);
 
 					&::after {
 						opacity: 1;
@@ -124,7 +124,7 @@
 			position: absolute;
 			top: 0;
 			left: 0;
-			padding-top: var(--spacing-xl);
+			padding-top: var(--space-3xl);
 			opacity: 1;
 			transition:
 				top 0.3s ease,

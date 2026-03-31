@@ -1,115 +1,212 @@
 /* variables.css */
+
+/* ============================================
+   TIER 1: PRIMITIVE DESIGN TOKENS
+   Raw values only. Never reference directly in components.
+   ============================================ */
+
 :root {
-	/* Colors */
-	--color-primary: hsl(324, 84%, 65%);
-	--color-primary-surface: hsl(324, 28%, 16%); /* muted dark shade for use as surfaces */
-	--color-primary-text: var(--color-text-light);
-	--color-secondary: hsl(172, 100%, 48%);
-	--color-secondary-surface: hsl(172, 22%, 15%);
-	--color-secondary-text: var(--color-text-light);
-	--color-accent-1: hsl(52, 99%, 62%);
-	--color-accent-1-surface: hsl(52, 22%, 16%);
-	--color-accent-1-text: var(--color-text-light);
-	--color-accent-2: hsl(195, 100%, 49%);
-	--color-accent-2-surface: hsl(195, 22%, 17%);
-	--color-accent-2-text: var(--color-text-light);
-	--color-accent-3: hsl(267, 72%, 63%);
-	--color-accent-3-surface: hsl(267, 22%, 17%);
-	--color-accent-3-text: var(--color-text-dark);
-	--color-background: var(--color-background-dark);
-	--color-background-mid: var(--color-background-dark-mid);
-	--color-text: var(--color-text-dark);
-	--color-text-contrast: var(--color-text-light);
+	/* Neutral scale */
+	--neutral-0: hsl(0, 0%, 0%); /* pure black */
+	--neutral-50: hsl(0, 0%, 7%); /* near-black canvas */
+	--neutral-100: hsl(0, 0%, 14%); /* elevated dark surface */
+	--neutral-300: hsl(0, 0%, 30%); /* mid dark */
+	--neutral-950: hsl(0, 0%, 95%); /* near-white mid */
+	--neutral-1000: hsl(0, 0%, 100%); /* pure white */
 
-	/* Light mode colors */
-	--color-background-light: hsl(0, 0%, 100%);
-	--color-background-light-mid: hsl(0, 0%, 95%);
-	--color-text-light: hsl(0, 0%, 0%);
+	/* Pink (primary hue) */
+	--pink-500: hsl(324, 84%, 65%);
+	--pink-100: hsl(324, 50%, 94%); /* light surface */
+	--pink-900: hsl(324, 28%, 16%); /* dark surface */
 
-	/* Dark mode colors */
-	--color-background-dark: hsl(0, 0%, 7%);
-	--color-background-dark-raised: hsl(
-		0,
-		0%,
-		14%
-	); /* slightly elevated surface, e.g. terminal header */
-	--color-background-dark-mid: hsl(0, 0%, 30%);
-	--color-text-dark: hsl(0, 0%, 100%);
+	/* Teal (secondary hue) */
+	--teal-400: hsl(172, 100%, 48%);
+	--teal-100: hsl(172, 40%, 93%);
+	--teal-900: hsl(172, 22%, 15%);
 
-	/* Spacing */
-	--spacing-xs: 0.25rem; /* 4px */
-	--spacing-sm: 0.5rem; /* 8px */
-	--spacing-md: 1rem; /* 16px */
-	--spacing-lg: 2rem; /* 32px */
-	--spacing-xl: 4rem; /* 64px */
+	/* Yellow (accent-1 hue) */
+	--yellow-400: hsl(52, 99%, 62%);
+	--yellow-100: hsl(52, 50%, 94%);
+	--yellow-900: hsl(52, 22%, 16%);
 
-	--spacing-gutters: 2rem;
-	--spacing-vertical-section: 2rem;
+	/* Cyan (accent-2 hue) */
+	--cyan-400: hsl(195, 100%, 49%);
+	--cyan-100: hsl(195, 45%, 93%);
+	--cyan-900: hsl(195, 22%, 17%);
 
-	--spacing-block: var(--spacing-md); /* Typography */
+	/* Purple (accent-3 hue) */
+	--purple-400: hsl(267, 72%, 63%);
+	--purple-100: hsl(267, 40%, 94%);
+	--purple-900: hsl(267, 22%, 17%);
+
+	/* ============================================
+	   TIER 2: SEMANTIC DESIGN TOKENS
+	   These are the tokens to use in components.
+	   ============================================ */
+
+	/* Brand colors — same across all themes */
+	--color-primary: var(--pink-500);
+	--color-secondary: var(--teal-400);
+	--color-accent-1: var(--yellow-400);
+	--color-accent-2: var(--cyan-400);
+	--color-accent-3: var(--purple-400);
+
+	/* Foreground on brand colors — static, determined by contrast */
+	--color-primary-fg: var(--neutral-0);
+	--color-secondary-fg: var(--neutral-0);
+	--color-accent-1-fg: var(--neutral-0);
+	--color-accent-2-fg: var(--neutral-0);
+	--color-accent-3-fg: var(--neutral-1000);
+
+	/* Surface tones for brand colors (default: dark theme) */
+	--color-primary-surface: var(--pink-900);
+	--color-secondary-surface: var(--teal-900);
+	--color-accent-1-surface: var(--yellow-900);
+	--color-accent-2-surface: var(--cyan-900);
+	--color-accent-3-surface: var(--purple-900);
+
+	/* Canvas / elevation tiers (default: dark theme) */
+	--color-background: var(--neutral-50);
+	--color-surface-raised: var(--neutral-100);
+	--color-surface-mid: var(--neutral-300);
+	--color-background-mid: var(--color-surface-mid);
+
+	/* Text / foreground (default: dark theme) */
+	--color-text: var(--neutral-1000);
+	--color-text-inverse: var(--neutral-0);
+
+	/* Interactive states */
+	--color-primary-hover: hsl(324, 84%, 55%);
+	--color-secondary-hover: hsl(172, 100%, 40%);
+	--color-focus-ring: var(--color-primary);
+	--color-disabled: var(--neutral-300);
+
+	/* Feedback colors */
+	--color-success: hsl(145, 63%, 49%);
+	--color-warning: hsl(38, 92%, 50%);
+	--color-error: hsl(4, 86%, 58%);
+
+	/* ============================================
+	   TYPOGRAPHY
+	   ============================================ */
+
+	--font-family-body: "Noto Sans", "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+	--font-family-heading: "Raleway", sans-serif;
+	--font-family-mono: "Fira Code", monospace;
+
+	--font-weight-regular: 400;
+	--font-weight-medium: 500;
+	--font-weight-semibold: 600;
+	--font-weight-bold: 700;
+	--font-weight-extrabold: 800;
 
 	--font-size-xs: 0.75rem; /* 12px */
 	--font-size-sm: 1rem; /* 16px */
 	--font-size-md: 1.125rem; /* 18px */
 	--font-size-lg: 1.5rem; /* 24px */
 	--font-size-xl: 2rem; /* 32px */
-	--line-height: 1.5;
 
-	/* Heading Font Sizes */
-	--font-size-h1: 4.5rem; /* 56px */
-	--font-size-h2: 3em; /* 40px */
-	--font-size-h3: 2rem; /* 28px */
+	/* Heading sizes */
+	--font-size-h1: 4.5rem; /* 72px */
+	--font-size-h2: 3rem; /* 48px */
+	--font-size-h3: 2rem; /* 32px */
 	--font-size-h4: 1.5rem; /* 24px */
 	--font-size-h5: 1.25rem; /* 20px */
 	--font-size-h6: 1rem; /* 16px */
 
-	/* Breakpoints */
-	--breakpoint-xxs: 24rem; /* 384px */
-	--breakpoint-xs: 30rem; /* 480px */
-	--breakpoint-sm: 48rem; /* 768px */
-	--breakpoint-md: 62rem; /* 992px */
-	--breakpoint-lg: 75rem; /* 1200px */
+	--line-height-none: 1;
+	--line-height-tight: 1.2;
+	--line-height-normal: 1.5;
+	--line-height-relaxed: 1.6;
+	--line-height-loose: 1.7;
+	--line-height-wide: 1.8;
 
-	/* Transitions */
+	/* ============================================
+	   SPACING — T-shirt scale
+	   ============================================ */
+
+	--space-2xs: 0.125rem; /*  2px */
+	--space-xs: 0.25rem; /*  4px */
+	--space-sm: 0.5rem; /*  8px */
+	--space-md: 1rem; /* 16px */
+	--space-lg: 1.5rem; /* 24px */
+	--space-xl: 2rem; /* 32px */
+	--space-2xl: 3rem; /* 48px */
+	--space-3xl: 4rem; /* 64px */
+
+	/* Layout spacing */
+	--spacing-gutters: 2rem;
+	--spacing-vertical-section: 2rem;
+	--spacing-block: var(--space-md);
+
+	/* ============================================
+	   TRANSITIONS
+	   ============================================ */
+
 	--transition-instant: 0s;
-	--transition-fs: 0.15s ease-in-out;
-	--transition-md: 0.3s ease-in-out;
-
-	/* Borders */
-	--border-md: 2px solid var(--color-text);
-
-	[data-theme="light"] {
-		--border-md: 2px solid var(--color-text-light);
-
-		/* Light mode surface shades */
-		--color-primary-surface: hsl(324, 50%, 94%);
-		--color-secondary-surface: hsl(172, 40%, 93%);
-		--color-accent-1-surface: hsl(52, 50%, 94%);
-		--color-accent-2-surface: hsl(195, 45%, 93%);
-		--color-accent-3-surface: hsl(267, 40%, 94%);
-	}
-
-	/* Border radius */
-	--border-radius-md: 4px;
-	--border-radius-lg: 12px;
-	--border-radius-xl: 40px;
-
-	/* Limit site max width */
-	--site-max-width: 1920px;
-
-	/* transitions */
 	--transition-fs: 0.1s ease-in-out;
 	--transition-mf: 0.2s ease-in-out;
 	--transition-md: 0.3s ease-in-out;
 	--transition-ms: 0.4s ease-in-out;
 	--transition-slow: 0.5s ease-in-out;
+
+	/* ============================================
+	   BORDERS
+	   ============================================ */
+
+	--border-width-primary: 2px;
+	--border-style-primary: solid;
+	--border-color-primary: var(--color-text);
+	--border-primary: var(--border-width-primary) var(--border-style-primary)
+		var(--border-color-primary);
+
+	/* ============================================
+	   BORDER RADIUS
+	   ============================================ */
+
+	--border-radius-sm: 4px;
+	--border-radius-md: 4px;
+	--border-radius-lg: 12px;
+	--border-radius-xl: 40px;
+
+	/* ============================================
+	   LAYOUT
+	   ============================================ */
+
+	--site-max-width: 1920px;
+}
+
+/* ============================================
+   LIGHT THEME OVERRIDES
+   ============================================ */
+
+[data-theme="light"] {
+	/* Canvas */
+	--color-background: var(--neutral-1000);
+	--color-surface-raised: var(--neutral-950);
+	--color-surface-mid: var(--neutral-300);
+	--color-background-mid: var(--color-surface-mid);
+
+	/* Text */
+	--color-text: var(--neutral-0);
+	--color-text-inverse: var(--neutral-1000);
+
+	/* Brand surfaces — lighter tones in light mode */
+	--color-primary-surface: var(--pink-100);
+	--color-secondary-surface: var(--teal-100);
+	--color-accent-1-surface: var(--yellow-100);
+	--color-accent-2-surface: var(--cyan-100);
+	--color-accent-3-surface: var(--purple-100);
+
+	/* Border */
+	--border-color-primary: var(--neutral-0);
 }
 
 @media (max-width: 62rem) {
 	:root {
 		--spacing-gutters: 1rem;
 		--spacing-vertical-section: 1.5rem;
-		--spacing-block: var(--spacing-sm);
+		--spacing-block: var(--space-sm);
 	}
 
 	html {

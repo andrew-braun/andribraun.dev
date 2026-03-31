@@ -22,7 +22,7 @@
 		display: grid;
 		grid-template-columns: repeat(12, 1fr);
 		grid-auto-rows: 50px;
-		grid-gap: var(--spacing-sm);
+		grid-gap: var(--space-sm);
 
 		@media (max-width: $breakpoint-md) {
 			grid-template-columns: 1fr 1fr 1fr;
