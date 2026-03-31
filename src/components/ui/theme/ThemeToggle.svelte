@@ -26,7 +26,7 @@
 </script>
 
 <div class="theme-switch-wrapper">
-	<Switch.Root checked={currentTheme === "dark"} on:click={toggleTheme} class="theme-switch">
+	<Switch.Root checked={currentTheme === "dark"} onclick={toggleTheme} class="theme-switch">
 		<Switch.Thumb class="theme-switch-thumb" />
 	</Switch.Root>
 </div>

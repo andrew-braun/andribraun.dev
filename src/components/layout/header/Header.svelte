@@ -25,6 +25,9 @@
 		background-color: var(--color-background);
 		backdrop-filter: brightness(1.5);
 		color: var(--color-text);
+		transition:
+			background-color var(--transition-md),
+			color var(--transition-md);
 
 		.header-content {
 			display: flex;
