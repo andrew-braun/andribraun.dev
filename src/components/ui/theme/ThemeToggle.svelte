@@ -1,7 +1,9 @@
 <script lang="ts">
 	import { Switch } from "bits-ui";
 	import { onMount } from "svelte";
-	let currentTheme: Theme = "dark";
+
+	let currentTheme: Theme = $state("dark");
+	let checked = $state(true);
 
 	type Theme = "dark" | "light" | "neon";
 
@@ -11,6 +13,7 @@
 		const storedTheme = localStorage.getItem("storedTheme");
 		if (storedTheme) {
 			currentTheme = storedTheme as Theme;
+			checked = currentTheme === "dark";
 		}
 	});
 
@@ -26,7 +29,7 @@
 </script>
 
 <div class="theme-switch-wrapper">
-	<Switch.Root checked={currentTheme === "dark"} onclick={toggleTheme} class="theme-switch">
+	<Switch.Root bind:checked onclick={toggleTheme} class="theme-switch">
 		<Switch.Thumb class="theme-switch-thumb" />
 	</Switch.Root>
 </div>
