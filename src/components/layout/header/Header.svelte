@@ -25,7 +25,7 @@
 
 <style lang="scss">
 	.header {
-		z-index: 100;
+		z-index: 90;
 		position: sticky;
 		top: 0;
 		padding: var(--space-md) var(--spacing-gutters);
@@ -38,8 +38,10 @@
 			padding var(--transition-md);
 
 		&.scrolled {
-			padding-top: var(--space-xs);
+			padding-top: var(--space-sm);
 			padding-bottom: var(--space-xs);
+			background-color: transparent;
+			backdrop-filter: blur(10px);
 
 			:global(.logo) {
 				width: 90px;
@@ -75,5 +77,4 @@
 			}
 		}
 	}
-
 </style>

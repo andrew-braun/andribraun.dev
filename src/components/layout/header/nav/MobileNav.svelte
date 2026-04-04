@@ -25,7 +25,13 @@
 <div>
 	<MenuButton {isOpen} onClick={toggleMenu} />
 
-	<Drawer {isOpen} position="right" onClose={handleClose} {header}>
+	<Drawer
+		{isOpen}
+		position="right"
+		onClose={handleClose}
+		{header}
+		styles={{ background: "blur", width: "full" }}
+	>
 		<div class="nav-links">
 			{#each navItems as navItem}
 				<MobileNavLink {navItem} onClick={handleClose} />

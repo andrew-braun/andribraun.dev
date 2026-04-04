@@ -2,7 +2,8 @@
   "permissions": {
     "allow": [
       "mcp__context7__query-docs",
-      "Bash(npm install:*)"
+      "Bash(npm install:*)",
+      "Read(//home/andri/.npm/_logs/**)"
     ]
   }
 }

@@ -9,9 +9,13 @@
 		onClose: () => void;
 		header?: Snippet;
 		children: Snippet;
+		styles?: {
+			background?: "default" | "blur";
+			width?: "default" | "full";
+		};
 	}
 
-	let { isOpen, position, onClose, header, children }: DrawerProps = $props();
+	let { isOpen, position, onClose, header, children, styles }: DrawerProps = $props();
 
 	const closeDrawer = () => {
 		isOpen = false;
@@ -36,10 +40,13 @@
 	></div>
 
 	<div
-		class="drawer"
-		class:right={position === "right"}
-		class:left={position === "left"}
-		class:open={isOpen}
+		class={[
+			"drawer",
+			position === "right" ? "right" : "left",
+			isOpen ? "open" : "",
+			styles?.background ?? "",
+			styles?.width ?? ""
+		]}
 		aria-hidden={!isOpen}
 	>
 		{#if header}
@@ -73,7 +80,9 @@
 			// clip-path: inset(0 0 0 100%);
 			// transition: clip-path 0.3s ease-in-out;
 			transform: translateX(calc(var(--drawer-width) * 1.4));
-			transition: transform var(--transition-duration);
+			transition:
+				transform var(--transition-duration),
+				backdrop-filter var(--transition-duration);
 
 			&.right {
 				right: 0;
@@ -91,6 +100,15 @@
 				&.open {
 					transform: translateX(var(--drawer-width));
 				}
+			}
+
+			&.blur {
+				background: transparent;
+				backdrop-filter: blur(10px);
+			}
+
+			&.full {
+				--drawer-width: 100%;
 			}
 
 			.drawer-header {
