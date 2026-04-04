@@ -3,7 +3,7 @@
 	export let onClick = () => {};
 </script>
 
-<button class="menu-button {isOpen ? 'open' : ''}" onclick={onClick} aria-label="Toggle Menu">
+<button class="menu-button" class:open={isOpen} onclick={onClick} aria-label="Toggle Menu">
 	<span></span>
 	<span></span>
 	<span></span>

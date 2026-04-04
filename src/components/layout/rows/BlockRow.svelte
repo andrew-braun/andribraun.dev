@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { Component } from "svelte";
-
 	interface BlockRowProps {
 		children: any;
 		title?: string;

@@ -1,6 +1,4 @@
 <script lang="ts">
-	import type { HTMLLinkAttributes } from "svelte/elements";
-
 	interface LinkProps {
 		className?: string;
 		href: string;

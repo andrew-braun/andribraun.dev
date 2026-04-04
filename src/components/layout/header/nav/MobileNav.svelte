@@ -33,7 +33,7 @@
 		styles={{ background: "blur", width: "full" }}
 	>
 		<div class="nav-links">
-			{#each navItems as navItem}
+			{#each navItems as navItem (navItem.href)}
 				<MobileNavLink {navItem} onClick={handleClose} />
 			{/each}
 		</div>

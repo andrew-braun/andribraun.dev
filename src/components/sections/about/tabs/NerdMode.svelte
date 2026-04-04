@@ -23,9 +23,9 @@
 {#snippet rightColumn()}
 	<div class="text">
 		<Markdown {text} />
-		{#each Object.entries(codeIcons) as [key, icons]}
+		{#each Object.entries(codeIcons) as [key, icons] (key)}
 			<BlockRow title={key} titleTag="h3">
-				{#each Object.entries(icons) as [key, icon]}
+				{#each Object.entries(icons) as [key, icon] (key)}
 					<LabelledIcon Icon={icon} label={key} />
 				{/each}
 			</BlockRow>

@@ -2,15 +2,15 @@
 	import type { Snippet } from "svelte";
 
 	interface Props {
-		items: Snippet[];
-		cellSnippet?: Snippet<[T, number]>;
+		items: any[];
+		cellSnippet: Snippet<[any, number]>;
 	}
 
-	let { items, cellSnippet } = $props();
+	let { items, cellSnippet }: Props = $props();
 </script>
 
 <div class="bento-grid">
-	{#each items as item, index}
+	{#each items as item, index (index)}
 		<div class="cell">
 			{@render cellSnippet(item, index)}
 		</div>

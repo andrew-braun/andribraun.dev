@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Project } from "$lib/cms/payload";
+	import type { Project, Technology } from "$lib/cms/payload";
 	import type { ColorVariant } from "$root/src/ts/style";
 
 	interface Props {
@@ -10,10 +10,10 @@
 	let { project, color = "primary" }: Props = $props();
 	// svelte-ignore state_referenced_locally
 	let { title, description, metadata, liveLink } = project;
-	let technologies =
-		metadata?.technologies?.filter(
-			(technology) => typeof technology !== "number" && technology.hasOwnProperty("name")
-		) ?? [];
+	let technologies: Technology[] = (metadata?.technologies?.filter(
+		(technology): technology is Technology =>
+			typeof technology !== "number" && Object.hasOwn(technology, "name")
+	) ?? []) as Technology[];
 </script>
 
 <a class="card card--{color}" href={liveLink} target="_blank" rel="noopener noreferrer">
@@ -25,7 +25,7 @@
 		<div class="footer">
 			{#if technologies.length > 0}
 				<ul class="tech-pills" aria-label="Technologies used">
-					{#each technologies.slice(0, 5) as tech}
+					{#each technologies.slice(0, 5) as tech, i (i)}
 						{#if typeof tech === "object" && tech.name}
 							<li class="pill">{tech.name}</li>
 						{/if}

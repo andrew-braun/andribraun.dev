@@ -68,7 +68,7 @@
 			padding-left: calc(var(--font-size-xs) + var(--space-sm));
 		}
 
-		.cursor {
+		:global(.cursor) {
 			display: inline-block;
 			width: 2px;
 			background-color: var(--color-secondary);

@@ -8,10 +8,30 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --check . && eslint .",
-		"format": "prettier --write ."
+		"lint": "prettier --check . && eslint . && stylelint \"src/**/*.{css,scss}\"",
+		"lint:css": "stylelint \"src/**/*.{css,scss}\"",
+		"format": "prettier --write .",
+		"prepare": "husky"
+	},
+	"lint-staged": {
+		"*.{js,ts}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.svelte": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.{css,scss}": [
+			"stylelint --fix",
+			"prettier --write"
+		],
+		"*.{json,md}": [
+			"prettier --write"
+		]
 	},
 	"devDependencies": {
+		"@eslint/js": "^10.0.1",
 		"@iconify/json": "^2.2.459",
 		"@sveltejs/adapter-auto": "^7.0.1",
 		"@sveltejs/enhanced-img": "^0.10.3",
@@ -22,9 +42,13 @@
 		"eslint-config-prettier": "^10.1.8",
 		"eslint-plugin-svelte": "^3.17.0",
 		"globals": "^17.4.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.4.0",
 		"prettier": "^3.8.1",
 		"prettier-plugin-svelte": "^3.5.1",
 		"sass": "^1.99.0",
+		"stylelint": "^17.6.0",
+		"stylelint-config-standard-scss": "^17.0.0",
 		"svelte": "^5.55.1",
 		"svelte-check": "^4.4.6",
 		"svelte-preprocess": "^6.0.3",

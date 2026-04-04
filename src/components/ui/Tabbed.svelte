@@ -16,30 +16,35 @@
 	let { defaultValue, tabs }: TabbedProps = $props();
 </script>
 
-<Tabs.Root value={defaultValue ?? tabs[0].value} asChild let:builder>
-	<div class="tabs-root" use:builder.action {...builder}>
-		<div class="tabs-list">
-			<Tabs.List>
-				{#each tabs as tab}
-					<Tabs.Trigger value={tab.value} asChild let:builder
-						><button class="tab-trigger" use:builder.action {...builder}>{tab.label}</button
-						></Tabs.Trigger
-					>
-				{/each}
-			</Tabs.List>
+<Tabs.Root value={defaultValue ?? tabs[0].value}>
+	{#snippet child({ props })}
+		<div class="tabs-root" {...props}>
+			<div class="tabs-list">
+				<Tabs.List>
+					{#each tabs as tab (tab.value)}
+						<Tabs.Trigger value={tab.value}>
+							{#snippet child({ props: triggerProps })}
+								<button class="tab-trigger" {...triggerProps}>{tab.label}</button>
+							{/snippet}
+						</Tabs.Trigger>
+					{/each}
+				</Tabs.List>
+			</div>
+			{#each tabs as tab (tab.value)}
+				<Tabs.Content value={tab.value}>
+					{#snippet child({ props: contentProps })}
+						<div class="tab-content" {...contentProps}>
+							{#if typeof tab.content === "function"}
+								<tab.content {...tab.props} />
+							{:else}
+								{tab.content}
+							{/if}
+						</div>
+					{/snippet}
+				</Tabs.Content>
+			{/each}
 		</div>
-		{#each tabs as tab}
-			<Tabs.Content value={tab.value} asChild let:builder>
-				<div class="tab-content" use:builder.action {...builder}>
-					{#if typeof tab.content === "function"}
-						<tab.content {...tab.props} />
-					{:else}
-						{tab.content}
-					{/if}
-				</div></Tabs.Content
-			>
-		{/each}
-	</div>
+	{/snippet}
 </Tabs.Root>
 
 <style lang="scss">

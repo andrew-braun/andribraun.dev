@@ -2,13 +2,16 @@
 	import Logo from "$lib/assets/img/brand/abdev-logo-rectangle.svg?raw";
 </script>
 
-<div
-	class="logo"
-	role="img"
-	aria-label="ABDev logo: a rocket ship blasting off into space, leaving a rainbow trail behind it, partially encircling the words 'ABDev'"
->
-	{@html Logo}
-</div>
+<a href="/">
+	<div
+		class="logo"
+		role="img"
+		aria-label="ABDev logo: a rocket ship blasting off into space, leaving a rainbow trail behind it, partially encircling the words 'ABDev'"
+	>
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- static SVG bundled at build time, not dynamic content -->
+		{@html Logo}
+	</div>
+</a>
 
 <style>
 	.logo {

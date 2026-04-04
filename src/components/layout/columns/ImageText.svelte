@@ -29,6 +29,7 @@
 {/snippet}
 
 {#snippet textSnippet()}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
 	{@html markdownText}
 {/snippet}
 

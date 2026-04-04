@@ -26,7 +26,7 @@
 	}
 </script>
 
-<a class="card" href={liveLink} target="_blank" rel={"noopener noreferrer"}>
+<a class="card" href={liveLink} target="_blank" rel="noopener noreferrer">
 	<div class="image-wrapper">
 		<img src={image.url} alt={image.alt} class="card-image" loading="lazy" />
 	</div>

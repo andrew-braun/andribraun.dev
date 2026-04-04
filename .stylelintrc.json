@@ -1,0 +1,10 @@
+{
+	"extends": ["stylelint-config-standard-scss"],
+	"rules": {
+		"color-named": "never",
+		"scss/dollar-variable-pattern": null,
+		"scss/at-mixin-pattern": null,
+		"custom-property-pattern": null
+	},
+	"ignoreFiles": ["build/**", ".svelte-kit/**", "dist/**", "node_modules/**"]
+}

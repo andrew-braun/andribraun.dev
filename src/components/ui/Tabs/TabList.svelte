@@ -29,7 +29,7 @@
 </script>
 
 <div class="tab-list" role="tablist" aria-label="About Me Tabs">
-	{#each tabs as tab, index}
+	{#each tabs as tab, index (tab.value)}
 		<!-- Active class is visual only; semantic active state uses aria-selected. -->
 		<!-- Bidirectional ARIA links connect trigger to its tabpanel by id. -->
 		<button
@@ -103,7 +103,7 @@
 				inset: 0;
 				border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
 				border: solid transparent;
-				border-width: 4px 4px 0 4px;
+				border-width: 2px 1px 0 1px;
 				background: linear-gradient(90deg, var(--color-primary), var(--color-secondary)) border-box;
 				-webkit-mask:
 					linear-gradient(#fff 0 0) padding-box,
@@ -142,7 +142,6 @@
 		}
 
 		button.active {
-			font-weight: bold;
 			border-bottom: 2px solid #0070f3;
 		}
 	}

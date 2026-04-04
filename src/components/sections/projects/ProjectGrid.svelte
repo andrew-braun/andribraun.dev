@@ -12,7 +12,6 @@
 	}
 
 	const { projects }: Props = $props();
-	// svelte-ignore state_referenced_locally
 
 	const gridItems = $derived.by(() => {
 		const items: ComponentProps<typeof GridItem>[] = [

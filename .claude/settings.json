@@ -3,7 +3,16 @@
     "allow": [
       "mcp__context7__query-docs",
       "Bash(npm install:*)",
-      "Read(//home/andri/.npm/_logs/**)"
+      "Read(//home/andri/.npm/_logs/**)",
+      "Bash(npm --version)",
+      "Bash(pnpm add:*)",
+      "Bash(pnpm exec:*)",
+      "Bash(pnpm stylelint:*)",
+      "Bash(pnpm lint:css)",
+      "Bash(pnpm lint:*)",
+      "Bash(pnpm prettier:*)",
+      "Bash(pnpm list:*)",
+      "Bash(pnpm install:*)"
     ]
   }
 }

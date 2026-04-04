@@ -7,7 +7,7 @@
 </script>
 
 <nav>
-	{#each navItems as item}
+	{#each navItems as item (item.href)}
 		<Link href={item.href} active={$page.url.hash === item.href}>{item.label}</Link>
 	{/each}
 </nav>

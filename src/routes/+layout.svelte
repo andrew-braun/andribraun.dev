@@ -1,6 +1,4 @@
 <script lang="ts">
-	//@ts-ignore
-
 	import { siteData } from "$lib/data/site/site-data";
 	import { setInitialTheme } from "$lib/utils/theme/toggle";
 
