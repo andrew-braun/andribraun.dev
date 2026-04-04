@@ -4,9 +4,13 @@
 	import MobileNav from "$components/layout/header/nav/MobileNav.svelte";
 	import ThemeToggle from "$components/ui/theme/ThemeToggle.svelte";
 	import { primaryNavItems } from "$lib/data/site/menus/primary-nav";
+
+	let scrolled = $state(false);
 </script>
 
-<header class="header">
+<svelte:window onscroll={() => (scrolled = window.scrollY > 10)} />
+
+<header class="header" class:scrolled>
 	<div class="header-content">
 		<Logo />
 		<div class="nav-actions desktop">
@@ -30,11 +34,17 @@
 		color: var(--color-text);
 		transition:
 			background-color var(--transition-md),
-			color var(--transition-md);
-		/* Shrink headeer on scroll (works with newer browsers) */
-		// animation: shrink-header linear both;
-		// animation-timeline: scroll();
-		// animation-range: 0px 200px; /* Starts at 0px, finishes at 200px scroll */
+			color var(--transition-md),
+			padding var(--transition-md);
+
+		&.scrolled {
+			padding-top: var(--space-xs);
+			padding-bottom: var(--space-xs);
+
+			:global(.logo) {
+				width: 90px;
+			}
+		}
 
 		.header-content {
 			display: flex;
@@ -66,9 +76,4 @@
 		}
 	}
 
-	// @keyframes shrink-header {
-	// 	to {
-	// 		height: 60px;
-	// 	}
-	// }
 </style>

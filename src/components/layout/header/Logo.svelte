@@ -1,20 +1,20 @@
 <script>
-	import Logo from "$lib/assets/img/brand/abdev-logo.png?enhanced";
+	import Logo from "$lib/assets/img/brand/abdev-logo-rectangle.svg?raw";
 </script>
 
-<div class="logo">
-	<enhanced:img
-		src={Logo}
-		class="logo"
-		alt="ABDev logo, a stylized letter A and B connected together into a rainbow-colored circuit, with teal, yellow, pink, orange, and blue fading into each other in a gradient behind glowing circuit lines."
-	/>
+<div
+	class="logo"
+	role="img"
+	aria-label="ABDev logo: a rocket ship blasting off into space, leaving a rainbow trail behind it, partially encircling the words 'ABDev'"
+>
+	{@html Logo}
 </div>
 
 <style>
 	.logo {
 		font-size: 1.5rem;
 		font-weight: bold;
-		width: 60px;
-		height: 60px;
+		width: 180px;
+		transition: width 0.3s ease;
 	}
 </style>
