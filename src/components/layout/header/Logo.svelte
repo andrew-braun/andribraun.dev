@@ -15,9 +15,9 @@
 
 <style>
 	.logo {
+		width: 140px;
 		font-size: 1.5rem;
 		font-weight: bold;
-		width: 140px;
 		transition: width 0.3s ease;
 	}
 </style>

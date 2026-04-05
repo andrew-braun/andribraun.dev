@@ -76,7 +76,8 @@
 			width: var(--drawer-width);
 			height: 100vh;
 			background: var(--color-background-mid);
-			box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+			box-shadow: -2px 0 5px rgb(0 0 0 / 10%);
+
 			// clip-path: inset(0 0 0 100%);
 			// transition: clip-path 0.3s ease-in-out;
 			transform: translateX(calc(var(--drawer-width) * 1.4));
@@ -125,14 +126,14 @@
 		z-index: 9;
 		width: 100%;
 		height: 100%;
-		background: hsla(0, 0%, 0%, 0.5);
-		opacity: 0;
 		pointer-events: none;
+		background: hsl(0deg 0% 0% / 50%);
+		opacity: 0;
 		transition: opacity var(--transition-duration);
 
 		&.active {
-			opacity: 1;
 			pointer-events: all;
+			opacity: 1;
 		}
 	}
 </style>

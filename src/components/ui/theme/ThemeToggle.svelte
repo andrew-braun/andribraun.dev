@@ -41,9 +41,9 @@
 				position: relative;
 				width: 60px;
 				aspect-ratio: 5/ 3;
+				background: var(--color-primary);
 				border: none;
 				border-radius: var(--border-radius-xl);
-				background: var(--color-primary);
 				transition: var(--transition-md);
 
 				&[data-state="checked"] {
@@ -56,8 +56,8 @@
 					display: flex;
 					width: 50%;
 					aspect-ratio: 1;
-					border-radius: 50%;
 					background: var(--color-background);
+					border-radius: 50%;
 					transition: var(--transition-md);
 				}
 			}

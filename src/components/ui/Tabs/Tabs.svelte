@@ -159,13 +159,14 @@
 		flex-direction: column;
 
 		.tabs-container {
-			/* Clip off-screen translated panels while they slide in/out. */
-			overflow: hidden;
 			/* Stack panels in one cell so enter/exit animations overlap. */
 			display: grid;
-			grid-template-columns: minmax(0, 1fr);
 			grid-template-rows: auto;
+			grid-template-columns: minmax(0, 1fr);
 			margin-top: var(--space-md);
+
+			/* Clip off-screen translated panels while they slide in/out. */
+			overflow: hidden;
 		}
 	}
 </style>

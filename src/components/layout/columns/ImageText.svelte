@@ -40,11 +40,12 @@
 		position: sticky;
 		top: var(--space-md);
 		align-self: start;
+
 		.image {
 			width: 100%;
 			height: fit-content;
-			border-radius: var(--border-radius-lg);
 			object-fit: contain;
+			border-radius: var(--border-radius-lg);
 		}
 	}
 </style>

@@ -1,10 +1,19 @@
 {
-	"extends": ["stylelint-config-standard-scss"],
+	"extends": ["stylelint-config-standard-scss", "stylelint-config-recess-order"],
 	"rules": {
 		"color-named": "never",
 		"scss/dollar-variable-pattern": null,
 		"scss/at-mixin-pattern": null,
 		"custom-property-pattern": null
 	},
+	"overrides": [
+		{
+			"files": ["**/*.svelte"],
+			"customSyntax": "postcss-html",
+			"rules": {
+				"selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "local"] }]
+			}
+		}
+	],
 	"ignoreFiles": ["build/**", ".svelte-kit/**", "dist/**", "node_modules/**"]
 }

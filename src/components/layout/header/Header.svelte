@@ -25,13 +25,13 @@
 
 <style lang="scss">
 	.header {
-		z-index: 90;
 		position: sticky;
 		top: 0;
+		z-index: 90;
 		padding: var(--space-md) var(--spacing-gutters);
+		color: var(--color-text);
 		background-color: var(--color-background);
 		backdrop-filter: brightness(1.5);
-		color: var(--color-text);
 		transition:
 			background-color var(--transition-md),
 			color var(--transition-md),
@@ -50,12 +50,12 @@
 
 		.header-content {
 			display: flex;
-			justify-content: space-between;
 			align-items: center;
+			justify-content: space-between;
 			width: 100%;
 			max-width: var(--site-max-width);
-			margin: auto;
 			padding: 0 var(--space-xs) var(--space-xs) 0;
+			margin: auto;
 
 			.nav-actions {
 				display: flex;
@@ -67,6 +67,7 @@
 						display: none;
 					}
 				}
+
 				&.mobile {
 					display: none;
 

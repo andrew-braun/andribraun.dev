@@ -24,8 +24,8 @@
 		text-decoration: none;
 
 		&.active-link {
-			background-color: var(--color-accent-2);
 			color: var(--color-accent-2-fg);
+			background-color: var(--color-accent-2);
 		}
 	}
 </style>

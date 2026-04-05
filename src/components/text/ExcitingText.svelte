@@ -7,25 +7,27 @@
 
 <style lang="scss">
 	.emocionante {
+		box-sizing: content-box;
 		display: inline-block;
 		max-height: 1.6em;
 		padding: var(--space-xs) var(--space-sm);
-		border-radius: var(--border-radius-md);
 		font-family: var(--font-family-heading);
 		font-weight: 700;
-		box-sizing: content-box;
+		border-radius: var(--border-radius-md);
 
 		&.accent-1 {
-			background: var(--color-accent-1);
 			color: var(--color-accent-1-fg);
+			background: var(--color-accent-1);
 		}
+
 		&.accent-2 {
-			background: var(--color-accent-2);
 			color: var(--color-accent-2-fg);
+			background: var(--color-accent-2);
 		}
+
 		&.accent-3 {
-			background: var(--color-accent-3);
 			color: var(--color-accent-3-fg);
+			background: var(--color-accent-3);
 		}
 
 		&.font-size-normal {

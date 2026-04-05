@@ -28,36 +28,36 @@
 
 <style lang="scss">
 	.testimonial-card {
+		position: relative;
 		display: flex;
 		flex-direction: column;
 		height: 100%;
 		padding: var(--space-xl);
 		margin: 0;
-		border-radius: var(--border-radius-lg);
-		background-color: var(--color-accent-3-surface);
-		position: relative;
 		overflow: hidden;
+		background-color: var(--color-accent-3-surface);
+		border-radius: var(--border-radius-lg);
 	}
 
 	.quotemark {
-		font-size: 6rem;
-		line-height: var(--line-height-none);
-		font-family: Georgia, serif;
-		color: var(--color-accent-3);
-		opacity: 0.4;
 		position: absolute;
 		top: var(--space-sm);
 		left: var(--space-md);
+		font-family: Georgia, serif;
+		font-size: 6rem;
+		line-height: var(--line-height-none);
+		color: var(--color-accent-3);
 		pointer-events: none;
+		opacity: 0.4;
 	}
 
 	.quote {
-		margin: 0;
-		padding-top: var(--space-3xl);
-		font-size: var(--font-size-md);
-		line-height: var(--line-height-loose);
-		font-style: italic;
 		flex: 1;
+		padding-top: var(--space-3xl);
+		margin: 0;
+		font-size: var(--font-size-md);
+		font-style: italic;
+		line-height: var(--line-height-loose);
 	}
 
 	.attribution {
@@ -68,8 +68,8 @@
 	}
 
 	.author {
-		font-weight: 700;
 		font-size: var(--font-size-sm);
+		font-weight: 700;
 	}
 
 	.context {

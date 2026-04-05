@@ -38,13 +38,13 @@
 
 <style lang="scss">
 	.card {
-		display: block;
 		position: relative;
+		display: block;
 		height: 100%;
-		border-radius: var(--border-radius-lg);
 		overflow: hidden;
-		text-decoration: none;
 		color: var(--neutral-1000);
+		text-decoration: none;
+		border-radius: var(--border-radius-lg);
 
 		&:hover .card-image {
 			transform: scale(1.04);
@@ -67,11 +67,11 @@
 	}
 
 	.card-image {
+		display: block;
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
 		object-position: top center;
-		display: block;
 		transition: transform var(--transition-md);
 	}
 
@@ -97,7 +97,7 @@
 	}
 
 	.arrow {
-		font-size: var(--font-size-lg);
 		flex-shrink: 0;
+		font-size: var(--font-size-lg);
 	}
 </style>

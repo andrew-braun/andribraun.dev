@@ -1,27 +1,26 @@
 <script lang="ts">
-	import type { Width } from "$root/src/ts/style";
-	import type { HTMLInputTypeAttribute } from "svelte/elements";
+	import type { Width } from "$ts/style";
 	import InputWrapper from "./InputWrapper.svelte";
 
 	interface Props {
 		label: string;
 		value?: string;
 		name: string;
-		type?: HTMLInputTypeAttribute;
 		error?: string;
 		placeholder?: string;
+		rows?: number;
 		width?: Width;
 	}
 
-	let { value, placeholder, name, label, error, width, type = "text" }: Props = $props();
+	let { value, placeholder, name, label, error, width, rows = 8 }: Props = $props();
 </script>
 
 <InputWrapper {label} {name} {error} {width}>
-	<input {type} class="input" bind:value {placeholder} {name} />
+	<textarea class="textarea" bind:value {placeholder} {name} {rows}></textarea>
 </InputWrapper>
 
 <style lang="scss">
-	.input {
+	.textarea {
 		@include basic-input;
 	}
 </style>

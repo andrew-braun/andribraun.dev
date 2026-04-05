@@ -32,11 +32,11 @@
 	.text {
 		position: relative;
 		width: 100%;
-		font-size: inherit;
-		white-space: pre;
-		overflow: hidden;
 		max-width: fit-content;
 		margin: 0;
+		overflow: hidden;
+		font-size: inherit;
+		white-space: pre;
 
 		:global(.cursor) {
 			animation: blink 1s step-start infinite;
@@ -46,6 +46,7 @@
 				50% {
 					opacity: 1;
 				}
+
 				50.01%,
 				100% {
 					opacity: 0;

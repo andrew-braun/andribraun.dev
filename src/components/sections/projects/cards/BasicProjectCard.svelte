@@ -41,45 +41,54 @@
 	.card {
 		display: block;
 		height: 100%;
-		border-radius: var(--border-radius-lg);
-		text-decoration: none;
-		color: var(--color-text);
 		overflow: hidden;
+		color: var(--color-text);
+		text-decoration: none;
+		border-radius: var(--border-radius-lg);
 		transition: var(--transition-md);
 
 		&--primary {
-			background-color: var(--color-primary);
 			color: var(--color-primary-fg);
+			background-color: var(--color-primary);
+
 			&:hover {
 				filter: brightness(1.1);
 			}
 		}
+
 		&--secondary {
-			background-color: var(--color-secondary);
 			color: var(--color-secondary-fg);
+			background-color: var(--color-secondary);
+
 			&:hover {
 				filter: brightness(1.1);
 			}
 		}
+
 		&--accent-1 {
-			background-color: var(--color-accent-1);
 			color: var(--color-accent-1-fg);
+			background-color: var(--color-accent-1);
+
 			&:hover {
 				background-color: var(--color-accent-1);
 				filter: brightness(1.1);
 			}
 		}
+
 		&--accent-2 {
-			background-color: var(--color-accent-2);
 			color: var(--color-accent-2-fg);
+			background-color: var(--color-accent-2);
+
 			&:hover {
 				background-color: var(--color-accent-2);
 				filter: brightness(1.1);
 			}
 		}
+
 		&--accent-3 {
-			background-color: var(--color-accent-3);
 			color: var(--color-accent-3-fg);
+			background-color: var(--color-accent-3);
+
 			&:hover {
 				background-color: var(--color-accent-3);
 				filter: brightness(1.1);
@@ -95,9 +104,9 @@
 	.card-content {
 		display: flex;
 		flex-direction: column;
+		gap: var(--space-sm);
 		height: 100%;
 		padding: var(--space-xl);
-		gap: var(--space-sm);
 
 		.title {
 			margin: 0;
@@ -107,19 +116,19 @@
 		}
 
 		.description {
+			flex: 1;
 			margin: 0;
 			font-size: var(--font-size-sm);
 			line-height: var(--line-height-relaxed);
-			flex: 1;
 			opacity: 0.8;
 		}
 	}
 
 	.footer {
 		display: flex;
+		gap: var(--space-sm);
 		align-items: flex-end;
 		justify-content: space-between;
-		gap: var(--space-sm);
 		margin-top: auto;
 	}
 
@@ -127,28 +136,28 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--space-xs);
-		list-style: none;
-		margin: 0;
 		padding: 0;
+		margin: 0;
+		list-style: none;
 
 		.pill {
-			font-size: var(--font-size-xs);
 			padding: 2px var(--space-sm);
-			border-radius: var(--border-radius-xl);
-			background-color: color-mix(in srgb, currentColor 12%, transparent);
-			border: 1px solid color-mix(in srgb, currentColor 20%, transparent);
+			font-size: var(--font-size-xs);
 			white-space: nowrap;
+			background-color: color-mix(in srgb, currentcolor 12%, transparent);
+			border: 1px solid color-mix(in srgb, currentcolor 20%, transparent);
+			border-radius: var(--border-radius-xl);
 		}
 	}
 
 	.arrow {
+		flex-shrink: 0;
 		font-size: var(--font-size-lg);
+		line-height: var(--line-height-none);
 		opacity: 0;
 		transform: translateX(-8px);
 		transition:
 			opacity var(--transition-md),
 			transform var(--transition-md);
-		flex-shrink: 0;
-		line-height: var(--line-height-none);
 	}
 </style>

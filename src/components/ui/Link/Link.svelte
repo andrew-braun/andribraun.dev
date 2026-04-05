@@ -23,7 +23,9 @@
 	{href}
 	class="animated-link {className}"
 	class:active-link={active}
-	style="--underline-color: {underlineColor}"
+	style="
+
+--underline-color: {underlineColor}"
 >
 	{@render children()}
 </a>
@@ -34,19 +36,19 @@
 
 		position: relative;
 		display: inline-block;
-		padding: 2px 0px;
-		text-decoration: none;
+		padding: 2px 0;
 		color: inherit;
+		text-decoration: none;
 		transition: transform $transition-duration ease;
 
 		// Underline effect
 		&::after {
-			content: "";
 			position: absolute;
-			width: 100%;
-			height: 2px;
 			bottom: 0;
 			left: 0;
+			width: 100%;
+			height: 2px;
+			content: "";
 			background-color: var(--underline-color);
 			transform: scaleX(0);
 			transform-origin: bottom right;
@@ -67,6 +69,7 @@
 			outline-offset: 4px;
 		}
 	}
+
 	.active-link {
 		&::after {
 			transform: scaleX(1);

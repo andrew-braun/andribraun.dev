@@ -16,8 +16,7 @@
 <style lang="scss">
 	.block-row {
 		display: flex;
-		flex-wrap: wrap;
-		flex-direction: row;
+		flex-flow: row wrap;
 		gap: var(--space-md);
 	}
 </style>

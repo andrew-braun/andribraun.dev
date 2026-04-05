@@ -19,15 +19,15 @@
 		flex-direction: column;
 		gap: 5px;
 		padding: 10px;
+		cursor: pointer;
 		background: none;
 		border: none;
-		cursor: pointer;
 
 		span {
 			width: 30px;
 			height: 3px;
-			border-radius: 3px;
 			background: var(--color-text);
+			border-radius: 3px;
 			transition:
 				transform 0.3s,
 				opacity 0.3s;
@@ -43,7 +43,7 @@
 			}
 
 			span:nth-child(3) {
-				transform: rotate(-45deg) translate3d(0px, -10px, 0);
+				transform: rotate(-45deg) translate3d(0, -10px, 0);
 			}
 		}
 	}

@@ -58,24 +58,24 @@
 <style lang="scss">
 	.line {
 		margin: 0;
-		text-wrap: balance;
 		line-height: var(--line-height-wide);
 		color: var(--neutral-1000);
+		text-wrap: balance;
 		white-space: pre;
 
 		&.output {
-			color: var(--neutral-300);
 			padding-left: calc(var(--font-size-xs) + var(--space-sm));
+			color: var(--neutral-300);
 		}
 
 		:global(.cursor) {
 			display: inline-block;
 			width: 2px;
-			background-color: var(--color-secondary);
-			color: transparent;
-			animation: blink 1.2s step-end infinite;
 			margin-left: var(--space-sm);
 			vertical-align: middle;
+			color: transparent;
+			background-color: var(--color-secondary);
+			animation: blink 1.2s step-end infinite;
 		}
 	}
 </style>

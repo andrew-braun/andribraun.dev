@@ -106,20 +106,20 @@
 
 <style lang="scss">
 	.terminal-card {
-		height: 100%;
+		display: flex;
+		flex-direction: column;
 		max-width: 90vw;
+		height: 100%;
+		overflow: hidden;
+		font-family: var(--font-family-mono);
 		background-color: var(--neutral-50);
 		border: 1px solid var(--neutral-100);
 		border-radius: var(--border-radius-lg);
-		overflow: hidden;
-		display: flex;
-		flex-direction: column;
-		font-family: var(--font-family-mono);
 
 		.terminal-header {
 			display: flex;
-			align-items: center;
 			gap: var(--space-sm);
+			align-items: center;
 			padding: var(--space-sm) var(--space-md);
 			background-color: var(--neutral-100);
 			border-bottom: 1px solid var(--neutral-100);
@@ -136,9 +136,11 @@
 					&--red {
 						background-color: var(--color-primary);
 					}
+
 					&--yellow {
 						background-color: var(--color-accent-1);
 					}
+
 					&--green {
 						background-color: var(--color-secondary);
 					}
@@ -146,19 +148,19 @@
 			}
 
 			.terminal-title {
+				margin-right: auto;
+				margin-left: auto;
 				font-size: var(--font-size-xs);
 				color: var(--neutral-300);
-				margin-left: auto;
-				margin-right: auto;
 			}
 		}
 
 		.terminal-body {
-			flex: 1;
-			padding: var(--space-md);
 			display: flex;
+			flex: 1;
 			flex-direction: column;
 			gap: 4px;
+			padding: var(--space-md);
 			font-size: var(--font-size-xs);
 		}
 	}
@@ -168,6 +170,7 @@
 		100% {
 			opacity: 1;
 		}
+
 		50% {
 			opacity: 0;
 		}

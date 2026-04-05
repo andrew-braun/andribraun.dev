@@ -52,8 +52,8 @@
 		position: relative;
 
 		.tabs-list {
-			container-type: inline-size;
 			margin-bottom: var(--space-md);
+			container-type: inline-size;
 
 			:global {
 				div[role="tablist"] {
@@ -66,36 +66,38 @@
 
 			.tab-trigger {
 				position: relative;
-				margin: 0 var(--space-xs);
+				z-index: 10;
 				padding: var(--space-sm) var(--space-md);
-				border: none;
-				border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
-				background: transparent;
-				cursor: pointer;
+				margin: 0 var(--space-xs);
 				font-size: var(--font-size-md);
 				font-weight: 600;
 				color: var(--color-text);
-				z-index: 10;
+				cursor: pointer;
+				background: transparent;
+				border: none;
+				border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
 
 				&:nth-child(1) {
 					margin-left: 0;
 				}
 
 				&::before {
-					content: "";
 					position: absolute;
 					inset: 0;
-					border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
-					border: solid transparent;
-					border-width: 4px 4px 0 4px;
+					content: "";
 					background: linear-gradient(90deg, var(--color-primary), var(--color-secondary))
 						border-box;
+					border: solid transparent;
+					border-width: 4px 4px 0;
+					border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+					/* stylelint-disable-next-line property-no-vendor-prefix */
 					-webkit-mask:
 						linear-gradient(#fff 0 0) padding-box,
 						linear-gradient(#fff 0 0);
 					mask:
 						linear-gradient(#fff 0 0) padding-box,
 						linear-gradient(#fff 0 0);
+					/* stylelint-disable-next-line property-no-vendor-prefix */
 					-webkit-mask-composite: destination-out;
 					mask-composite: exclude;
 				}
@@ -104,22 +106,22 @@
 					position: absolute;
 					bottom: 0;
 					left: 0;
+					z-index: -1;
 					width: 0%;
 					height: 100%;
 					content: "";
-					border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
 					background-image: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+					border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
 					opacity: 0;
 					transition: var(--transition-md);
-					z-index: -1;
 				}
 
 				&[data-state="active"] {
 					color: var(--color-secondary-fg);
 
 					&::after {
-						opacity: 1;
 						width: 100%;
+						opacity: 1;
 					}
 				}
 			}
@@ -137,6 +139,7 @@
 
 			&[hidden] {
 				top: -100%;
+
 				// left: -25%;
 				display: block;
 				opacity: 0;

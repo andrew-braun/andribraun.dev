@@ -1,15 +1,18 @@
 <script lang="ts">
+	import type { Width } from "$root/src/ts/style";
+
 	interface Props {
 		label: string;
 		name: string;
 		error?: string;
+		width?: Width;
 		children: () => any;
 	}
 
-	let { label, name, error, children }: Props = $props();
+	let { label, name, error, width, children }: Props = $props();
 </script>
 
-<div class="input-wrapper">
+<div class={["input-wrapper", width ? `width-${width}` : ""]}>
 	<label class="label" for={name}>{label}</label>
 	{@render children()}
 	{#if error}
@@ -21,6 +24,48 @@
 	.input-wrapper {
 		display: flex;
 		flex-direction: column;
-		gap: var(--spacing-sm);
+		gap: var(--space-sm);
+		padding: var(--space-sm);
+		border-radius: var(--border-radius-md);
+
+		&.width-25 {
+			width: 25%;
+		}
+
+		&.width-33 {
+			width: 33.3333%;
+		}
+
+		&.width-50 {
+			width: 50%;
+		}
+
+		&.width-66 {
+			width: 66.6667%;
+		}
+
+		&.width-75 {
+			width: 75%;
+		}
+
+		&.width-100 {
+			width: 100%;
+		}
+
+		.label {
+			width: fit-content;
+			padding: var(--space-xs);
+			border-radius: var(--border-radius-sm);
+			transition:
+				background-color var(--transition-md),
+				color var(--transition-md);
+		}
+
+		&:focus-within {
+			.label {
+				color: var(--color-accent-2-text);
+				background: var(--color-accent-2);
+			}
+		}
 	}
 </style>

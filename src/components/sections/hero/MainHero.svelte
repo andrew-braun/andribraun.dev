@@ -35,14 +35,14 @@
 <style lang="scss">
 	.hero {
 		display: grid;
-		grid-template-columns: 4fr 3fr;
 		grid-template-areas: "left right";
+		grid-template-columns: 4fr 3fr;
 
 		@media (max-width: $breakpoint-sm) {
-			grid-template-columns: 1fr;
 			grid-template-areas:
 				"right"
 				"left";
+			grid-template-columns: 1fr;
 		}
 
 		.hero-section {
@@ -54,9 +54,9 @@
 					gap: var(--space-xs);
 					align-items: center;
 					margin: var(--space-md) 0 var(--spacing-vertical-section) 0;
-					vertical-align: top;
-					line-height: 3.8em;
 					font-size: var(--font-size-md);
+					line-height: 3.8em;
+					vertical-align: top;
 
 					p {
 						margin: 0;
@@ -75,17 +75,18 @@
 				.cta-container {
 					width: clamp(280px, 100%, 480px);
 					margin: var(--space-3xl) auto;
-					text-align: center;
 					font-size: var(--font-size-lg);
+					text-align: center;
 				}
 			}
 
 			&.right {
 				:global(picture) {
 					display: flex;
-					justify-content: center;
 					align-items: center;
+					justify-content: center;
 				}
+
 				.hero-image {
 					display: block;
 					width: clamp(200px, 80%, 420px);

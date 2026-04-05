@@ -51,6 +51,13 @@
 	--color-accent-2: var(--cyan-400);
 	--color-accent-3: var(--purple-400);
 
+	/* Text colors that pair well with brand colors — static, determined by contrast */
+	--color-primary-text: var(--neutral-0);
+	--color-secondary-text: var(--neutral-0);
+	--color-accent-1-text: var(--neutral-0);
+	--color-accent-2-text: var(--neutral-0);
+	--color-accent-3-text: var(--neutral-1000);
+
 	/* Foreground on brand colors — static, determined by contrast */
 	--color-primary-fg: var(--neutral-0);
 	--color-secondary-fg: var(--neutral-0);
@@ -171,6 +178,8 @@
 	   ============================================ */
 
 	--site-max-width: 1920px;
+	--text-max-width: 65ch;
+	--element-max-width: 85ch;
 }
 
 /* ============================================

@@ -1,7 +1,29 @@
 @mixin emocionante-text {
 	display: inline-block;
-	font-weight: 800;
 	font-size: var(--font-size-xl);
+	font-weight: 800;
 
 	// text-decoration: underline;
+}
+
+@mixin basic-input {
+	padding: var(--space-sm);
+	font-size: var(--font-size-sm);
+	color: var(--font-color-primary);
+	background-color: transparent;
+	border: 1px solid var(--border-color-primary);
+	border-radius: var(--border-radius-md);
+	transition:
+		background-color var(--transition-md),
+		border-color var(--transition-md),
+		color var(--transition-md);
+
+	&:focus {
+		background-color: var(--color-accent-2-surface);
+		border-color: var(--color-accent-2);
+
+		&::placeholder {
+			opacity: 1;
+		}
+	}
 }

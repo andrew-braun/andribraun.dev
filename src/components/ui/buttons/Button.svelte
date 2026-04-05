@@ -4,7 +4,7 @@
 	type SharedProps = {
 		variant?: "filled" | "outline" | "gradient";
 		size?: "small" | "medium" | "large" | "100";
-		hoverEffect?: "flashyBackgroundSlide";
+		hoverEffect?: "flashy-background-slide";
 		Icon?: any;
 		children?: any;
 	};
@@ -30,7 +30,7 @@
 		variant = "filled",
 		size = "medium",
 		disabled = false,
-		hoverEffect = "flashyBackgroundSlide",
+		hoverEffect = "flashy-background-slide",
 		Icon = null,
 		onclick,
 		children,
@@ -69,15 +69,15 @@
 		justify-content: center;
 		min-height: 2.5em;
 		padding: var(--btn-padding, 0.5rem 1rem);
-		border-radius: var(--border-radius-md);
-		cursor: pointer;
-		border: none;
-		text-align: center;
-		transition: all var(--transition-md);
-		background-color: var(--color-text);
-		color: var(--color-background);
 		font-size: var(--font-size-md);
+		color: var(--color-background);
+		text-align: center;
 		text-decoration: none;
+		cursor: pointer;
+		background-color: var(--color-text);
+		border: none;
+		border-radius: var(--border-radius-md);
+		transition: all var(--transition-md);
 
 		&:active {
 			transform: translate3d(2px, 2px, 0);
@@ -85,26 +85,26 @@
 	}
 
 	.btn-filled {
-		background-color: var(--color-primary);
 		color: var(--color-primary-fg);
+		background-color: var(--color-primary);
 
 		&:hover {
-			background-color: var(--color-secondary);
 			color: var(--color-secondary-fg);
+			background-color: var(--color-secondary);
 		}
 	}
 
 	.btn-gradient {
+		color: var(--neutral-0);
 		background: linear-gradient(
 			135deg,
 			var(--color-text) 10%,
 			var(--color-primary) 40%,
 			var(--color-secondary)
 		);
-		background-size: 200% 200%;
 		background-position: 10% 0%;
+		background-size: 200% 200%;
 		transition: all var(--transition-md);
-		color: var(--neutral-0);
 
 		&:hover {
 			/* background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); */
@@ -113,8 +113,8 @@
 	}
 
 	.btn-outline {
-		background-color: transparent;
 		color: var(--color-text);
+		background-color: transparent;
 		border: 2px solid var(--color-primary) !important;
 
 		&:hover {
@@ -124,21 +124,21 @@
 
 	/* Size variants */
 	.btn-small {
-		font-size: var(--font-size-sm);
-		padding: var(--space-xs) var(--space-sm);
 		min-width: 160px;
+		padding: var(--space-xs) var(--space-sm);
+		font-size: var(--font-size-sm);
 	}
 
 	.btn-medium {
-		font-size: var(--font-size-md);
-		padding: var(--space-sm) var(--space-md);
 		min-width: 180px;
+		padding: var(--space-sm) var(--space-md);
+		font-size: var(--font-size-md);
 	}
 
 	.btn-large {
-		font-size: var(--font-size-lg);
-		padding: var(--space-sm) var(--space-md);
 		width: 280px;
+		padding: var(--space-sm) var(--space-md);
+		font-size: var(--font-size-lg);
 	}
 
 	.btn-100 {
@@ -164,28 +164,29 @@
 
 	/* Hover effects */
 	.btn {
-		&.btn-flashyBackgroundSlide {
+		&.btn-flashy-background-slide {
 			position: relative;
+			overflow: hidden;
+			font-weight: 600;
+
 			/* color: var(--neutral-0); */
 			text-align: center;
-			overflow: hidden;
+			cursor: pointer;
 			border: 2px solid transparent;
+			box-shadow: rgb(51 51 51) 0 0 0;
 			transition:
 				box-shadow 0.4s cubic-bezier(0.55, 0, 0.1, 1),
 				background 0.6s cubic-bezier(0.55, 0, 0.1, 1),
 				transform 0.1s cubic-bezier(0.55, 0, 0.1, 1),
 				color 0.2s cubic-bezier(0.55, 0, 0.1, 1);
-			cursor: pointer;
-			box-shadow: rgb(51, 51, 51) 0px 0px 0px;
-			font-weight: 600;
 
 			&:hover {
 				/* background: transparent; */
 				color: var(--neutral-0);
 				border: var(--border-primary);
 				box-shadow:
-					var(--color-primary) 8px 8px 0px,
-					var(--color-secondary) -8px -8px 0px;
+					var(--color-primary) 8px 8px 0,
+					var(--color-secondary) -8px -8px 0;
 
 				/* .btn-background-slide-bg {
 					opacity: 1;
