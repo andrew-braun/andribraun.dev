@@ -32,7 +32,10 @@ export default [
 			"no-undef": "off",
 			// This rule requires resolve() for hrefs only when deploying to a subpath.
 			// This site is deployed at root, so the rule fires as a false positive.
-			"svelte/no-navigation-without-resolve": "off"
+			"svelte/no-navigation-without-resolve": "off",
+			// $bindable() props are only written-to within the child component; ESLint
+			// cannot see the parent binding as a "read" and flags them as useless assignments.
+			"no-useless-assignment": "off"
 		}
 	},
 	{

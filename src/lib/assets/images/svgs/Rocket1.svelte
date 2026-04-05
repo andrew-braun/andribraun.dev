@@ -1,4 +1,12 @@
-<div class="svg-container">
+<script lang="ts">
+	interface Props {
+		launching?: boolean;
+	}
+
+	let { launching }: Props = $props();
+</script>
+
+<div class={["svg-container", launching ? "launching" : ""]}>
 	<svg viewBox="0 0 680 540" xmlns="http://www.w3.org/2000/svg">
 		<defs>
 			<radialGradient id="thrustGlow" cx="50%" cy="0%" r="100%">
@@ -428,7 +436,7 @@
 		</g>
 
 		<!-- ROCKET -->
-		<g transform="translate(340,250)">
+		<g transform="translate(340,250)" class="rocket">
 			<ellipse
 				cx="0"
 				cy="152"
@@ -511,12 +519,32 @@
 	</svg>
 </div>
 
-<style>
+<style lang="scss">
 	.svg-container {
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		background: transparent;
+
+		&.launching {
+			.rocket {
+				animation: launch 4s ease-in forwards;
+
+				@keyframes launch {
+					0% {
+						transform: translate(340px, 250px);
+					}
+
+					40% {
+						transform: translate(340px, -120vh);
+					}
+
+					100% {
+						transform: translate(340px, 250px);
+					}
+				}
+			}
+		}
 	}
 
 	svg {
