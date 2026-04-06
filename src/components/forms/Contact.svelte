@@ -12,7 +12,7 @@
 		isSubmitting = true;
 
 		// Simulate form submission delay
-		await new Promise((resolve) => setTimeout(resolve, 250));
+		await new Promise((resolve) => setTimeout(resolve, 1000));
 
 		isSubmitting = false;
 
@@ -38,7 +38,9 @@
 		placeholder="This is where the magic happens. Your hopes. Your dreams. Your secret family recipes. Or, you know, work stuff about projects. That's probably why you're here, now that I think about it. Either way, let's get this train rolling! The train has a dining car, though, so that family recipe could come in handy."
 	/>
 	<div class="submit-button-wrapper">
-		<Button type="submit" variant="outline" disabled={isSubmitting}>Launch Message</Button>
+		<Button type="submit" variant="outline" disabled={isSubmitting} loading={isSubmitting}
+			>Launch Message</Button
+		>
 	</div>
 </form>
 

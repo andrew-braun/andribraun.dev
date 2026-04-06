@@ -539,6 +539,21 @@
 						transform: translate(340px, -120vh);
 					}
 
+					41% {
+						display: none;
+						visibility: hidden;
+						width: 0;
+						height: 0;
+						overflow: hidden;
+						opacity: 0;
+						transform: translate(340px, 160vh);
+						animation: none;
+					}
+
+					42% {
+						opacity: 1;
+					}
+
 					100% {
 						transform: translate(340px, 250px);
 					}

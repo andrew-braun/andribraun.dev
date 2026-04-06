@@ -6,6 +6,7 @@
 		size?: "small" | "medium" | "large" | "100";
 		hoverEffect?: "flashy-background-slide";
 		Icon?: any;
+		loading?: boolean;
 		children?: any;
 	};
 
@@ -34,11 +35,14 @@
 		Icon = null,
 		onclick,
 		children,
+		loading = false,
 		...rest
 	}: ButtonProps | LinkProps = $props();
 
 	const target = $derived((rest as LinkProps).target);
-	const classes = $derived(`btn btn-${variant} btn-${size} btn-${hoverEffect}`);
+	const classes = $derived(
+		`btn btn-${variant} btn-${size} btn-${hoverEffect} ${loading ? "btn-loading" : ""}`
+	);
 </script>
 
 {#if href}
@@ -61,8 +65,7 @@
 	</button>
 {/if}
 
-<style scoped>
-	/* Base button styles */
+<style lang="scss">
 	.btn {
 		display: inline-flex;
 		align-items: center;
@@ -82,88 +85,78 @@
 		&:active {
 			transform: translate3d(2px, 2px, 0);
 		}
-	}
 
-	.btn-filled {
-		color: var(--color-primary-fg);
-		background-color: var(--color-primary);
-
-		&:hover {
-			color: var(--color-secondary-fg);
-			background-color: var(--color-secondary);
+		&[disabled],
+		&[disabled]:hover {
+			cursor: not-allowed;
+			box-shadow: none;
+			opacity: 0.6;
 		}
-	}
 
-	.btn-gradient {
-		color: var(--neutral-0);
-		background: linear-gradient(
-			135deg,
-			var(--color-text) 10%,
-			var(--color-primary) 40%,
-			var(--color-secondary)
-		);
-		background-position: 10% 0%;
-		background-size: 200% 200%;
-		transition: all var(--transition-md);
+		/* Variant modifiers */
+		&.btn-filled {
+			color: var(--color-primary-fg);
+			background-color: var(--color-primary);
 
-		&:hover {
-			/* background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); */
-			background-position: 100% 100%;
+			&:hover:not([disabled]) {
+				color: var(--color-secondary-fg);
+				background-color: var(--color-secondary);
+			}
 		}
-	}
 
-	.btn-outline {
-		color: var(--color-text);
-		background-color: transparent;
-		border: 2px solid var(--color-primary) !important;
+		&.btn-gradient {
+			color: var(--neutral-0);
+			background: linear-gradient(
+				135deg,
+				var(--color-text) 10%,
+				var(--color-primary) 40%,
+				var(--color-secondary)
+			);
+			background-position: 10% 0%;
+			background-size: 200% 200%;
+			transition: all var(--transition-md);
 
-		&:hover {
-			background-color: var(--color-secondary);
+			&:hover:not([disabled]) {
+				/* background: linear-gradient(90deg, var(--color-secondary), var(--color-primary)); */
+				background-position: 100% 100%;
+			}
 		}
-	}
 
-	/* Size variants */
-	.btn-small {
-		min-width: 160px;
-		padding: var(--space-xs) var(--space-sm);
-		font-size: var(--font-size-sm);
-	}
+		&.btn-outline {
+			color: var(--color-text);
+			background-color: transparent;
+			border: 2px solid var(--color-primary) !important;
 
-	.btn-medium {
-		min-width: 180px;
-		padding: var(--space-sm) var(--space-md);
-		font-size: var(--font-size-md);
-	}
+			&:hover:not([disabled]) {
+				background-color: var(--color-secondary);
+			}
+		}
 
-	.btn-large {
-		width: 280px;
-		padding: var(--space-sm) var(--space-md);
-		font-size: var(--font-size-lg);
-	}
+		/* Size modifiers */
+		&.btn-small {
+			min-width: 160px;
+			padding: var(--space-xs) var(--space-sm);
+			font-size: var(--font-size-sm);
+		}
 
-	.btn-100 {
-		width: 100%;
-		font-size: inherit;
-	}
+		&.btn-medium {
+			min-width: 180px;
+			padding: var(--space-sm) var(--space-md);
+			font-size: var(--font-size-md);
+		}
 
-	/* Disabled state */
-	.btn[disabled] {
-		cursor: not-allowed;
-		opacity: 0.6;
-	}
+		&.btn-large {
+			width: 280px;
+			padding: var(--space-sm) var(--space-md);
+			font-size: var(--font-size-lg);
+		}
 
-	/* Icon */
-	.icon-container {
-		position: relative;
-		top: 2px;
-		display: inline-flex;
-		align-items: center;
-		justify-content: center;
-		margin-left: var(--space-md);
-	}
+		&.btn-100 {
+			width: 100%;
+			font-size: inherit;
+		}
 
-	/* Hover effects */
-	.btn {
+		/* Hover effects */
 		&.btn-flashy-background-slide {
 			position: relative;
 			overflow: hidden;
@@ -180,7 +173,7 @@
 				transform 0.1s cubic-bezier(0.55, 0, 0.1, 1),
 				color 0.2s cubic-bezier(0.55, 0, 0.1, 1);
 
-			&:hover {
+			&:hover:not([disabled]) {
 				/* background: transparent; */
 				color: var(--neutral-0);
 				border: var(--border-primary);
@@ -209,6 +202,16 @@
 			&:active {
 				transform: scale3d(0.95, 0.95, 1);
 			}
+		}
+
+		/* Children */
+		.icon-container {
+			position: relative;
+			top: 2px;
+			display: inline-flex;
+			align-items: center;
+			justify-content: center;
+			margin-left: var(--space-md);
 		}
 	}
 </style>
