@@ -1,5 +1,5 @@
 <script>
-	import Contact from "$components/forms/Contact.svelte";
+	import Contact from "$components/forms/Contact/Contact.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Rocket1 from "$root/src/lib/assets/images/svgs/Rocket1.svelte";
 

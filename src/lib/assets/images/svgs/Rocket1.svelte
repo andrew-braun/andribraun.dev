@@ -530,34 +530,7 @@
 			.rocket {
 				animation: launch 4s ease-in forwards;
 
-				@keyframes launch {
-					0% {
-						transform: translate(340px, 250px);
-					}
-
-					40% {
-						transform: translate(340px, -120vh);
-					}
-
-					41% {
-						display: none;
-						visibility: hidden;
-						width: 0;
-						height: 0;
-						overflow: hidden;
-						opacity: 0;
-						transform: translate(340px, 160vh);
-						animation: none;
-					}
-
-					42% {
-						opacity: 1;
-					}
-
-					100% {
-						transform: translate(340px, 250px);
-					}
-				}
+				@include launch(340px, 250px);
 			}
 		}
 	}

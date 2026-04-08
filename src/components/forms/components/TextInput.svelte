@@ -11,13 +11,38 @@
 		error?: string;
 		placeholder?: string;
 		width?: Width;
+		required?: boolean;
+		disabled?: boolean;
+		actionAttributes?: any;
 	}
 
-	let { value, placeholder, name, label, error, width, type = "text" }: Props = $props();
+	let {
+		value,
+		placeholder,
+		name,
+		label,
+		error,
+		width,
+		type = "text",
+		actionAttributes,
+		required = false,
+		disabled = false
+	}: Props = $props();
+
+	console.log("actionAttributes", actionAttributes);
 </script>
 
-<InputWrapper {label} {name} {error} {width}>
-	<input {type} class="input" bind:value {placeholder} {name} />
+<InputWrapper {label} {name} {error} {width} {required}>
+	<input
+		{type}
+		class="input"
+		bind:value
+		{placeholder}
+		{name}
+		{required}
+		{disabled}
+		{...actionAttributes}
+	/>
 </InputWrapper>
 
 <style lang="scss">

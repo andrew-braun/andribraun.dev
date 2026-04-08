@@ -6,14 +6,15 @@
 		name: string;
 		error?: string;
 		width?: Width;
+		required?: boolean;
 		children: () => any;
 	}
 
-	let { label, name, error, width, children }: Props = $props();
+	let { label, name, error, width, required, children }: Props = $props();
 </script>
 
 <div class={["input-wrapper", width ? `width-${width}` : ""]}>
-	<label class="label" for={name}>{label}</label>
+	<label class="label" for={name}>{label}{required ? " *" : ""}</label>
 	{@render children()}
 	{#if error}
 		<span class="error">{error}</span>

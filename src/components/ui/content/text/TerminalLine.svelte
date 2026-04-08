@@ -61,7 +61,7 @@
 		line-height: var(--line-height-wide);
 		color: var(--neutral-1000);
 		text-wrap: balance;
-		white-space: pre;
+		white-space: collapse;
 
 		&.output {
 			padding-left: calc(var(--font-size-xs) + var(--space-sm));

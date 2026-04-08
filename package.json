@@ -64,9 +64,12 @@
 	"type": "module",
 	"dependencies": {
 		"@payloadcms/sdk": "^3.81.0",
+		"@tursodatabase/serverless": "^1.0.0",
 		"bits-ui": "^2.17.2",
 		"isomorphic-dompurify": "^3.7.1",
 		"marked": "^17.0.6",
-		"typewriter-effect": "^2.22.0"
+		"resend": "^6.10.0",
+		"typewriter-effect": "^2.22.0",
+		"zod": "^4.3.6"
 	}
 }

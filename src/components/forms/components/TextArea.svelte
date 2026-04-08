@@ -10,13 +10,26 @@
 		placeholder?: string;
 		rows?: number;
 		width?: Width;
+		required?: boolean;
+		disabled?: boolean;
 	}
 
-	let { value, placeholder, name, label, error, width, rows = 8 }: Props = $props();
+	let {
+		value,
+		placeholder,
+		name,
+		label,
+		error,
+		width,
+		rows = 8,
+		required = false,
+		disabled = false
+	}: Props = $props();
 </script>
 
-<InputWrapper {label} {name} {error} {width}>
-	<textarea class="textarea" bind:value {placeholder} {name} {rows}></textarea>
+<InputWrapper {label} {name} {error} {width} {required}>
+	<textarea class="textarea" bind:value {placeholder} {name} {rows} {required} {disabled}
+	></textarea>
 </InputWrapper>
 
 <style lang="scss">
