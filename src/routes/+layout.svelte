@@ -6,6 +6,7 @@
 	import "$styles/global.css";
 	import "$styles/variables.css";
 	// import '$styles/scss-variables.scss';
+	import Footer from "$components/layout/footer/Footer.svelte";
 	import Header from "$components/layout/header/Header.svelte";
 
 	setInitialTheme();
@@ -29,15 +30,10 @@
 	<slot></slot>
 </main>
 
-<footer class="footer"></footer>
+<Footer />
 
 <style lang="scss">
 	.main {
-		max-width: var(--site-max-width);
-		margin: auto;
-	}
-
-	.footer {
 		max-width: var(--site-max-width);
 		margin: auto;
 	}
