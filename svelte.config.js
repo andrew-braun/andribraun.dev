@@ -17,7 +17,7 @@ const config = {
 			$components: "./src/components",
 			$styles: "./src/styles",
 			$stores: "./src/stores",
-			$utils: "./src/utils",
+			$utils: "./src/lib/utils",
 			$root: "./",
 			$ts: "./src/ts"
 		},

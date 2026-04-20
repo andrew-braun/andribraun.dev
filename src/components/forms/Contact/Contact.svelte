@@ -1,13 +1,17 @@
 <script lang="ts">
-	import Button from "$components/ui/buttons/Button.svelte";
+	/* eslint-disable svelte/no-at-html-tags */
+
 	import TextArea from "$components/forms/components/TextArea.svelte";
 	import TextInput from "$components/forms/components/TextInput.svelte";
-	import { contactForm } from "./contact.remote.ts";
-	import { contactFormSchema } from "./contact.schema.ts";
+	import Button from "$components/ui/buttons/Button.svelte";
+	import { scrollTo } from "$utils/ui/scroll";
+	import { contactForm } from "./contact.remote";
+	import { contactFormSchema } from "./contact.schema";
 
 	let { submitted = $bindable(false) }: { submitted?: boolean } = $props();
 
 	let isSubmitting = $state(false);
+	let formError = $state<string | null>(null);
 
 	// async function handleSubmit(event: Event) {
 	// 	event.preventDefault();
@@ -25,19 +29,46 @@
 	// 	}, 5000);
 	// }
 
-	async function enhancedSubmit({ form, submit }) {
-		isSubmitting = true;
-		await submit();
-		isSubmitting = false;
-		submitted = true;
+	function handleKeydown(event: KeyboardEvent) {
+		if (event.ctrlKey && event.key === "Enter") {
+			const canSubmit = !isSubmitting && contactForm.fields.allIssues.length;
+			if (canSubmit) {
+				event.preventDefault();
+				(event.currentTarget as HTMLFormElement).requestSubmit();
+			}
+		}
+	}
 
-		setTimeout(() => {
-			form.reset();
-		}, 3000);
+	async function enhancedSubmit({
+		form,
+		submit
+	}: {
+		form: HTMLFormElement;
+		submit: () => Promise<void>;
+	}) {
+		try {
+			isSubmitting = true;
+			formError = null;
+			const submitResponse = await submit();
+			console.log("Submit response:", submitResponse);
+			isSubmitting = false;
+			submitted = true;
 
-		setTimeout(() => {
-			submitted = false;
-		}, 4000);
+			setTimeout(() => {
+				form.reset();
+			}, 3000);
+
+			setTimeout(() => {
+				submitted = false;
+			}, 4000);
+		} catch (error) {
+			console.error("Error submitting form:", error);
+			isSubmitting = false;
+			formError =
+				error instanceof Error
+					? error.message
+					: "Houston, we have a problem: your message failed to launch! Please try again or contact me via email at <a href='mailto:andri@andribraun.dev'>andri@andribraun.dev</a>";
+		}
 	}
 </script>
 
@@ -45,7 +76,13 @@
 	class={["contact-form", submitted ? "submitted" : ""]}
 	{...contactForm.preflight(contactFormSchema).enhance(enhancedSubmit)}
 	onchange={() => contactForm.validate()}
+	onkeydown={handleKeydown}
 >
+	{#if formError}
+		<div class="form-error" {@attach (el) => scrollTo(el, { behavior: "smooth", block: "center" })}>
+			{@html formError}
+		</div>
+	{/if}
 	<TextInput
 		label="Name"
 		name="name"
@@ -54,7 +91,7 @@
 		actionAttributes={contactForm.fields.name.as("text")}
 		error={contactForm.fields.name
 			.issues()
-			?.map((issue) => issue.message)
+			?.map((issue: { message: string }) => issue.message)
 			?.join(", ")}
 	/>
 	<TextInput
@@ -66,7 +103,7 @@
 		actionAttributes={contactForm.fields.email.as("email")}
 		error={contactForm.fields.email
 			.issues()
-			?.map((issue) => issue.message)
+			?.map((issue: { message: string }) => issue.message)
 			?.join(", ")}
 	/>
 	<TextArea
@@ -74,10 +111,10 @@
 		name="message"
 		placeholder="This is where the magic happens. Your hopes. Your dreams. Your secret family recipes. Or, you know, work stuff about projects. That's probably why you're here, now that I think about it. Either way, let's get this train rolling! The train has a dining car, though, so that family recipe could come in handy."
 		required={true}
-		actionAttributes={contactForm.fields.message.as("textarea")}
+		actionAttributes={contactForm.fields.message.as("text")}
 		error={contactForm.fields.message
 			.issues()
-			?.map((issue) => issue.message)
+			?.map((issue: { message: string }) => issue.message)
 			?.join(", ")}
 	/>
 	<div class="submit-button-wrapper">
@@ -107,6 +144,14 @@
 			animation: launch 4s ease-in forwards;
 
 			@include launch(0, 0);
+		}
+
+		.form-error {
+			padding: var(--space-sm);
+			margin-bottom: var(--space-sm);
+			color: var(--color-error-text);
+			background-color: var(--color-error);
+			border-radius: var(--border-radius-md);
 		}
 	}
 </style>

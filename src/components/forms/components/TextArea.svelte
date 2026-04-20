@@ -12,6 +12,7 @@
 		width?: Width;
 		required?: boolean;
 		disabled?: boolean;
+		actionAttributes?: Record<string, unknown>;
 	}
 
 	let {
@@ -23,12 +24,21 @@
 		width,
 		rows = 8,
 		required = false,
-		disabled = false
+		disabled = false,
+		actionAttributes
 	}: Props = $props();
 </script>
 
 <InputWrapper {label} {name} {error} {width} {required}>
-	<textarea class="textarea" bind:value {placeholder} {name} {rows} {required} {disabled}
+	<textarea
+		class="textarea"
+		bind:value
+		{placeholder}
+		{name}
+		{rows}
+		{required}
+		{disabled}
+		{...actionAttributes}
 	></textarea>
 </InputWrapper>
 

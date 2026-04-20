@@ -36,25 +36,26 @@
 		}
 
 		40% {
-			transform: translate($x, -120vh);
+			transform: translate($x, -130vh);
 		}
 
-		41% {
+		45% {
 			display: none;
 			visibility: hidden;
 			width: 0;
 			height: 0;
 			overflow: hidden;
 			opacity: 0;
-			transform: translate($x, 160vh);
+			transform: translate($x, 150vh);
 			animation: none;
 		}
 
-		42% {
-			opacity: 1;
+		60% {
+			transform: translate($x, 190vh);
 		}
 
 		100% {
+			opacity: 1;
 			transform: translate($x, $y);
 		}
 	}

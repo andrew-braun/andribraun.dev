@@ -57,6 +57,7 @@
 	--color-accent-1-text: var(--neutral-0);
 	--color-accent-2-text: var(--neutral-0);
 	--color-accent-3-text: var(--neutral-1000);
+	--color-error-text: var(--neutral-1000);
 
 	/* Foreground on brand colors — static, determined by contrast */
 	--color-primary-fg: var(--neutral-0);
