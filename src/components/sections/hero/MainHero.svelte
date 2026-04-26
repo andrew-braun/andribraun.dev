@@ -24,11 +24,14 @@
 		</div>
 	</section>
 	<section class="hero-section right">
-		<enhanced:img
-			src={AndriProfilePicture}
-			class="hero-image"
-			alt="Andri Braun in a black button-up shirt, glasses, and long, brown hair, smiling, sitting in front of a leafy green background."
-		/>
+		<div class="image">
+			<div class="image-pop"></div>
+			<enhanced:img
+				src={AndriProfilePicture}
+				class="hero-image"
+				alt="Andri Braun in a black button-up shirt, glasses, and long, brown hair, smiling, sitting in front of a leafy green background."
+			/>
+		</div>
 	</section>
 </section>
 
@@ -87,12 +90,29 @@
 					justify-content: center;
 				}
 
-				.hero-image {
-					display: block;
-					width: clamp(200px, 80%, 420px);
-					height: auto;
+				.image {
+					position: relative;
 					aspect-ratio: 1 / 1;
-					border-radius: 50%;
+
+					.hero-image {
+						z-index: 10;
+						display: block;
+						width: clamp(200px, 80%, 420px);
+						height: auto;
+						aspect-ratio: 1 / 1;
+						border-radius: 50%;
+					}
+
+					.image-pop {
+						position: absolute;
+						top: 1%;
+						left: 11.5%;
+						z-index: 5;
+						width: clamp(200px, 82%, 460px);
+						aspect-ratio: 1 /1;
+						background: linear-gradient(var(--color-primary) 50%, var(--color-secondary));
+						border-radius: 100%;
+					}
 				}
 			}
 		}

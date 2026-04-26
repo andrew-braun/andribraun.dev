@@ -30,6 +30,11 @@
 		position: relative;
 		height: 210px;
 
+		@media (max-width: $breakpoint-sm) {
+			height: 120px;
+			padding: var(--space-md) 0;
+		}
+
 		.footer-content {
 			position: absolute;
 			top: 0;
@@ -45,6 +50,11 @@
 				gap: var(--space-md);
 				height: 100%;
 
+				@media (max-width: $breakpoint-sm) {
+					grid-template-columns: 1fr;
+					text-align: center;
+				}
+
 				.footer-column {
 					padding: var(--space-sm);
 				}
@@ -59,6 +69,11 @@
 						text-align: center;
 						background: var(--color-background-translucent);
 						border-radius: var(--border-radius-md);
+					}
+
+					@media (max-width: $breakpoint-sm) {
+						grid-column: 1;
+						margin-top: auto;
 					}
 				}
 			}
