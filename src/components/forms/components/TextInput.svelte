@@ -28,8 +28,6 @@
 		required = false,
 		disabled = false
 	}: Props = $props();
-
-	console.log("actionAttributes", actionAttributes);
 </script>
 
 <InputWrapper {label} {name} {error} {width} {required}>
