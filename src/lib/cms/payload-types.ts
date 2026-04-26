@@ -68,6 +68,7 @@ export interface Config {
 	};
 	blocks: {};
 	collections: {
+		forms: Form;
 		users: User;
 		media: Media;
 		projects: Project;
@@ -84,6 +85,7 @@ export interface Config {
 	};
 	collectionsJoins: {};
 	collectionsSelect: {
+		forms: FormsSelect<false> | FormsSelect<true>;
 		users: UsersSelect<false> | UsersSelect<true>;
 		media: MediaSelect<false> | MediaSelect<true>;
 		projects: ProjectsSelect<false> | ProjectsSelect<true>;
@@ -107,6 +109,9 @@ export interface Config {
 	globals: {};
 	globalsSelect: {};
 	locale: null;
+	widgets: {
+		collections: CollectionsWidget;
+	};
 	user: User | ThirdPartyAccess;
 	jobs: {
 		tasks: {
@@ -155,6 +160,27 @@ export interface ThirdPartyAccessAuthOperations {
 		email: string;
 		password: string;
 	};
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms".
+ */
+export interface Form {
+	id: number;
+	form_name?: string | null;
+	form_subject?: string | null;
+	form_body?: string | null;
+	sender_data?: {
+		name?: string | null;
+		email?: string | null;
+	};
+	metadata?: {
+		ip_address?: string | null;
+		user_agent?: string | null;
+		referrer?: string | null;
+	};
+	updatedAt: string;
+	createdAt: string;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -236,7 +262,6 @@ export interface Project {
 		hide?: boolean | null;
 		order?: number | null;
 		card_type?: ("visual" | "text") | null;
-		card_size?: ("small" | "wide" | "tall") | null;
 	};
 	updatedAt: string;
 	createdAt: string;
@@ -497,6 +522,10 @@ export interface PayloadLockedDocument {
 	id: number;
 	document?:
 		| ({
+				relationTo: "forms";
+				value: number | Form;
+		  } | null)
+		| ({
 				relationTo: "users";
 				value: number | User;
 		  } | null)
@@ -571,6 +600,30 @@ export interface PayloadMigration {
 	batch?: number | null;
 	updatedAt: string;
 	createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "forms_select".
+ */
+export interface FormsSelect<T extends boolean = true> {
+	form_name?: T;
+	form_subject?: T;
+	form_body?: T;
+	sender_data?:
+		| T
+		| {
+				name?: T;
+				email?: T;
+		  };
+	metadata?:
+		| T
+		| {
+				ip_address?: T;
+				user_agent?: T;
+				referrer?: T;
+		  };
+	updatedAt?: T;
+	createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -820,20 +873,44 @@ export interface PayloadMigrationsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "collections_widget".
+ */
+export interface CollectionsWidget {
+	data?: {
+		[k: string]: unknown;
+	};
+	width: "full";
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "TaskCreateCollectionExport".
  */
 export interface TaskCreateCollectionExport {
 	input: {
-		name?: string | null;
+		id: string;
+		name: string;
+		batchSize?: number | null;
+		collectionSlug:
+			| "forms"
+			| "users"
+			| "media"
+			| "projects"
+			| "technologies"
+			| "tags"
+			| "third-party-access"
+			| "exports"
+			| "imports";
+		drafts?: ("yes" | "no") | null;
+		exportCollection: string;
+		fields?: string[] | null;
 		format: "csv" | "json";
 		limit?: number | null;
+		locale?: string | null;
+		maxLimit?: number | null;
 		page?: number | null;
 		sort?: string | null;
-		sortOrder?: ("asc" | "desc") | null;
-		drafts?: ("yes" | "no") | null;
-		selectionToUse?: ("currentSelection" | "currentFilters" | "all") | null;
-		fields?: string[] | null;
-		collectionSlug: string;
+		userCollection?: string | null;
+		userID?: string | null;
 		where?:
 			| {
 					[k: string]: unknown;
@@ -843,12 +920,6 @@ export interface TaskCreateCollectionExport {
 			| number
 			| boolean
 			| null;
-		id?: string | null;
-		batchSize?: number | null;
-		userID?: string | null;
-		userCollection?: string | null;
-		exportCollection?: string | null;
-		maxLimit?: number | null;
 	};
 	output?: unknown;
 }
@@ -876,3 +947,7 @@ export interface TaskCreateCollectionImport {
 export interface Auth {
 	[k: string]: unknown;
 }
+
+// declare module "payload" {
+// 	export interface GeneratedTypes extends Config {}
+// }

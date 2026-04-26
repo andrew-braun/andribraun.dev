@@ -1,4 +1,5 @@
 import { form } from "$app/server";
+import { createContactFormEntry } from "$root/src/lib/cms/payload";
 import { sendEmail } from "$utils/email/email";
 import { error } from "@sveltejs/kit";
 import * as z from "zod";
@@ -7,6 +8,16 @@ import { contactFormSchema } from "./contact.schema";
 async function handleSubmit(data: z.infer<typeof contactFormSchema>) {
 	try {
 		console.log("Form submitted:", data);
+
+		let payloadFormEntry: Awaited<ReturnType<typeof createContactFormEntry>> | null = null;
+
+		try {
+			payloadFormEntry = await createContactFormEntry({ formData: data });
+		} catch (payloadError) {
+			console.error("Non-blocking Payload form entry error:", payloadError);
+		}
+
+		console.log("Payload form entry created:", payloadFormEntry);
 
 		const { name, email } = data;
 
