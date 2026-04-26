@@ -73,6 +73,14 @@
 	--color-accent-2-surface: var(--cyan-900);
 	--color-accent-3-surface: var(--purple-900);
 
+	/* Translucent surface tones for brand colors (default: dark theme) */
+	--color-primary-surface-translucent: hsl(324deg 84% 65% / 80%);
+	--color-secondary-surface-translucent: hsl(172deg 100% 48% / 80%);
+	--color-accent-1-surface-translucent: hsl(52deg 99% 62% / 80%);
+	--color-accent-2-surface-translucent: hsl(195deg 100% 49% / 80%);
+	--color-accent-3-surface-translucent: hsl(267deg 72% 63% / 80%);
+	--color-background-translucent: hsl(0deg 0% 0% / 60%);
+
 	/* Canvas / elevation tiers (default: dark theme) */
 	--color-background: var(--neutral-50);
 	--color-surface-raised: var(--neutral-100);
@@ -204,6 +212,9 @@
 	--color-accent-1-surface: var(--yellow-100);
 	--color-accent-2-surface: var(--cyan-100);
 	--color-accent-3-surface: var(--purple-100);
+
+	/* Translucent surfaces — lighter tones in light mode */
+	--color-background-translucent: hsl(0deg 0% 100% / 60%);
 
 	/* Border */
 	--border-color-primary: var(--neutral-0);
