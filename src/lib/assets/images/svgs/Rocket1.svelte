@@ -528,9 +528,9 @@
 
 		&.launching {
 			.rocket {
-				animation: launch 4s ease-in forwards;
+				animation: rocket-launch 4s ease-in forwards;
 
-				@include launch(340px, 250px);
+				@include launch(rocket-launch, 340px, 250px);
 			}
 		}
 	}

@@ -29,8 +29,8 @@
 }
 
 /* ANIMATIONS */
-@mixin launch($x, $y) {
-	@keyframes launch {
+@mixin launch($name, $x, $y) {
+	@keyframes #{$name} {
 		0% {
 			transform: translate($x, $y);
 		}

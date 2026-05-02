@@ -13,6 +13,12 @@
 			"rules": {
 				"selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "local"] }]
 			}
+		},
+		{
+			"files": ["src/lib/assets/images/svgs/**/*.svelte"],
+			"rules": {
+				"no-invalid-position-declaration": null
+			}
 		}
 	],
 	"ignoreFiles": ["build/**", ".svelte-kit/**", "dist/**", "node_modules/**"]

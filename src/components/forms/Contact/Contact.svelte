@@ -85,13 +85,14 @@
 		formPhase = "idle";
 		submitAttempted = false;
 		displaySuccessDialog = false;
+		formElement?.reset();
 	}
 
 	function handleAnimationStart(event: AnimationEvent) {
 		setTimeout(() => {
 			formElement?.reset();
 
-			if (event.animationName.endsWith("launch")) {
+			if (event.animationName.endsWith("form-launch")) {
 				displaySuccessDialog = true;
 			}
 		}, 2000);
@@ -99,7 +100,7 @@
 
 	function handleAnimationEnd(event: AnimationEvent) {
 		console.log("Animation ended:", event.animationName);
-		if (event.animationName.endsWith("launch")) {
+		if (event.animationName.endsWith("success-launch")) {
 			formPhase = "submitted";
 		}
 	}
@@ -175,9 +176,9 @@
 		transition: transform 2s ease;
 
 		&.launching {
-			animation: launch 4s ease-in forwards;
+			animation: form-launch 4s ease-in forwards;
 
-			@include launch(0, 0);
+			@include launch(form-launch, 0, 0);
 		}
 
 		.contact-form {
@@ -210,7 +211,9 @@
 			align-items: center;
 			min-width: 280px;
 			text-align: center;
-			animation: launch 2s ease-out forwards;
+			animation: success-launch 2s ease-out forwards;
+
+			@include launch(success-launch, 0, 0);
 		}
 	}
 </style>
