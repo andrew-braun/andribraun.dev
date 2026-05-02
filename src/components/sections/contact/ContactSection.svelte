@@ -1,23 +1,20 @@
-<script>
+<script lang="ts">
 	import Contact from "$components/forms/Contact/Contact.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Rocket1 from "$root/src/lib/assets/images/svgs/Rocket1.svelte";
+	import type { FormPhase } from "$root/src/ts/forms";
 
-	let submitted = $state(false);
-
-	$effect(() => {
-		console.log("submitted changed:", submitted);
-	});
+	let formPhase: FormPhase = $state("idle");
 </script>
 
 <section id="contact" class={["page-section", "contact-section"]}>
 	<Title title="Contact Me" tag="h2" />
 	<div class="contact-form-wrapper">
 		<div class="svg-wrapper">
-			<Rocket1 launching={submitted} />
+			<Rocket1 launching={formPhase === "launching"} />
 		</div>
 		<div class="form-wrapper">
-			<Contact bind:submitted />
+			<Contact bind:formPhase />
 		</div>
 	</div>
 </section>
