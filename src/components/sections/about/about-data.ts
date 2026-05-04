@@ -52,16 +52,15 @@ I’ve been a web developer since graduating in 2014, with experience spanning m
 				src: AndriPersonalModePicture,
 				alt: "Profile picture of Andri Braun in 'personal mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
 			},
-			text: `
-My family's first computer ran Windows 95. The modem actually made those weird 90s noises and blocked the phone lines. That was the soundtrack to the awakening of my inner computer nerd. I quickly became both the person most likely to break the computer and the person who could fix it when something went wrong (it wasn't my fault every time, really!).
+			text: `My family's first computer ran Windows 95. The modem actually made those weird 90s noises and blocked the phone lines. That was the soundtrack to the awakening of my inner computer nerd. I quickly became both the person most likely to break the computer and the person who could fix it when something went wrong (it wasn't my fault every time, really!).
 
-I subsequently went through several other nerd phases—literature, history, theater, economics—but I was never able to escape my destiny: *"person who is good with computers."* So, I worked in the tech department in university while studying history and sociology and kept working as a web developer there after I graduated in 2014.
+I subsequently went through several other nerd phases--music production, literature, history, theater, economics--but I was never able to escape my destiny: *"person who is good with computers."* So, I worked in the tech department at my university while studying history and sociology and kept working as a web developer there after I graduated in 2014. Summa cum laude, with two bachelor's degrees and a minor, if you'll allow me to humblebrag about the education I got and then promptly proceeded never to use professionally.
 
-I took a break from tech to teach English in South Korea and briefly pursued a graduate degree in economics, but after learning Python to analyze economic data, I finally realized that I enjoyed programming more than anything else I'd ever done... so by 2019 I had started learning web development.
+I took a break from professional computer nerdery to teach English in South Korea, be a tech journalist, and pursue a graduate degree in economics. After learning Python to analyze economic data, though, I finally realized that the programming part of my course was what really made the light bulb go off... so by 2019 I was back to coding!
 
-By 2020, I was building websites for clients and devouring all the tech knowledge I could in my spare time. I also bought too many domain names for all my aspirational side projects. That’s pretty much what I’m still doing! How many side projects have I finished, you ask? Well, I, hmm... how many side projects have *you* finished?
+By 2020, I was building websites for businesses and learning as much as I could in my spare time, and, honestly, the only thing that's changed since then is how many things I've built and the tools I use to build them. I still work with a lot of great businesses and people, and I still get a rush out of making things work.
 
-Anyway, my computer runs Windows 11 now, and it doesn't make those cool 90s noises when I go online (I'd at least like the option!), but I'm still basically the same computer geek. Time never goes by faster for me than when I'm solving problems and making new things.
+My computer runs Windows 11 and Ubuntu 26 now, and it doesn't make those cool 90s noises when I go online (I'd at least like the option!), but I'm still basically the same computer geek. Time never goes by faster for me than when I'm solving problems and making new things.
 
 Luckily, my eclectic panoply (I was a writer and English teacher, remember!) of studies, careers, and hobbies have left me with some pretty good communication skills and the ability to thrive both independently and as part of a team. If you want to hire me for web stuff, or just ask a few quick questions, get in touch! I'd love to hear from you.
 
@@ -72,17 +71,17 @@ Luckily, my eclectic panoply (I was a writer and English teacher, remember!) of 
 You want to read *MORE* about me? Gosh, I'm flattered! All right then, here are a few facts about me that might help you get a read on me as a person :)
 
 - **In the U.S.** I've lived in New Jersey, Pennsylvania, and Tennessee, in that order.
-- I currently live in **Tbilisi, Georgia** (the country!).
-- I've lived in **Italy**, **South Korea**, **Thailand**, and **Georgia** and visited many other countries along the way.
+- I currently live in **Hua Hin, Thailand**.
+- I've lived in **Italy**, **South Korea**, **Thailand**, and **Georgia** (the country) and visited many other countries along the way.
 - **I'm a runner!** I do half-marathons and trail runs whenever I can.
-- One of my favorite music genres is **synthwave**. Never heard of it? Check out my playlist!
+- One of my favorite music genres is **synthwave**. Never heard of it? Check out my [playlist](https://open.spotify.com/playlist/1KzSadPoVihKZja0XF8gOY?si=4ba538b070254d6d)!
 - I love learning **alphabets**! I know Latin, Korean, Georgian, Russian, Ukrainian, and Greek so far, but that list will grow. I'm working on Armenian and have my sights on Amharic, Japanese (Hiragana/Katakana), Thai, and Arabic.
 - I love **board games**, and have accumulated a pretty significant collection despite my best efforts to not have too much stuff. Some favorites: *Betrayal at the House on the Hill*, *Not Alone*, *Kana Gawa*, and *Dominion*.
-- My top three **video games**: *Mass Effect*, *Bioshock*, *Civilization*.
-- I've been fermenting things for years—starting with **mead** (honey wine), but now mostly making a kimchi/sauerkraut hybrid. Love those magical little microbes!
+- My top three **video games**: *Mass Effect*, *Disco Elysium*, *Civilization*.
+- I've been fermenting things for years—starting with **mead** (honey wine), but now mostly making a kimchi/sauerkraut hybrid.
 - I make an excellent **green curry pasta**—it's weird but it works!
 - I love playing **electric guitar** when I can get my hands on one, and I'm working on getting past *"Hot Cross Buns"* on the pan flute.
-`
+			`
 		},
 		nerd: {
 			title: "Nerd Mode",

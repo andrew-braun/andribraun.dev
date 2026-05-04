@@ -11,7 +11,12 @@
 			"files": ["**/*.svelte"],
 			"customSyntax": "postcss-html",
 			"rules": {
-				"selector-pseudo-class-no-unknown": [true, { "ignorePseudoClasses": ["global", "local"] }]
+				"selector-pseudo-class-no-unknown": [
+					true,
+					{
+						"ignorePseudoClasses": ["global", "local"]
+					}
+				]
 			}
 		},
 		{

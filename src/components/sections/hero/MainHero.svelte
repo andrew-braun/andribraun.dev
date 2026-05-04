@@ -4,15 +4,24 @@
 	import Button from "$components/ui/buttons/Button.svelte";
 	import AndriProfilePicture from "$lib/assets/img/profile/andri-in-milan-square.png?enhanced";
 	import { RocketIcon } from "$lib/data/icons";
+	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
 </script>
 
 <section class="page-section hero">
+	<div class="background">
+		<StarBackground />
+	</div>
 	<section class="hero-section left">
 		<Title superTitle="Hi! I'm" title="Andri Braun" tagAttributes={{ id: "hero-title" }} />
 		<div class="text">
-			<p style="line-height: unset">
-				<span>I write <ExcitingText size="large">code</ExcitingText> ,</span>
-				<span>build <ExcitingText color="accent-2" size="large">websites</ExcitingText> , </span>
+			<p class="description">
+				<span
+					>I write <ExcitingText size="large">code</ExcitingText> <span class="comma">,</span></span
+				>
+				<span
+					>build <ExcitingText color="accent-2" size="large">websites</ExcitingText>
+					<span class="comma">,</span>
+				</span>
 				<span
 					>and do other
 					<ExcitingText color="accent-3" size="large">nerd things</ExcitingText></span
@@ -20,7 +29,9 @@
 			</p>
 		</div>
 		<div class="cta-container">
-			<Button variant="filled" size="100" Icon={RocketIcon}>Do nerd things for me</Button>
+			<Button variant="filled" size="100" Icon={RocketIcon} href="#contact"
+				>Do nerd things for me</Button
+			>
 		</div>
 	</section>
 	<section class="hero-section right">
@@ -37,9 +48,26 @@
 
 <style lang="scss">
 	.hero {
+		position: relative;
 		display: grid;
 		grid-template-areas: "left right";
 		grid-template-columns: 4fr 3fr;
+
+		.background {
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: -1;
+			width: 100%;
+			height: 100%;
+			overflow: hidden;
+
+			:global(svg) {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
 
 		@media (max-width: $breakpoint-sm) {
 			grid-template-areas:
@@ -61,17 +89,32 @@
 					line-height: 3.8em;
 					vertical-align: top;
 
-					p {
+					.description {
 						margin: 0;
+						line-height: unset;
 
 						@media screen and (max-width: $breakpoint-xs) {
 							text-align: right;
+
+							@media screen and (max-width: $breakpoint-sm) {
+								display: flex;
+								flex-direction: column;
+								align-items: flex-end;
+								margin-left: auto;
+								text-align: right;
+							}
 						}
 					}
 
 					span {
 						display: inline-block;
 						vertical-align: bottom;
+
+						&.comma {
+							@media screen and (max-width: $breakpoint-xs) {
+								display: none;
+							}
+						}
 					}
 				}
 
