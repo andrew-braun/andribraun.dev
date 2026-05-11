@@ -1,7 +1,9 @@
 <script lang="ts">
 	import ImageText from "$components/layout/columns/ImageText.svelte";
+	import Markdown from "$components/text/Markdown.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Tabs from "$components/ui/Tabs/Tabs.svelte";
+	import type { Tab } from "$components/ui/Tabs/tabs";
 
 	import { aboutData } from "./about-data";
 	import NerdMode from "./tabs/NerdMode.svelte";
@@ -10,9 +12,9 @@
 		widerSide: "right"
 	};
 
-	const aboutTabs = [aboutData.descriptions.professional, aboutData.descriptions.personal]
+	const aboutTabs: Tab[] = [aboutData.descriptions.personal, aboutData.descriptions.professional]
 		.filter((mode) => mode.id || mode.text)
-		.map((mode) => {
+		.map((mode): Tab => {
 			return {
 				value: mode.id,
 				label: mode.title,
@@ -26,7 +28,7 @@
 		});
 
 	const nerdModeData = aboutData.descriptions.nerd;
-	const nerdModeTab = {
+	const nerdModeTab: Tab = {
 		value: nerdModeData.id,
 		label: nerdModeData.title,
 		content: NerdMode,
@@ -38,10 +40,21 @@
 	};
 
 	aboutTabs.push(nerdModeTab);
+
+	const factsData = aboutData.descriptions.facts;
+	const factsTab: Tab = {
+		value: factsData.id,
+		label: factsData.title,
+		content: Markdown,
+		props: {
+			text: factsData.text,
+			maxWidth: "72ch"
+		}
+	};
+	aboutTabs.push(factsTab);
 </script>
 
 <section id="about" class="page-section">
 	<Title title="About Me" tag="h2" />
 	<Tabs tabs={aboutTabs} />
-	<!-- <Tabbed tabs={aboutTabs} /> -->
 </section>

@@ -3,12 +3,20 @@
 
 	interface MarkdownProps {
 		text: string;
+		maxWidth?: string;
 	}
 
-	let { text }: MarkdownProps = $props();
+	let { text, maxWidth }: MarkdownProps = $props();
 
 	const markdownText = $derived(marked.parse(text));
 </script>
 
-<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
-{@html markdownText}
+{#if maxWidth}
+	<div style={`max-width: ${maxWidth};`}>
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
+		{@html markdownText}
+	</div>
+{:else}
+	<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
+	{@html markdownText}
+{/if}

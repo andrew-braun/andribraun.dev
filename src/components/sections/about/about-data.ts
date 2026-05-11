@@ -6,7 +6,7 @@ import type { ImageDataProps } from "$root/src/ts/general";
 interface AboutTab {
 	title: string;
 	id: string;
-	image: ImageDataProps;
+	image?: ImageDataProps;
 	text: string;
 }
 
@@ -15,11 +15,31 @@ interface AboutData {
 		professional: AboutTab;
 		personal: AboutTab;
 		nerd: AboutTab;
+		facts: AboutTab;
 	};
 }
 
 export const aboutData: AboutData = {
 	descriptions: {
+		personal: {
+			title: "Personal Mode",
+			id: "personal",
+			image: {
+				src: AndriPersonalModePicture,
+				alt: "Profile picture of Andri Braun in 'personal mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
+			},
+			text: `My family's first computer ran Windows 95. The modem actually made those weird 90s noises and blocked the phone lines. That was the soundtrack to the awakening of my inner computer nerd. In short order, I became both the person most likely to break the computer and the person who could fix it when something went wrong (it wasn't my fault every time, really!).
+
+I subsequently went through several other nerd phases--music production, literature, history, theater, economics--but I was never able to escape my destiny: *"person who is good with computers."* Despite studying history and sociology in university, I ended up working as assistant web developer for my university's website before and after graduating. 
+
+I took a break from professional computer nerdery to teach English in South Korea, be a tech journalist, and pursue a graduate degree in economics. After learning Python to analyze economic data, though, I finally realized that the programming part of my course was what really made the light bulb go off... so by 2019 I was back to coding, and since then I've been making things for the internet full-time!
+
+My computer runs Windows 11 and Ubuntu 26 now, and it doesn't make those cool 90s noises when I go online (I'd at least like the option!), but I'm still basically the same computer geek that couldn't get enough of messing around on the family computer. Time never goes by faster for me than when I'm solving problems and making new things.
+
+I like to think that graduating summa cum laude with liberal arts degrees (please let me brag about this, no one ever asks about my GPA and I worked really hard on it :D) and working as a teacher and writer have left me with a pretty healthy mix of hard technical skills and soft, mushy human skills. Weirdly, being a decent writer has been a huge asset when it comes to getting AI to do exactly what I want, so the human skills are somehow coming full circle to also being good with technology. Didn't see that one coming, honestly!
+
+If you want to hire me for web stuff, challenge me to geography trivia, or tell me right to my face exactly what you think of me, please [send me a message](#contact) or gently whisper it to a passing seagull. They know where to find me, but they do demand payment in french fries.`
+		},
 		professional: {
 			title: "Professional Mode",
 			id: "professional",
@@ -28,7 +48,7 @@ export const aboutData: AboutData = {
 				alt: "Profile picture of Andri Braun in 'professional mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
 			},
 			text: `
-Hi! I’m Andri Braun—an American full-stack web developer with a passion for building modern, efficient websites. Whether it’s creating new sites from scratch, optimizing outdated systems, or solving complex issues, I bring flexibility, reliability, and a problem-solving mindset to every project.
+Hi! I’m Andri Braun—an American full-stack web developer focused on creating efficient, maintainable sites and apps using the best tools for the job. Whether I'm working as a solo dev or as part of a team, I try to bring flexibility, reliability, and a problem-solving mindset to every project. 
 
 I specialize in:
 <ul style="list-style: none">
@@ -45,28 +65,19 @@ Want to dive deeper into the tech I use? Check out the "Nerd Mode" tab.
 I’ve been a web developer since graduating in 2014, with experience spanning multiple roles, including writer and English teacher. These roles honed my communication skills and reinforced my love for teaching, especially when it comes to sharing my knowledge of code. Today, I channel that enthusiasm into delivering exceptional web solutions and empowering clients to understand the process.
             `
 		},
-		personal: {
-			title: "Personal Mode",
-			id: "personal",
+		nerd: {
+			title: "Nerd Mode",
+			id: "nerd",
 			image: {
-				src: AndriPersonalModePicture,
-				alt: "Profile picture of Andri Braun in 'personal mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
+				src: AndriNerdModePicture,
+				alt: "Profile picture of Andri Braun in 'nerd mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
 			},
-			text: `My family's first computer ran Windows 95. The modem actually made those weird 90s noises and blocked the phone lines. That was the soundtrack to the awakening of my inner computer nerd. I quickly became both the person most likely to break the computer and the person who could fix it when something went wrong (it wasn't my fault every time, really!).
-
-I subsequently went through several other nerd phases--music production, literature, history, theater, economics--but I was never able to escape my destiny: *"person who is good with computers."* So, I worked in the tech department at my university while studying history and sociology and kept working as a web developer there after I graduated in 2014. Summa cum laude, with two bachelor's degrees and a minor, if you'll allow me to humblebrag about the education I got and then promptly proceeded never to use professionally.
-
-I took a break from professional computer nerdery to teach English in South Korea, be a tech journalist, and pursue a graduate degree in economics. After learning Python to analyze economic data, though, I finally realized that the programming part of my course was what really made the light bulb go off... so by 2019 I was back to coding!
-
-By 2020, I was building websites for businesses and learning as much as I could in my spare time, and, honestly, the only thing that's changed since then is how many things I've built and the tools I use to build them. I still work with a lot of great businesses and people, and I still get a rush out of making things work.
-
-My computer runs Windows 11 and Ubuntu 26 now, and it doesn't make those cool 90s noises when I go online (I'd at least like the option!), but I'm still basically the same computer geek. Time never goes by faster for me than when I'm solving problems and making new things.
-
-Luckily, my eclectic panoply (I was a writer and English teacher, remember!) of studies, careers, and hobbies have left me with some pretty good communication skills and the ability to thrive both independently and as part of a team. If you want to hire me for web stuff, or just ask a few quick questions, get in touch! I'd love to hear from you.
-
----
-
-### Random Things About Me
+			text: `If you went straight to this tab, congratulations--you're probably a developer and/or a nerd. If you don't identify as either of those things, you might not know exactly what all this means, but it could potentially sound impressive, so maybe give it a quick scan anyway and hopefully you'll end up thinking I'm brilliant.`
+		},
+		facts: {
+			title: "Unimportant Facts About Me",
+			id: "facts",
+			text: `### Random Things About Me
 
 You want to read *MORE* about me? Gosh, I'm flattered! All right then, here are a few facts about me that might help you get a read on me as a person :)
 
@@ -80,17 +91,7 @@ You want to read *MORE* about me? Gosh, I'm flattered! All right then, here are 
 - My top three **video games**: *Mass Effect*, *Disco Elysium*, *Civilization*.
 - I've been fermenting things for years—starting with **mead** (honey wine), but now mostly making a kimchi/sauerkraut hybrid.
 - I make an excellent **green curry pasta**—it's weird but it works!
-- I love playing **electric guitar** when I can get my hands on one, and I'm working on getting past *"Hot Cross Buns"* on the pan flute.
-			`
-		},
-		nerd: {
-			title: "Nerd Mode",
-			id: "nerd",
-			image: {
-				src: AndriNerdModePicture,
-				alt: "Profile picture of Andri Braun in 'nerd mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
-			},
-			text: `If you went straight to this tab, congratulations--you're probably a developer and/or a nerd. If you don't identify as either of those things, you might not know exactly what all this means, but it could potentially sound impressive, so maybe give it a quick scan anyway and hopefully you'll end up thinking I'm brilliant.`
+- I love playing **electric guitar** when I can get my hands on one, and I'm working on getting past *"Hot Cross Buns"* on the pan flute.`
 		}
 	}
 };

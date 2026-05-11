@@ -1,11 +1,17 @@
 <script lang="ts">
 	import { onDestroy } from "svelte";
+	import type { Tab } from "./tabs";
 
 	import TabContent from "./TabContent.svelte";
 	import TabList from "./TabList.svelte";
 
+	interface TabsProps {
+		tabs: Tab[];
+		initialTab?: number;
+	}
+
 	// Public inputs from the parent component.
-	const { tabs, initialTab = 0 } = $props();
+	const { tabs, initialTab = 0 }: TabsProps = $props();
 	// Keep JavaScript cleanup timing aligned with CSS animation timing.
 	const ANIMATION_DURATION_MS = 420;
 
