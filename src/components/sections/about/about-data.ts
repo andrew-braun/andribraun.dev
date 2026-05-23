@@ -48,21 +48,28 @@ If you want to hire me for web stuff, challenge me to geography trivia, or tell 
 				alt: "Profile picture of Andri Braun in 'professional mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
 			},
 			text: `
-Hi! I’m Andri Braun—an American full-stack web developer focused on creating efficient, maintainable sites and apps using the best tools for the job. Whether I'm working as a solo dev or as part of a team, I try to bring flexibility, reliability, and a problem-solving mindset to every project. 
+I'm a full-stack web developer building production applications and websites for businesses of every shape and size, whether it's a solo founder, a shop/restaurant, or a growing company with real engineering needs. 
 
-I specialize in:
-<ul style="list-style: none">
-	<li style="display: flex; align-items: center; gap: var(--space-md)"><img src="/icons/code/skill-icons--javascript.svg" width="36" height="36" /> <span><b>JavaScript</b> – The backbone of modern web functionality.</span></li>
-	<li style="display: flex; align-items: center; gap: var(--space-md)"><img src="/icons/code/skill-icons--css.svg" width="36" height="36" /> <span><b>CSS</b> – Crafting visually stunning, responsive designs.</span></li>
-	<li style="display: flex; align-items: center; gap: var(--space-md)"><img src="/icons/code/skill-icons--php-light.svg" width="36" height="36" /> <span><b>WordPress/PHP</b> – Powering dynamic sites, from small blogs to major platforms.</span></li>
-</ul>
+What sets me apart is my blend of technical expertise and strong communication skills. I have academic/professional experience as a communicator and instructor; combined with my experience as a developer, this allows me to bridge gaps in technical understanding and translate ideas to requirements, whether it's between humans or LLMs.
 
-Want to dive deeper into the tech I use? Check out the "Nerd Mode" tab.
+My primary work is in the modern JavaScript ecosystem, using frameworks with TypeScript, headless CMS architectures, and Node.js backends. As a full-stack dev, I handle frontend, backend, database design, infrastructure, CI/CD, observability, security, etc. across cloud providers, managed hosts, and custom servers.
 
----
+In an average month, I typically work on:
 
-### My Journey as a Developer
-I’ve been a web developer since graduating in 2014, with experience spanning multiple roles, including writer and English teacher. These roles honed my communication skills and reinforced my love for teaching, especially when it comes to sharing my knowledge of code. Today, I channel that enthusiasm into delivering exceptional web solutions and empowering clients to understand the process.
+- Modern JavaScript applications (mostly Astro, Next.js, and SvelteKit)
+- Marketing sites, content platforms, and full SaaS products
+- Backend and infrastructure (Such as Node.js services, PostgreSQL, APIs, cloud functions, containerized deployments)
+- E-commerce (Shopify stores, Shopify apps, WooCommerce builds, custom e-commerce)
+- Headless CMS (Like Strapi, Payload, headless WordPress, Emdash, Directus) alongside a solid base of traditional WordPress work using modern frameworks like Bricks Builder.
+- DevOps and reliability (Deployment via platforms like Netlify/Vercel/Railroad, CI/CD with GitHub Actions, infrastructure hardening, monitoring, automated backups, incident response)
+
+While I spent most of my career handcoding, I, of course, work fluently with the latest generations of AI-assisted development tools and treat them as a core part of how I deliver work, acting as the senior dev/architect and focusing heavily on spec-driven development. I prioritize code and tooling that helps optimize AI efficiency on a codebase while sticking closely to best practices and making it easy for human reviewers to assess quality and intervene.
+
+As someone constantly updating my AI toolkit, I'm also a useful technical partner for organizations figuring out how to integrate AI tooling into their own engineering practice.
+
+I offer senior-developer judgment with the responsiveness of an independent consultant. For SMB clients, that means a technical partner who explains tradeoffs in plain language. For larger organizations, it means a developer who is equally comfortable integrating with existing teams or being an individual end-to-end product owner. 
+
+If you'd like to discuss a project or engagement, get in touch.
             `
 		},
 		nerd: {
@@ -72,10 +79,11 @@ I’ve been a web developer since graduating in 2014, with experience spanning m
 				src: AndriNerdModePicture,
 				alt: "Profile picture of Andri Braun in 'nerd mode'. They are standing in front of a window with a large lit-up building directly behind them and a purple twilight city skyline visible behind it to the right."
 			},
-			text: `If you went straight to this tab, congratulations--you're probably a developer and/or a nerd. If you don't identify as either of those things, you might not know exactly what all this means, but it could potentially sound impressive, so maybe give it a quick scan anyway and hopefully you'll end up thinking I'm brilliant.`
+			text: `If you went straight to this tab, congratulations--you're probably a developer and/or a nerd. If you don't identify as either of those things, you might not know exactly what all this means, but it could potentially sound impressive, so maybe give it a quick scan anyway. The logos are fun to look at, right? 
+			`
 		},
 		facts: {
-			title: "Unimportant Facts About Me",
+			title: "Wow Another Mode",
 			id: "facts",
 			text: `### Random Things About Me
 

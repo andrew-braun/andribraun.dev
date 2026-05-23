@@ -22,7 +22,7 @@
 
 {#snippet rightColumn()}
 	<div class="text">
-		<Markdown {text} />
+		<Markdown {text} maxWidth="72ch" />
 		{#each Object.entries(codeIcons) as [key, icons] (key)}
 			<BlockRow title={key} titleTag="h3">
 				{#each Object.entries(icons) as [key, icon] (key)}
