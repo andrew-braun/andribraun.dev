@@ -7,6 +7,7 @@
 	import type { FormPhase } from "$root/src/ts/forms";
 	import { scrollTo } from "$utils/ui/scroll";
 
+	import { tick } from "svelte";
 	import { fade, slide } from "svelte/transition";
 	import { contactForm } from "./contact.remote";
 	import { contactFormSchema } from "./contact.schema";
@@ -15,6 +16,9 @@
 	let submitAttempted = $state(false);
 	let displaySuccessDialog = $state(false);
 	let submissionError = $state<string | null>(null);
+	let validationErrorElement = $state<HTMLElement | null>(null);
+	let submissionErrorElement = $state<HTMLElement | null>(null);
+	let successElement = $state<HTMLElement | null>(null);
 
 	let errorState = $derived({
 		hasError: Boolean(contactForm.fields?.allIssues()?.length),
@@ -57,17 +61,23 @@
 
 			if (!succeeded) {
 				formPhase = "error";
+				await tick();
+				validationErrorElement?.focus();
 				return;
 			}
 
 			formElement?.reset();
 			displaySuccessDialog = true;
 			formPhase = "launching";
+			await tick();
+			successElement?.focus();
 		} catch (error) {
 			console.error("Error submitting form:", error);
 			submissionError =
 				"Houston, we have a problem: your message failed to launch! Please try again, or email andri@andribraun.dev.";
 			formPhase = "error";
+			await tick();
+			submissionErrorElement?.focus();
 		}
 	}
 
@@ -93,7 +103,10 @@
 	>
 		{#if errorState.hasError && submitAttempted}
 			<div
+				bind:this={validationErrorElement}
 				class="form-error"
+				role="alert"
+				tabindex="-1"
 				{@attach (el) => scrollTo(el, { behavior: "smooth", block: "center" })}
 				transition:slide={{ duration: 300 }}
 			>
@@ -101,12 +114,19 @@
 			</div>
 		{/if}
 		{#if submissionError}
-			<div class="form-error" role="alert" tabindex="-1" transition:slide={{ duration: 300 }}>
+			<div
+				bind:this={submissionErrorElement}
+				class="form-error"
+				role="alert"
+				tabindex="-1"
+				transition:slide={{ duration: 300 }}
+			>
 				<p>{submissionError}</p>
 				<a href="mailto:andri@andribraun.dev">Email Andri directly</a>
 			</div>
 		{/if}
 		<TextInput
+			id="contact-name"
 			label="Name"
 			name="name"
 			maxlength={100}
@@ -116,6 +136,7 @@
 			error={errorState.fieldErrors.name.join(", ")}
 		/>
 		<TextInput
+			id="contact-email"
 			label="Email"
 			name="email"
 			type="email"
@@ -126,6 +147,7 @@
 			error={errorState.fieldErrors.email.join(", ")}
 		/>
 		<TextArea
+			id="contact-message"
 			label="Message"
 			name="message"
 			maxlength={5000}
@@ -154,7 +176,14 @@
 	</form>
 
 	{#if displaySuccessDialog}
-		<div class={["success-state"]} transition:fade>
+		<div
+			bind:this={successElement}
+			class="success-state"
+			role="status"
+			aria-live="polite"
+			tabindex="-1"
+			transition:fade
+		>
 			<h2>Message Launched!</h2>
 			<p>Thanks for reaching out! I'll get back to you within 48 hours.</p>
 			<Button onclick={handleFormReset}>Send another message</Button>

@@ -7,6 +7,7 @@
 		label: string;
 		value?: string;
 		name: string;
+		id?: string;
 		type?: HTMLInputTypeAttribute;
 		error?: string;
 		placeholder?: string;
@@ -21,6 +22,7 @@
 		value,
 		placeholder,
 		name,
+		id,
 		label,
 		error,
 		width,
@@ -30,10 +32,14 @@
 		required = false,
 		disabled = false
 	}: Props = $props();
+
+	let fieldId = $derived(id ?? name);
+	let errorId = $derived(`${fieldId}-error`);
 </script>
 
-<InputWrapper {label} {name} {error} {width} {required}>
+<InputWrapper {label} id={fieldId} {error} {width} {required}>
 	<input
+		id={fieldId}
 		{type}
 		class="input"
 		bind:value
@@ -42,6 +48,8 @@
 		{maxlength}
 		{required}
 		{disabled}
+		aria-invalid={error ? "true" : undefined}
+		aria-describedby={error ? errorId : undefined}
 		{...actionAttributes}
 	/>
 </InputWrapper>

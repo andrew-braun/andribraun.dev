@@ -234,7 +234,7 @@ Hide it offscreen rather than with `display: none`:
 }
 ```
 
-- [ ] **Step 4: Manually verify Task 2**
+- [x] **Step 4: Manually verify Task 2**
 
 Check:
 
@@ -246,7 +246,7 @@ Check:
 6. The honeypot is invisible and unreachable with Tab.
 7. Submitting `company=bot` through browser developer tools is rejected or silently discarded.
 
-- [ ] **Step 5: Suggest a conventional commit message**
+- [x] **Step 5: Suggest a conventional commit message**
 
 ```text
 fix: bound and normalize contact submissions
@@ -269,18 +269,19 @@ fix: bound and normalize contact submissions
 - Error IDs: `contact-name-error`, `contact-email-error`, `contact-message-error`
 - Focused and announced server error/success results
 
-- [ ] **Step 1: Give every control a stable ID**
+- [x] **Step 1: Give every control a stable ID**
 
-Derive the ID in `TextInput.svelte` and `TextArea.svelte`:
+Accept an optional ID in `TextInput.svelte` and `TextArea.svelte`, falling back to the field name:
 
 ```ts
-let id = $derived(`contact-${name}`);
-let errorId = $derived(`${id}-error`);
+let fieldId = $derived(id ?? name);
+let errorId = $derived(`${fieldId}-error`);
 ```
 
-Pass `id` into `InputWrapper` and apply `{id}` to the native input or textarea.
+Pass `fieldId` into `InputWrapper` and apply it to the native input or textarea. The contact
+form owns its namespace and passes `contact-name`, `contact-email`, and `contact-message`.
 
-- [ ] **Step 2: Connect each label**
+- [x] **Step 2: Connect each label**
 
 Change `InputWrapper.svelte` to accept `id` and use:
 
@@ -288,7 +289,7 @@ Change `InputWrapper.svelte` to accept `id` and use:
 <label class="label" for={id}>{label}{required ? " *" : ""}</label>
 ```
 
-- [ ] **Step 3: Connect field errors**
+- [x] **Step 3: Connect field errors**
 
 Render:
 
@@ -305,7 +306,7 @@ aria-invalid={error ? "true" : undefined}
 aria-describedby={error ? errorId : undefined}
 ```
 
-- [ ] **Step 4: Announce and focus submission results**
+- [x] **Step 4: Announce and focus submission results**
 
 - Error summary: `role="alert"`, `tabindex="-1"`
 - Success state: `role="status"`, `aria-live="polite"`, `tabindex="-1"`

@@ -6,6 +6,7 @@
 		label: string;
 		value?: string;
 		name: string;
+		id?: string;
 		error?: string;
 		placeholder?: string;
 		rows?: number;
@@ -20,6 +21,7 @@
 		value,
 		placeholder,
 		name,
+		id,
 		label,
 		error,
 		width,
@@ -29,10 +31,14 @@
 		disabled = false,
 		actionAttributes
 	}: Props = $props();
+
+	let fieldId = $derived(id ?? name);
+	let errorId = $derived(`${fieldId}-error`);
 </script>
 
-<InputWrapper {label} {name} {error} {width} {required}>
+<InputWrapper {label} id={fieldId} {error} {width} {required}>
 	<textarea
+		id={fieldId}
 		class="textarea"
 		bind:value
 		{placeholder}
@@ -41,6 +47,8 @@
 		{maxlength}
 		{required}
 		{disabled}
+		aria-invalid={error ? "true" : undefined}
+		aria-describedby={error ? errorId : undefined}
 		{...actionAttributes}
 	></textarea>
 </InputWrapper>
