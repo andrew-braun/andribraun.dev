@@ -10,6 +10,7 @@
 		type?: HTMLInputTypeAttribute;
 		error?: string;
 		placeholder?: string;
+		maxlength?: number;
 		width?: Width;
 		required?: boolean;
 		disabled?: boolean;
@@ -23,6 +24,7 @@
 		label,
 		error,
 		width,
+		maxlength,
 		type = "text",
 		actionAttributes,
 		required = false,
@@ -37,6 +39,7 @@
 		bind:value
 		{placeholder}
 		{name}
+		{maxlength}
 		{required}
 		{disabled}
 		{...actionAttributes}

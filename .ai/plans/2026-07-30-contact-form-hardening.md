@@ -121,7 +121,7 @@ Do not use `{@html}` for this message.
 
 Render the success state whenever `displaySuccessDialog` is true. Keep it visible until the visitor explicitly selects “Send another message.”
 
-- [ ] **Step 6: Manually verify Task 1**
+- [x] **Step 6: Manually verify Task 1**
 
 Run:
 
@@ -137,7 +137,7 @@ Check:
 4. Trigger a successful response; the success state appears even if animations are disabled.
 5. Select “Send another message”; the empty form returns.
 
-- [ ] **Step 7: Suggest a conventional commit message**
+- [x] **Step 7: Suggest a conventional commit message**
 
 ```text
 fix: make contact submission state deterministic
@@ -165,7 +165,7 @@ export type ContactFormData = {
 };
 ```
 
-- [ ] **Step 1: Replace the permissive schema**
+- [x] **Step 1: Replace the permissive schema**
 
 Use:
 
@@ -196,7 +196,7 @@ export const contactFormSchema = z.object({
 export type ContactFormData = z.infer<typeof contactFormSchema>;
 ```
 
-- [ ] **Step 2: Mirror server limits in native controls**
+- [x] **Step 2: Mirror server limits in native controls**
 
 Add `maxlength` support to `TextInput.svelte` and `TextArea.svelte`, then use:
 
@@ -206,7 +206,7 @@ Add `maxlength` support to `TextInput.svelte` and `TextArea.svelte`, then use:
 
 Server validation remains authoritative; native limits provide immediate feedback.
 
-- [ ] **Step 3: Add the hidden honeypot**
+- [x] **Step 3: Add the hidden honeypot**
 
 Inside the form:
 

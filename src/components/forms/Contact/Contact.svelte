@@ -7,7 +7,7 @@
 	import type { FormPhase } from "$root/src/ts/forms";
 	import { scrollTo } from "$utils/ui/scroll";
 
-	import { fade } from "svelte/transition";
+	import { fade, slide } from "svelte/transition";
 	import { contactForm } from "./contact.remote";
 	import { contactFormSchema } from "./contact.schema";
 
@@ -81,64 +81,77 @@
 </script>
 
 <div class="form-container">
-	{#if !displaySuccessDialog}
-		<form
-			bind:this={formElement}
-			class={["contact-form"]}
-			{...contactForm.preflight(contactFormSchema).enhance(enhancedSubmit)}
-			onchange={() => contactForm.validate()}
-			onkeydown={handleKeydown}
-			transition:fade
-		>
-			{#if errorState.hasError && submitAttempted}
-				<div
-					class="form-error"
-					{@attach (el) => scrollTo(el, { behavior: "smooth", block: "center" })}
-				>
-					{@html errorState.errorMessages.join("<br>")}
-				</div>
-			{/if}
-			{#if submissionError}
-				<div class="form-error" role="alert" tabindex="-1">
-					<p>{submissionError}</p>
-					<a href="mailto:andri@andribraun.dev">Email Andri directly</a>
-				</div>
-			{/if}
-			<TextInput
-				label="Name"
-				name="name"
-				placeholder="What do I call you, stranger?"
-				required={true}
-				actionAttributes={contactForm.fields.name.as("text")}
-				error={errorState.fieldErrors.name.join(", ")}
-			/>
-			<TextInput
-				label="Email"
-				name="email"
-				type="email"
-				placeholder="I reply within 48 hours or your pizza is free"
-				required={true}
-				actionAttributes={contactForm.fields.email.as("email")}
-				error={errorState.fieldErrors.email.join(", ")}
-			/>
-			<TextArea
-				label="Message"
-				name="message"
-				placeholder="This is where the magic happens. Your hopes. Your dreams. Your secret family recipes. Or, you know, work stuff about projects. That's probably why you're here, now that I think about it. Either way, let's get this train rolling! The train has a dining car, though, so that family recipe could come in handy."
-				required={true}
-				actionAttributes={contactForm.fields.message.as("text")}
-				error={errorState.fieldErrors.message.join(", ")}
-			/>
-			<div class="submit-button-wrapper">
-				<Button
-					type="submit"
-					variant="outline"
-					disabled={!canSubmit}
-					loading={formPhase === "submitting"}>Launch Message</Button
-				>
+	<form
+		bind:this={formElement}
+		class:form-hidden={displaySuccessDialog}
+		class="contact-form"
+		aria-hidden={displaySuccessDialog}
+		inert={displaySuccessDialog}
+		{...contactForm.preflight(contactFormSchema).enhance(enhancedSubmit)}
+		onchange={() => contactForm.validate()}
+		onkeydown={handleKeydown}
+	>
+		{#if errorState.hasError && submitAttempted}
+			<div
+				class="form-error"
+				{@attach (el) => scrollTo(el, { behavior: "smooth", block: "center" })}
+				transition:slide={{ duration: 300 }}
+			>
+				{@html errorState.errorMessages.join("<br>")}
 			</div>
-		</form>
-	{/if}
+		{/if}
+		{#if submissionError}
+			<div class="form-error" role="alert" tabindex="-1" transition:slide={{ duration: 300 }}>
+				<p>{submissionError}</p>
+				<a href="mailto:andri@andribraun.dev">Email Andri directly</a>
+			</div>
+		{/if}
+		<TextInput
+			label="Name"
+			name="name"
+			maxlength={100}
+			placeholder="What do I call you, stranger?"
+			required={true}
+			actionAttributes={contactForm.fields.name.as("text")}
+			error={errorState.fieldErrors.name.join(", ")}
+		/>
+		<TextInput
+			label="Email"
+			name="email"
+			type="email"
+			maxlength={254}
+			placeholder="I reply within 48 hours or your pizza is free"
+			required={true}
+			actionAttributes={contactForm.fields.email.as("email")}
+			error={errorState.fieldErrors.email.join(", ")}
+		/>
+		<TextArea
+			label="Message"
+			name="message"
+			maxlength={5000}
+			placeholder="This is where the magic happens. Your hopes. Your dreams. Your secret family recipes. Or, you know, work stuff about projects. That's probably why you're here, now that I think about it. Either way, let's get this train rolling! The train has a dining car, though, so that family recipe could come in handy."
+			required={true}
+			actionAttributes={contactForm.fields.message.as("text")}
+			error={errorState.fieldErrors.message.join(", ")}
+		/>
+		<div class="honeypot" aria-hidden="true">
+			<label for="contact-company">Company</label>
+			<input
+				id="contact-company"
+				tabindex="-1"
+				autocomplete="off"
+				{...contactForm.fields.company.as("text")}
+			/>
+		</div>
+		<div class="submit-button-wrapper">
+			<Button
+				type="submit"
+				variant="outline"
+				disabled={!canSubmit}
+				loading={formPhase === "submitting"}>Launch Message</Button
+			>
+		</div>
+	</form>
 
 	{#if displaySuccessDialog}
 		<div class={["success-state"]} transition:fade>
@@ -151,6 +164,7 @@
 
 <style lang="scss">
 	.form-container {
+		position: relative;
 		min-width: 280px;
 		transition: transform 2s ease;
 
@@ -160,6 +174,13 @@
 			display: flex;
 			flex-direction: column;
 			gap: var(--space-sm);
+			opacity: 1;
+			transition: opacity 300ms ease;
+
+			&.form-hidden {
+				pointer-events: none;
+				opacity: 0;
+			}
 
 			.submit-button-wrapper {
 				display: flex;
@@ -173,15 +194,25 @@
 				background-color: var(--color-error);
 				border-radius: var(--border-radius-md);
 			}
+
+			.honeypot {
+				position: absolute;
+				left: -10000px;
+				width: 1px;
+				height: 1px;
+				overflow: hidden;
+			}
 		}
 
 		.success-state {
-			position: relative;
+			position: absolute;
+			inset: 0;
 			z-index: 10;
 			display: flex;
 			flex-direction: column;
 			gap: var(--space-sm);
 			align-items: center;
+			justify-content: center;
 			min-width: 280px;
 			text-align: center;
 		}

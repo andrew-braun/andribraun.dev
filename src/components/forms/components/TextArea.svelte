@@ -9,6 +9,7 @@
 		error?: string;
 		placeholder?: string;
 		rows?: number;
+		maxlength?: number;
 		width?: Width;
 		required?: boolean;
 		disabled?: boolean;
@@ -23,6 +24,7 @@
 		error,
 		width,
 		rows = 8,
+		maxlength,
 		required = false,
 		disabled = false,
 		actionAttributes
@@ -36,6 +38,7 @@
 		{placeholder}
 		{name}
 		{rows}
+		{maxlength}
 		{required}
 		{disabled}
 		{...actionAttributes}
