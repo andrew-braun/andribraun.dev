@@ -14,6 +14,7 @@
 	let { formPhase = $bindable("idle") }: { formPhase?: FormPhase } = $props();
 	let submitAttempted = $state(false);
 	let displaySuccessDialog = $state(false);
+	let submissionError = $state<string | null>(null);
 
 	let errorState = $derived({
 		hasError: Boolean(contactForm.fields?.allIssues()?.length),
@@ -49,35 +50,24 @@
 	async function enhancedSubmit({ submit }: { submit: () => Promise<boolean> }) {
 		try {
 			submitAttempted = true;
+			submissionError = null;
 			formPhase = "submitting";
-			// errorState = {
-			// 	hasError: false,
-			// 	errorMessages: [],
-			// 	fieldErrors: {
-			// 		name: [],
-			// 		email: [],
-			// 		message: []
-			// 	}
-			// };
 
-			const response = await submit();
+			const succeeded = await submit();
 
-			if (!response) {
-				throw new Error(
-					"Houston, we have a problem: your message failed to launch! Please try again or contact me via email at <a href='mailto:andri@andribraun.dev'>andri@andribraun.dev</a>"
-				);
+			if (!succeeded) {
+				formPhase = "error";
+				return;
 			}
 
+			formElement?.reset();
+			displaySuccessDialog = true;
 			formPhase = "launching";
 		} catch (error) {
 			console.error("Error submitting form:", error);
+			submissionError =
+				"Houston, we have a problem: your message failed to launch! Please try again, or email andri@andribraun.dev.";
 			formPhase = "error";
-			// errorState.errorMessages =
-			// 	error instanceof Error
-			// 		? [error.message]
-			// 		: [
-			// 				"Houston, we have a problem: your message failed to launch! Please try again or contact me via email at <a href='mailto:andri@andribraun.dev'>andri@andribraun.dev</a>"
-			// 			];
 		}
 	}
 
@@ -85,30 +75,13 @@
 		formPhase = "idle";
 		submitAttempted = false;
 		displaySuccessDialog = false;
+		submissionError = null;
 		formElement?.reset();
-	}
-
-	function handleAnimationStart(event: AnimationEvent) {
-		setTimeout(() => {
-			formElement?.reset();
-
-			if (event.animationName.endsWith("form-launch")) {
-				displaySuccessDialog = true;
-			}
-		}, 2000);
-	}
-
-	function handleAnimationEnd(event: AnimationEvent) {
-		console.log("Animation ended:", event.animationName);
-		if (event.animationName.endsWith("success-launch")) {
-			formPhase = "submitted";
-		}
 	}
 </script>
 
-<svelte:window onanimationend={handleAnimationEnd} onanimationstart={handleAnimationStart} />
-<div class={["form-container", formPhase === "launching" ? "launching" : ""]}>
-	{#if formPhase !== "submitted" && displaySuccessDialog === false}
+<div class="form-container">
+	{#if !displaySuccessDialog}
 		<form
 			bind:this={formElement}
 			class={["contact-form"]}
@@ -123,6 +96,12 @@
 					{@attach (el) => scrollTo(el, { behavior: "smooth", block: "center" })}
 				>
 					{@html errorState.errorMessages.join("<br>")}
+				</div>
+			{/if}
+			{#if submissionError}
+				<div class="form-error" role="alert" tabindex="-1">
+					<p>{submissionError}</p>
+					<a href="mailto:andri@andribraun.dev">Email Andri directly</a>
 				</div>
 			{/if}
 			<TextInput
@@ -165,7 +144,7 @@
 		<div class={["success-state"]} transition:fade>
 			<h2>Message Launched!</h2>
 			<p>Thanks for reaching out! I'll get back to you within 48 hours.</p>
-			<Button onclick={handleFormReset}>Got it!</Button>
+			<Button onclick={handleFormReset}>Send another message</Button>
 		</div>
 	{/if}
 </div>
@@ -174,12 +153,6 @@
 	.form-container {
 		min-width: 280px;
 		transition: transform 2s ease;
-
-		&.launching {
-			animation: form-launch 4s ease-in forwards;
-
-			@include launch(form-launch, 0, 0);
-		}
 
 		.contact-form {
 			position: relative;
@@ -211,9 +184,6 @@
 			align-items: center;
 			min-width: 280px;
 			text-align: center;
-			animation: success-launch 2s ease-out forwards;
-
-			@include launch(success-launch, 0, 0);
 		}
 	}
 </style>

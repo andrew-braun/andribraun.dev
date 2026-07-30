@@ -54,7 +54,7 @@
 - Form values preserved on every failure
 - No global animation event listeners
 
-- [ ] **Step 1: Add an explicit submission error**
+- [x] **Step 1: Add an explicit submission error**
 
 Add:
 
@@ -64,7 +64,7 @@ let submissionError = $state<string | null>(null);
 
 Clear it at the start of `enhancedSubmit`.
 
-- [ ] **Step 2: Handle `submit()` results directly**
+- [x] **Step 2: Handle `submit()` results directly**
 
 Use this state policy:
 
@@ -91,7 +91,7 @@ formPhase = "error";
 
 Do not reset the form in the failure path.
 
-- [ ] **Step 3: Remove animation-controlled behavior**
+- [x] **Step 3: Remove animation-controlled behavior**
 
 Delete:
 
@@ -102,7 +102,7 @@ Delete:
 
 The rocket/form animation may still respond to `formPhase === "launching"`, but animation events must not modify form data or success state.
 
-- [ ] **Step 4: Render a persistent server error**
+- [x] **Step 4: Render a persistent server error**
 
 Render `submissionError` independently of validation errors:
 
@@ -117,7 +117,7 @@ Render `submissionError` independently of validation errors:
 
 Do not use `{@html}` for this message.
 
-- [ ] **Step 5: Make success independent of animation completion**
+- [x] **Step 5: Make success independent of animation completion**
 
 Render the success state whenever `displaySuccessDialog` is true. Keep it visible until the visitor explicitly selects “Send another message.”
 
