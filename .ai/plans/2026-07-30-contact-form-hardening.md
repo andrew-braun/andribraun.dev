@@ -314,7 +314,7 @@ aria-describedby={error ? errorId : undefined}
 - After it renders, `await tick()` and call `.focus()`.
 - Do not move focus while someone is merely editing a field.
 
-- [ ] **Step 5: Manually verify Task 3**
+- [x] **Step 5: Manually verify Task 3**
 
 Check:
 
@@ -326,7 +326,7 @@ Check:
 6. After success, focus moves to the success message.
 7. A screen reader announces both outcomes once without repeating endlessly.
 
-- [ ] **Step 6: Suggest a conventional commit message**
+- [x] **Step 6: Suggest a conventional commit message**
 
 ```text
 fix: make contact form feedback accessible
@@ -339,6 +339,7 @@ fix: make contact form feedback accessible
 **Files:**
 
 - Create: `src/components/forms/Contact/contact-email.server.ts`
+- Modify: `src/components/forms/Contact/contact.remote.ts`
 - Modify: `src/lib/utils/email/email.ts`
 - Modify: `src/lib/utils/email/resend.ts`
 
@@ -347,7 +348,7 @@ fix: make contact form feedback accessible
 - `renderContactNotification(data: ContactFormData): string`
 - `SendEmailParams.replyTo?: string`
 
-- [ ] **Step 1: Add a safe email renderer**
+- [x] **Step 1: Add a safe email renderer**
 
 Create:
 
@@ -378,7 +379,7 @@ export function renderContactNotification(data: ContactFormData): string {
 }
 ```
 
-- [ ] **Step 2: Support Reply-To**
+- [x] **Step 2: Support Reply-To**
 
 Add `replyTo?: string` to `SendEmailParams`, pass it through `sendEmail`, and apply it to Resend:
 
@@ -388,7 +389,7 @@ if (replyTo) {
 }
 ```
 
-- [ ] **Step 3: Remove PII logging**
+- [x] **Step 3: Remove PII logging**
 
 Delete logs containing:
 
@@ -400,7 +401,7 @@ Delete logs containing:
 
 Failure logs may contain a generated reference ID, operation name, and provider error code only.
 
-- [ ] **Step 4: Manually verify Task 4**
+- [x] **Step 4: Manually verify Task 4**
 
 Submit:
 

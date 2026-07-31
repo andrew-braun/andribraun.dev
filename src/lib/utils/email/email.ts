@@ -3,6 +3,7 @@ import { resendEmail } from "./resend";
 export interface SendEmailParams {
 	toEmail: string;
 	fromEmail?: string;
+	replyTo?: string;
 	subject?: string;
 	htmlContent?: string;
 	template?: string;
@@ -12,6 +13,7 @@ export interface SendEmailParams {
 export async function sendEmail({
 	toEmail,
 	fromEmail,
+	replyTo,
 	subject,
 	htmlContent,
 	template,
@@ -21,6 +23,7 @@ export async function sendEmail({
 		const response = await resendEmail({
 			toEmail,
 			fromEmail,
+			replyTo,
 			subject,
 			htmlContent,
 			template,
@@ -29,7 +32,7 @@ export async function sendEmail({
 
 		return response;
 	} catch (error) {
-		console.error("Error sending email:", error);
+		console.error("Email dispatch failed");
 		throw new Error("Failed to send email. Please try again later.", {
 			cause: error
 		});

@@ -3,25 +3,20 @@ import { createContactFormEntry } from "$root/src/lib/cms/payload";
 import { sendEmail } from "$utils/email/email";
 import { error } from "@sveltejs/kit";
 import * as z from "zod";
+import { renderContactNotification } from "./contact-email.server";
 import { contactFormSchema } from "./contact.schema";
 
 async function handleSubmit(data: z.infer<typeof contactFormSchema>) {
 	try {
-		console.log("Form submitted:", data);
-
-		let payloadFormEntry: Awaited<ReturnType<typeof createContactFormEntry>> | null = null;
-
 		try {
-			payloadFormEntry = await createContactFormEntry({ formData: data });
-		} catch (payloadError) {
-			console.error("Non-blocking Payload form entry error:", payloadError);
+			await createContactFormEntry({ formData: data });
+		} catch {
+			console.error("Contact form persistence failed");
 		}
-
-		console.log("Payload form entry created:", payloadFormEntry);
 
 		const { name, email } = data;
 
-		const confirmationResponse = await sendEmail({
+		const { success: confirmationSuccess } = await sendEmail({
 			toEmail: email,
 			subject: "Thank you for contacting Andri Braun!",
 			template: "contact-confirmation",
@@ -34,30 +29,22 @@ async function handleSubmit(data: z.infer<typeof contactFormSchema>) {
 			}
 		});
 
-		const { success, data: confirmationData } = confirmationResponse;
-
-		const notificationResponse = await sendEmail({
+		const { success: notificationSuccess } = await sendEmail({
 			toEmail: "andri@andribraun.dev",
+			replyTo: email,
 			subject: `New contact form submission from ${name}`,
-			htmlContent: JSON.stringify(data, null, 2).replace(/\n/g, "<br>").replace(/ /g, "&nbsp;")
+			htmlContent: renderContactNotification(data)
 		});
 
-		const { success: notificationSuccess, data: notificationData } = notificationResponse;
-
-		if (!success || !notificationSuccess) {
-			console.error("Error sending emails:", {
-				confirmationResponse,
-				confirmationData,
-				notificationResponse,
-				notificationData
-			});
+		if (!confirmationSuccess || !notificationSuccess) {
+			console.error("Contact email delivery failed");
 			throw new Error("Failed to send contact form emails. Please try again later.");
 		}
 
 		// Redirect to a thank you page or show a success message
 		return { success: true, data };
-	} catch (err) {
-		console.error("Error submitting form:", err);
+	} catch {
+		console.error("Contact form submission failed");
 		throw error(500, "An error occurred while submitting the form. Please try again later.");
 	}
 }
