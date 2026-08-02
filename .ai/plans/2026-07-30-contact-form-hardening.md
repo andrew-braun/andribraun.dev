@@ -623,7 +623,7 @@ fix: make contact delivery resilient to partial failures
 - Modify: `.env.example`
 - Modify: `.ai/2026-07-30-launch-readiness-todo.md`
 
-- [ ] **Step 1: Document the Resend secret**
+- [x] **Step 1: Document the Resend secret**
 
 Add:
 
@@ -633,7 +633,7 @@ RESEND_API_KEY=your-resend-api-key-here
 
 Never copy the real value from `.env`.
 
-- [ ] **Step 2: Run targeted formatting and static checks**
+- [x] **Step 2: Run targeted formatting and static checks**
 
 Run:
 
@@ -662,7 +662,7 @@ pnpm exec eslint \
 
 Expected: both targeted checks pass.
 
-- [ ] **Step 3: Run project checks**
+- [x] **Step 3: Run project checks**
 
 Run:
 
@@ -674,7 +674,7 @@ pnpm build
 
 Expected for this work: delivery-policy tests pass, no errors in contact, email, or Payload files, and a successful build. Record previously identified Typewriter or Sass errors separately rather than expanding this form plan.
 
-- [ ] **Step 4: Run the final browser checklist**
+- [x] **Step 4: Run the final browser checklist**
 
 Confirm:
 

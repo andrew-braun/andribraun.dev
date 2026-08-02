@@ -15,7 +15,7 @@ async function handleSubmit(data: z.infer<typeof contactFormSchema>) {
 				await sendEmail({
 					toEmail: "andri@andribraun.dev",
 					replyTo: submission.email,
-					subject: `[${referenceId}] New contact from ${submission.name}`,
+					subject: `[${referenceId.slice(0, 8)}] New contact from ${submission.name}`,
 					htmlContent: renderContactNotification(submission)
 				});
 			},

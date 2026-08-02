@@ -66,7 +66,6 @@
 	"type": "module",
 	"dependencies": {
 		"@payloadcms/sdk": "^3.86.0",
-		"@tursodatabase/serverless": "^1.4.0",
 		"bits-ui": "^2.18.1",
 		"isomorphic-dompurify": "^3.20.0",
 		"marked": "^18.0.7",
