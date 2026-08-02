@@ -11,6 +11,7 @@
 		"lint": "prettier --check . && eslint . && stylelint \"src/**/*.{css,scss,svelte}\"",
 		"lint:css": "stylelint \"src/**/*.{css,scss,svelte}\"",
 		"format": "prettier --write .",
+		"test": "vitest run",
 		"prepare": "husky"
 	},
 	"lint-staged": {
@@ -59,7 +60,8 @@
 		"typescript": "^6.0.3",
 		"typescript-eslint": "^8.65.0",
 		"unplugin-icons": "^23.0.1",
-		"vite": "^8.2.0"
+		"vite": "^8.2.0",
+		"vitest": "^4.1.10"
 	},
 	"type": "module",
 	"dependencies": {
