@@ -10,14 +10,17 @@ function absoluteUrl(media: Media): Media {
 export const load: PageServerLoad = async () => {
 	const { docs } = await getProjects();
 
-	const projects = docs.map((project) => ({
-		...project,
-		thumbnail:
-			project.thumbnail && typeof project.thumbnail === "object"
-				? absoluteUrl(project.thumbnail)
-				: project.thumbnail,
-		images: project.images?.map((img) => (typeof img === "object" ? absoluteUrl(img) : img)) ?? null
-	}));
+	const projects = docs
+		.filter((project) => !project.display?.hide)
+		.map((project) => ({
+			...project,
+			thumbnail:
+				project.thumbnail && typeof project.thumbnail === "object"
+					? absoluteUrl(project.thumbnail)
+					: project.thumbnail,
+			images:
+				project.images?.map((img) => (typeof img === "object" ? absoluteUrl(img) : img)) ?? null
+		}));
 
 	return { projects };
 };
