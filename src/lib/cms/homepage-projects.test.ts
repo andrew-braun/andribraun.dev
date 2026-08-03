@@ -32,8 +32,8 @@ describe("homepage project loading", () => {
 	});
 
 	it("excludes projects marked hidden in the CMS", async () => {
-		const result = await load({} as never);
-		const projects = (result as { projects: Project[] }).projects;
+		// `PageServerLoad` widens the return type to include `void`; narrow it back.
+		const { projects } = (await load({} as never)) as { projects: Project[] };
 
 		expect(projects.map((project) => project.id)).toEqual([visibleProject.id]);
 	});

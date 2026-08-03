@@ -4,7 +4,7 @@
 	import TextArea from "$components/forms/components/TextArea.svelte";
 	import TextInput from "$components/forms/components/TextInput.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
-	import type { FormPhase } from "$root/src/ts/forms";
+	import type { FormPhase } from "$ts/forms";
 	import { scrollTo } from "$utils/ui/scroll";
 
 	import { tick } from "svelte";
@@ -81,7 +81,7 @@
 		}
 	}
 
-	async function handleFormReset() {
+	function handleFormReset() {
 		formPhase = "idle";
 		submitAttempted = false;
 		displaySuccessDialog = false;

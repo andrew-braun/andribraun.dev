@@ -17,7 +17,7 @@ export const load: PageServerLoad = async () => {
 			thumbnail:
 				project.thumbnail && typeof project.thumbnail === "object"
 					? absoluteUrl(project.thumbnail)
-					: project.thumbnail,
+					: (project.thumbnail ?? null),
 			images:
 				project.images?.map((img) => (typeof img === "object" ? absoluteUrl(img) : img)) ?? null
 		}));

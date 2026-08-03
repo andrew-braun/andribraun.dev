@@ -1,9 +1,9 @@
-<script lang="ts">
+<script lang="ts" generics="TItem">
 	import type { Snippet } from "svelte";
 
 	interface Props {
-		items: any[];
-		cellSnippet: Snippet<[any, number]>;
+		items: TItem[];
+		cellSnippet: Snippet<[TItem, number]>;
 	}
 
 	let { items, cellSnippet }: Props = $props();

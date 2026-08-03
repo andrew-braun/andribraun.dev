@@ -1,11 +1,14 @@
 <script lang="ts">
+	import type { Snippet } from "svelte";
+	import type { HTMLAnchorAttributes } from "svelte/elements";
+
 	interface LinkProps {
 		className?: string;
 		href: string;
 		underlineColor?: string;
 		active?: boolean;
-		restProps?: any;
-		children: any;
+		restProps?: HTMLAnchorAttributes;
+		children: Snippet;
 	}
 
 	let {
@@ -23,9 +26,7 @@
 	{href}
 	class="animated-link {className}"
 	class:active-link={active}
-	style="
-
---underline-color: {underlineColor}"
+	style:--underline-color={underlineColor}
 >
 	{@render children()}
 </a>

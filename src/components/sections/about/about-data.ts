@@ -1,7 +1,7 @@
 import AndriNerdModePicture from "$lib/assets/img/profile/andri-nerd-mode.png?enhanced";
 import AndriPersonalModePicture from "$lib/assets/img/profile/andri-personal-mode.png?enhanced";
 import AndriProfessionalModePicture from "$lib/assets/img/profile/andri-professional-mode.png?enhanced";
-import type { ImageDataProps } from "$root/src/ts/general";
+import type { ImageDataProps } from "$ts/general";
 
 interface AboutTab {
 	title: string;

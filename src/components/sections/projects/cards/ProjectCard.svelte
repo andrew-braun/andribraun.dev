@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Project } from "$lib/cms/payload";
-	import type { ColorVariant } from "$root/src/ts/style";
+	import type { ColorVariant } from "$ts/style";
 	import BasicProjectCard from "./BasicProjectCard.svelte";
 	import VisualProjectCard from "./VisualProjectCard.svelte";
 
@@ -10,14 +10,9 @@
 	}
 
 	const { project, color }: Props = $props();
-
-	// Detect project card type
-	// svelte-ignore state_referenced_locally
-	const { display } = project || {};
-	const cardType = display?.card_type;
 </script>
 
-{#if cardType === "visual"}
+{#if project.display?.card_type === "visual"}
 	<VisualProjectCard {project} />
 {:else}
 	<BasicProjectCard {project} {color} />

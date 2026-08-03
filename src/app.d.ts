@@ -2,7 +2,10 @@
 // for information about these interfaces
 declare global {
 	namespace App {
-		// interface Error {}
+		/** The shape passed to `error()` and received by +error.svelte. */
+		interface Error {
+			message: string;
+		}
 		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}

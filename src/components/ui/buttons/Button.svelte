@@ -1,17 +1,21 @@
 <script lang="ts">
+	import type { IconComponent } from "$ts/general";
+	import type { Snippet } from "svelte";
 	import type { HTMLAnchorAttributes, HTMLButtonAttributes } from "svelte/elements";
 
 	type SharedProps = {
 		variant?: "filled" | "outline" | "gradient";
 		size?: "small" | "medium" | "large" | "100";
 		hoverEffect?: "flashy-background-slide";
-		Icon?: any;
+		Icon?: IconComponent;
 		loading?: boolean;
-		children?: any;
+		// Required: the template renders it unconditionally.
+		children: Snippet;
 	};
 
 	type ButtonProps = SharedProps & {
 		href?: never;
+		target?: never;
 		type?: HTMLButtonAttributes["type"];
 		disabled?: boolean;
 		onclick?: () => void;
@@ -32,14 +36,13 @@
 		size = "medium",
 		disabled = false,
 		hoverEffect = "flashy-background-slide",
-		Icon = null,
+		Icon,
 		onclick,
 		children,
-		loading = false,
-		...rest
+		target,
+		loading = false
 	}: ButtonProps | LinkProps = $props();
 
-	const target = $derived((rest as LinkProps).target);
 	const classes = $derived(
 		`btn btn-${variant} btn-${size} btn-${hoverEffect} ${loading ? "btn-loading" : ""}`
 	);

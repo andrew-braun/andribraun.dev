@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Project } from "$lib/cms/payload";
+	import type { Media, Project } from "$lib/cms/payload";
 
 	interface Props {
 		project: Project;
@@ -7,31 +7,22 @@
 
 	const { project }: Props = $props();
 
-	// svelte-ignore state_referenced_locally
-	let { title, images, thumbnail, liveLink } = project;
+	// A relationship is only a `Media` object when it was populated at this depth.
+	const populated = (relation: number | Media | null | undefined): Media | null =>
+		typeof relation === "object" && relation !== null && relation.url ? relation : null;
 
-	let image = $state({
-		url: "",
-		alt: ""
-	});
-
-	if (thumbnail && typeof thumbnail === "object" && thumbnail.url) {
-		image = { url: thumbnail.url, alt: thumbnail.alt };
-	}
-	if (images && images.length > 0) {
-		const first = images[0];
-		if (typeof first === "object" && first.url) {
-			image = { url: first.url, alt: first.alt };
-		}
-	}
+	// A gallery image wins over the thumbnail when both are present.
+	const image = $derived(populated(project.images?.[0]) ?? populated(project.thumbnail));
 </script>
 
-<a class="card" href={liveLink} target="_blank" rel="noopener noreferrer">
+<a class="card" href={project.liveLink} target="_blank" rel="noopener noreferrer">
 	<div class="image-wrapper">
-		<img src={image.url} alt={image.alt} class="card-image" loading="lazy" />
+		{#if image}
+			<img src={image.url} alt={image.alt} class="card-image" loading="lazy" />
+		{/if}
 	</div>
 	<div class="overlay">
-		<span class="title">{title}</span>
+		<span class="title">{project.title}</span>
 		<span class="arrow" aria-hidden="true">→</span>
 	</div>
 </a>

@@ -1,27 +1,33 @@
 <script lang="ts">
-	import type { Project } from "$root/src/lib/cms/payload-types";
-	import type { ColorVariant } from "$root/src/ts/style";
+	import type { Testimonial } from "$components/sections/projects/projects-data";
+	import type { Project } from "$lib/cms/payload";
+	import type { ColorVariant } from "$ts/style";
 	import CtaCard from "./CtaCard.svelte";
 	import ProjectCard from "./ProjectCard.svelte";
 	import TerminalCard from "./TerminalCard.svelte";
 	import TestimonialCard from "./TestimonialCard.svelte";
 
-	interface Props {
-		type: "project" | "testimonial" | "cta" | "terminal";
-		project?: Project;
-		testimonial?: any;
-		color?: ColorVariant;
-	}
+	// A discriminated union so each cell type carries exactly the data it needs.
+	// `{ type: "cta", project }` is now a type error rather than a silent no-op,
+	// and the runtime `&& project` guards below are no longer necessary.
+	type GridItemContent =
+		| { type: "project"; project: Project }
+		| { type: "testimonial"; testimonial: Testimonial }
+		| { type: "cta" }
+		| { type: "terminal" };
 
-	const { type, project, testimonial, color }: Props = $props();
+	type Props = GridItemContent & { color?: ColorVariant };
+
+	// Left undestructured on purpose: destructuring discards the union narrowing.
+	const props: Props = $props();
 </script>
 
-{#if type === "project" && project}
-	<ProjectCard {project} color={color ?? "primary"} />
-{:else if type === "testimonial" && testimonial}
-	<TestimonialCard {testimonial} />
-{:else if type === "terminal"}
+{#if props.type === "project"}
+	<ProjectCard project={props.project} color={props.color ?? "primary"} />
+{:else if props.type === "testimonial"}
+	<TestimonialCard testimonial={props.testimonial} />
+{:else if props.type === "terminal"}
 	<TerminalCard />
-{:else if type === "cta"}
+{:else}
 	<CtaCard />
 {/if}

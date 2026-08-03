@@ -9,6 +9,14 @@
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true,
+		"noImplicitOverride": true,
+		"noFallthroughCasesInSwitch": true,
+		"noPropertyAccessFromIndexSignature": true,
+		"noUnusedLocals": true,
+		"noUnusedParameters": true,
+		"allowUnreachableCode": false,
 		"moduleResolution": "bundler",
 		"types": ["unplugin-icons/types/svelte"]
 	}

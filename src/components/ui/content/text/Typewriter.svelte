@@ -4,8 +4,8 @@
 
 	interface Props {
 		text: string;
-		withCursor?: boolean;
-		startDelay?: number;
+		withCursor?: boolean | undefined;
+		startDelay?: number | undefined;
 	}
 
 	let { text, withCursor = true, startDelay = 0 }: Props = $props();

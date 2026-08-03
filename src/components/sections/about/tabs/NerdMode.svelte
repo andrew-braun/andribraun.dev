@@ -4,7 +4,7 @@
 	import BlockRow from "$components/layout/rows/BlockRow.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
 	import { codeIcons } from "$root/src/lib/data/icons";
-	import type { ImageDataProps } from "$root/src/ts/general";
+	import type { ImageDataProps } from "$ts/general";
 
 	interface NerdModeProps {
 		image: ImageDataProps;

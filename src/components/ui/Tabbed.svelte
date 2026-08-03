@@ -1,12 +1,6 @@
 <script lang="ts">
 	import { Tabs } from "bits-ui";
-
-	interface Tab {
-		value: string;
-		label: string;
-		content: any;
-		props?: Record<string, any>;
-	}
+	import type { Tab } from "./Tabs/tabs";
 
 	interface TabbedProps {
 		defaultValue?: string;
@@ -16,7 +10,7 @@
 	let { defaultValue, tabs }: TabbedProps = $props();
 </script>
 
-<Tabs.Root value={defaultValue ?? tabs[0].value}>
+<Tabs.Root value={defaultValue ?? tabs[0]?.value ?? ""}>
 	{#snippet child({ props })}
 		<div class="tabs-root" {...props}>
 			<div class="tabs-list">

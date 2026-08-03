@@ -1,6 +1,6 @@
 <script lang="ts">
 	import type { Project, Technology } from "$lib/cms/payload";
-	import type { ColorVariant } from "$root/src/ts/style";
+	import type { ColorVariant } from "$ts/style";
 
 	interface Props {
 		project: Project;
@@ -8,27 +8,26 @@
 	}
 
 	let { project, color = "primary" }: Props = $props();
-	// svelte-ignore state_referenced_locally
-	let { title, description, metadata, liveLink } = project;
-	let technologies: Technology[] = (metadata?.technologies?.filter(
-		(technology): technology is Technology =>
-			typeof technology !== "number" && Object.hasOwn(technology, "name")
-	) ?? []) as Technology[];
+
+	// Unpopulated relations come back as bare ids; drop those and any unnamed tech.
+	const technologies = $derived(
+		(project.metadata?.technologies ?? []).filter(
+			(technology): technology is Technology => typeof technology === "object" && !!technology.name
+		)
+	);
 </script>
 
-<a class="card card--{color}" href={liveLink} target="_blank" rel="noopener noreferrer">
+<a class="card card--{color}" href={project.liveLink} target="_blank" rel="noopener noreferrer">
 	<div class="card-content">
-		<h3 class="title">{title}</h3>
-		{#if description}
-			<p class="description">{description}</p>
+		<h3 class="title">{project.title}</h3>
+		{#if project.description_markdown}
+			<p class="description">{project.description_markdown}</p>
 		{/if}
 		<div class="footer">
 			{#if technologies.length > 0}
 				<ul class="tech-pills" aria-label="Technologies used">
-					{#each technologies.slice(0, 5) as tech, i (i)}
-						{#if typeof tech === "object" && tech.name}
-							<li class="pill">{tech.name}</li>
-						{/if}
+					{#each technologies.slice(0, 5) as tech (tech.id)}
+						<li class="pill">{tech.name}</li>
 					{/each}
 				</ul>
 			{/if}

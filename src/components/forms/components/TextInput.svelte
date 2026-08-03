@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { Width } from "$root/src/ts/style";
-	import type { HTMLInputTypeAttribute } from "svelte/elements";
+	import type { Width } from "$ts/style";
+	import type { HTMLInputAttributes, HTMLInputTypeAttribute } from "svelte/elements";
 	import InputWrapper from "./InputWrapper.svelte";
 
 	interface Props {
@@ -15,7 +15,7 @@
 		width?: Width;
 		required?: boolean;
 		disabled?: boolean;
-		actionAttributes?: any;
+		actionAttributes?: HTMLInputAttributes;
 	}
 
 	let {

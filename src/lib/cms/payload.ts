@@ -21,9 +21,10 @@ export function cmsMediaUrl(relativeUrl: string): string {
 
 const sdk = new PayloadSDK<Config>({
 	baseURL: `${CMS_URL}/api`,
-	baseInit: CMS_KEY
-		? { headers: { Authorization: `third-party-access API-Key ${CMS_KEY}` } }
-		: undefined
+	// Omit `baseInit` entirely when unauthenticated rather than passing undefined.
+	...(CMS_KEY
+		? { baseInit: { headers: { Authorization: `third-party-access API-Key ${CMS_KEY}` } } }
+		: {})
 });
 
 // ---------------------------------------------------------------------------

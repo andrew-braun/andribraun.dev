@@ -11,6 +11,9 @@
 		projects: Project[];
 	}
 
+	// Projects with no explicit order sort to the back.
+	const UNORDERED = 999;
+
 	const { projects }: Props = $props();
 
 	const gridItems = $derived.by(() => {
@@ -26,15 +29,7 @@
 		const ctaCardPosition = Math.min(7, projects.length + 1);
 
 		projects
-
-			.map(
-				(project) =>
-					({
-						...project,
-						display: { ...project.display, order: project.display?.order ?? 999 }
-					}) as Project
-			) // Ensure all projects have an order for sorting
-			.sort((a, b) => (a?.display?.order as number) - (b?.display?.order as number))
+			.toSorted((a, b) => (a.display?.order ?? UNORDERED) - (b.display?.order ?? UNORDERED))
 			.forEach((project, index) => {
 				// Check if we should insert a testimonial card
 				if (index > 0 && index % testimonialFrequency === 0) {
@@ -70,7 +65,7 @@
 <section id="portfolio" class="page-section">
 	<Title title="Projects" tag="h2" />
 	<Bento items={gridItems}>
-		{#snippet cellSnippet(item: any, index: number)}
+		{#snippet cellSnippet(item, index)}
 			<GridItem {...item} color={assignColor(index)} />
 		{/snippet}
 	</Bento>

@@ -1,13 +1,16 @@
 <script lang="ts">
-	import type { Width } from "$root/src/ts/style";
+	import type { Width } from "$ts/style";
+	import type { Snippet } from "svelte";
 
+	// Optionals are spelled `?: T | undefined` because callers forward their own
+	// optional props straight through, which is an explicit `undefined` pass.
 	interface Props {
 		label: string;
 		id: string;
-		error?: string;
-		width?: Width;
-		required?: boolean;
-		children: () => any;
+		error?: string | undefined;
+		width?: Width | undefined;
+		required?: boolean | undefined;
+		children: Snippet;
 	}
 
 	let { label, id, error, width, required, children }: Props = $props();

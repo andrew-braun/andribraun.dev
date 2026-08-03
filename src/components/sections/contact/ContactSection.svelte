@@ -2,7 +2,7 @@
 	import Contact from "$components/forms/Contact/Contact.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Rocket1 from "$root/src/lib/assets/images/svgs/Rocket1.svelte";
-	import type { FormPhase } from "$root/src/ts/forms";
+	import type { FormPhase } from "$ts/forms";
 
 	let formPhase: FormPhase = $state("idle");
 </script>

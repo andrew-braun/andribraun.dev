@@ -1,8 +1,8 @@
 <script lang="ts">
-	import type { Component } from "svelte";
+	import type { IconComponent } from "$ts/general";
 
 	interface LabelledIconProps {
-		Icon: Component;
+		Icon: IconComponent;
 		label: string;
 	}
 

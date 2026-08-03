@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { ImageDataProps } from "$root/src/ts/general";
+	import type { ImageDataProps } from "$ts/general";
 	import { marked } from "marked";
 	import TwoColumn from "./TwoColumn.svelte";
 

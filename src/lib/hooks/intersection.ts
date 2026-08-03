@@ -12,12 +12,14 @@ export function intersection(
 	node: HTMLElement,
 	options: IntersectionObserverInitExtended
 ): ActionReturn<IntersectionObserverInitExtended, IntersectionAttributes> {
-	const observer = new IntersectionObserver(([entry]) => {
+	const observer = new IntersectionObserver((entries) => {
+		const entry = entries[0];
+		if (!entry) return;
+
 		node.dispatchEvent(new CustomEvent("intersection", { detail: entry }));
-		console.log("Intersection observed:", entry);
+
 		if (entry.isIntersecting && options.unobserveAfterIntersect) {
 			observer.unobserve(node);
-			return;
 		}
 	}, options);
 

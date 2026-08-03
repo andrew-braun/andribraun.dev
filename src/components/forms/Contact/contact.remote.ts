@@ -2,12 +2,11 @@ import { form } from "$app/server";
 import { createContactFormEntry } from "$root/src/lib/cms/payload";
 import { sendEmail } from "$utils/email/email";
 import { error } from "@sveltejs/kit";
-import type * as z from "zod";
 import { renderContactNotification } from "./contact-email.server";
 import { processContactSubmission } from "./contact-submission.server";
-import { contactFormSchema } from "./contact.schema";
+import { contactFormSchema, type ContactFormData } from "./contact.schema";
 
-async function handleSubmit(data: z.infer<typeof contactFormSchema>) {
+async function handleSubmit(data: ContactFormData) {
 	try {
 		return await processContactSubmission(data, {
 			archive: (submission) => createContactFormEntry({ formData: submission }),
@@ -31,7 +30,8 @@ async function handleSubmit(data: z.infer<typeof contactFormSchema>) {
 		});
 	} catch {
 		console.error("Contact form submission failed");
-		throw error(500, "An error occurred while submitting the form. Please try again later.");
+		// SvelteKit's `error()` throws internally and is typed `never`.
+		error(500, "An error occurred while submitting the form. Please try again later.");
 	}
 }
 

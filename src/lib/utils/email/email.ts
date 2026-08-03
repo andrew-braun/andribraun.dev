@@ -1,13 +1,15 @@
 import { resendEmail } from "./resend";
 
+// Optionals accept an explicit `undefined` because callers forward destructured
+// optional fields straight through to `resendEmail`.
 export interface SendEmailParams {
 	toEmail: string;
-	fromEmail?: string;
-	replyTo?: string;
-	subject?: string;
-	htmlContent?: string;
-	template?: string;
-	variables?: Record<string, string | number | boolean>;
+	fromEmail?: string | undefined;
+	replyTo?: string | undefined;
+	subject?: string | undefined;
+	htmlContent?: string | undefined;
+	template?: string | undefined;
+	variables?: Record<string, string | number | boolean> | undefined;
 }
 
 export async function sendEmail({

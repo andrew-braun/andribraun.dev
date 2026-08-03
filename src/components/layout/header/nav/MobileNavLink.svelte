@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { page } from "$app/stores";
-	import type { NavItem } from "$root/src/ts/site-data";
+	import type { NavItem } from "$ts/site-data";
 
 	interface MobileNavLinkProps {
 		navItem: NavItem;

@@ -1,30 +1,25 @@
 <script lang="ts">
+	import { applyTheme, readStoredTheme, themes, type Theme } from "$utils/theme/toggle";
 	import { Switch } from "bits-ui";
 	import { onMount } from "svelte";
 
 	let currentTheme: Theme = $state("dark");
 	let checked = $state(true);
 
-	type Theme = "dark" | "light" | "neon";
-
-	const possibleThemes = ["dark", "light"];
-
 	onMount(() => {
-		const storedTheme = localStorage.getItem("storedTheme");
+		const storedTheme = readStoredTheme();
 		if (storedTheme) {
-			currentTheme = storedTheme as Theme;
+			currentTheme = storedTheme;
 			checked = currentTheme === "dark";
 		}
 	});
 
 	const toggleTheme = () => {
-		// Allow for more than 2 themes
-		const currentThemeIndex = possibleThemes.indexOf(currentTheme);
-		const nextThemeIndex = (currentThemeIndex + 1) % possibleThemes.length;
-		currentTheme = possibleThemes[nextThemeIndex] as Theme;
+		// Indexed so adding a third theme needs no change here.
+		const nextIndex = (themes.indexOf(currentTheme) + 1) % themes.length;
+		currentTheme = themes[nextIndex] ?? themes[0];
 
-		document.body.setAttribute("data-theme", currentTheme);
-		localStorage.setItem("storedTheme", currentTheme);
+		applyTheme(currentTheme);
 	};
 </script>
 

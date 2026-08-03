@@ -6,8 +6,9 @@
 
 	let isIntersecting: boolean = $state(false);
 
-	function generateLines() {
-		const randomCommands = [
+	function generateLines(): TerminalLineProps[] {
+		// Non-empty tuple so the random pick below always has a fallback.
+		const randomCommands: [TerminalLineProps, ...TerminalLineProps[]] = [
 			{
 				command: "$  help",
 				output:
@@ -33,7 +34,8 @@
 			}
 		];
 
-		const randomComand = randomCommands[Math.floor(Math.random() * randomCommands.length)];
+		const randomCommand =
+			randomCommands[Math.floor(Math.random() * randomCommands.length)] ?? randomCommands[0];
 
 		const lines: TerminalLineProps[] = [
 			{
@@ -50,7 +52,7 @@
 			// 	withCursor: false
 			// },
 			{
-				...randomComand,
+				...randomCommand,
 				withCursor: false
 			}
 			// {
@@ -60,18 +62,20 @@
 			// }
 		];
 
+		// Each line starts once the previous one has finished typing command and output.
 		for (let i = 1; i < lines.length; i++) {
-			if (!lines[i].outputDelay) {
-				lines[i].outputDelay = 500;
-			}
-
+			const line = lines[i];
 			const prev = lines[i - 1];
+			if (!line || !prev) continue;
+
+			line.outputDelay ||= 500;
+
 			const prevStart = prev.startDelay ?? 0;
 			const prevCommandTime = prev.command.length * 60;
 			const prevOutputDelay = prev.outputDelay ?? 500;
 			const prevOutputTime = prev.typeOutput ? (prev.output?.length ?? 0) * 60 : 0;
 
-			lines[i].startDelay = prevStart + prevCommandTime + prevOutputDelay + prevOutputTime + 250;
+			line.startDelay = prevStart + prevCommandTime + prevOutputDelay + prevOutputTime + 250;
 		}
 
 		return lines;

@@ -1,4 +1,6 @@
 <script lang="ts">
+	import type { Snippet } from "svelte";
+
 	// Transition phase and direction must match the controller in Tabs.svelte.
 	type PanelPhase = "idle" | "enter" | "exit";
 	type PanelDirection = 1 | -1;
@@ -12,7 +14,7 @@
 		direction?: PanelDirection;
 		// Whether this panel is logically active for accessibility state.
 		isActive?: boolean;
-		children: any;
+		children: Snippet;
 	}
 
 	const {
