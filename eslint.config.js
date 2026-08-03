@@ -70,7 +70,7 @@ export default [
 		}
 	},
 	{
-		ignores: ["build/", ".svelte-kit/", "dist/"]
+		ignores: [".netlify/", "build/", ".svelte-kit/", "dist/"]
 	},
 	{
 		// Generated from the Payload schema; not ours to lint.
