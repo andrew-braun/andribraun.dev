@@ -1,7 +1,7 @@
 import { CMS_KEY, CMS_URL } from "$env/static/private";
-import { PayloadSDK } from "@payloadcms/sdk";
 import type { ContactFormData } from "$root/src/components/forms/Contact/contact.schema";
-import type { Config, Project } from "./payload-types";
+import { PayloadSDK } from "@payloadcms/sdk";
+import type { Config, Media, Project } from "./payload-types";
 
 // Re-export types consumers are likely to need
 export type { Media, Project, Technology } from "./payload-types";
@@ -47,6 +47,35 @@ export async function getProjects(opts: { depth?: number; limit?: number } = {})
 export async function getProjectById(id: Project["id"], opts: { depth?: number } = {}) {
 	const { depth = 2 } = opts;
 	return sdk.findByID({ collection: "projects", id, depth });
+}
+
+/**
+ * Fetch a single project by its slug.
+ */
+
+export async function getProjectBySlug(slug: Project["slug"]) {
+	return sdk.find({
+		collection: "projects",
+		where: { slug: { equals: slug } },
+		depth: 2,
+		limit: 1
+	});
+}
+
+function absoluteUrl(media: Media): Media {
+	if (!media?.url) return media;
+	return { ...media, url: cmsMediaUrl(media.url) };
+}
+
+export function formatProjectData(project: Project) {
+	return {
+		...project,
+		thumbnail:
+			project.thumbnail && typeof project.thumbnail === "object"
+				? absoluteUrl(project.thumbnail)
+				: (project.thumbnail ?? null),
+		images: project.images?.map((img) => (typeof img === "object" ? absoluteUrl(img) : img)) ?? null
+	};
 }
 
 export async function createContactFormEntry({
