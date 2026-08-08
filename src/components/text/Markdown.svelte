@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { marked } from "marked";
+	import { gfmHeadingId } from "marked-gfm-heading-id";
 
 	interface MarkdownProps {
 		text: string;
@@ -8,7 +9,7 @@
 
 	let { text, maxWidth }: MarkdownProps = $props();
 
-	const markdownText = $derived(marked.parse(text));
+	const markdownText = $derived(marked.use(gfmHeadingId({ prefix: "project-" })).parse(text));
 </script>
 
 {#if maxWidth}

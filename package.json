@@ -69,6 +69,7 @@
 		"bits-ui": "^2.18.1",
 		"isomorphic-dompurify": "^3.20.0",
 		"marked": "^18.0.7",
+		"marked-gfm-heading-id": "^4.1.4",
 		"resend": "^6.18.1",
 		"typewriter-effect": "^2.22.0",
 		"zod": "^4.4.3"
