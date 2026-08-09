@@ -1,5 +1,13 @@
 <script lang="ts">
+	import IconBox from "$components/content-blocks/IconBox.svelte";
 	import type { Media, Project } from "$lib/cms/payload";
+	import {
+		UiIconArchive,
+		UiIconCircleCheck,
+		UiIconCircleQuestionMark,
+		UiIconEqualApproximately,
+		UiIconUser
+	} from "$root/src/lib/data/icons";
 
 	interface Props {
 		project: Project;
@@ -7,9 +15,26 @@
 
 	let { project }: Props = $props();
 
-	let { title, description, liveLink, snapshotLink, githubLink, images } = $derived(project);
-	console.log(images);
+	let { title, description, live_link, snapshot_link, github_link, images, client_name, status } =
+		$derived(project);
+
 	let heroImage = $derived(images?.[0]) as Media;
+
+	const statusIcon = $derived.by(() => {
+		switch (status) {
+			case "ongoing":
+				return UiIconEqualApproximately;
+
+			case "completed":
+				return UiIconCircleCheck;
+			case "live":
+				return UiIconCircleCheck;
+			case "archived":
+				return UiIconArchive;
+			default:
+				return UiIconCircleQuestionMark;
+		}
+	});
 </script>
 
 <section class="text-image-hero">
@@ -22,14 +47,14 @@
 				<p class="description">{description}</p>
 			{/if}
 			<!-- <p class="overview"></p> -->
-			{#if liveLink}
-				<a class="live-link" href={liveLink}>Visit live site</a>
+			{#if live_link}
+				<a class="live-link" href={live_link}>Visit live site</a>
 			{/if}
-			{#if snapshotLink}
-				<a class="snapshot-link" href={snapshotLink}>View snapshot</a>
+			{#if snapshot_link}
+				<a class="snapshot-link" href={snapshot_link}>View snapshot</a>
 			{/if}
-			{#if githubLink}
-				<a class="github-link" href={githubLink}>View on GitHub</a>
+			{#if github_link}
+				<a class="github-link" href={github_link}>View on GitHub</a>
 			{/if}
 		</div>
 		<div class="column-2">
@@ -43,6 +68,14 @@
 				</div>
 			{/if}
 		</div>
+	</div>
+	<div class="info-bar">
+		<!-- {#if client_name} -->
+		<IconBox Icon={UiIconUser} title="Client" text={client_name} orientation="horizontal" />
+		<!-- {/if} -->
+		<!-- {#if status} -->
+		<IconBox Icon={statusIcon} title="Status" text={status} orientation="horizontal" />
+		<!-- {/if} -->
 	</div>
 </section>
 
@@ -99,5 +132,13 @@
 				}
 			}
 		}
+	}
+
+	.info-bar {
+		display: flex;
+		gap: var(--space-lg);
+		align-items: center;
+		justify-content: center;
+		margin-top: var(--space-xl);
 	}
 </style>

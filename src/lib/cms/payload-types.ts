@@ -233,10 +233,10 @@ export interface Project {
 	id: number;
 	title?: string | null;
 	slug: string;
-	clientName?: string | null;
+	client_name?: string | null;
 	status?: ("live" | "ongoing" | "completed" | "archived") | null;
-	businessChallenge?: string | null;
-	contributionHighlights?:
+	business_challenge?: string | null;
+	contribution_highlights?:
 		| {
 				statement: string;
 				id?: string | null;
@@ -249,6 +249,7 @@ export interface Project {
 				id?: string | null;
 		  }[]
 		| null;
+	summary?: string | null;
 	description?: {
 		root: {
 			type: string;
@@ -264,14 +265,22 @@ export interface Project {
 		};
 		[k: string]: unknown;
 	} | null;
+	/**
+	 * The full write-up. Kept whole for projects that do not follow the four-section structure; otherwise it is the same content as the sections below.
+	 */
 	description_markdown?: string | null;
+	intro_markdown?: string | null;
+	tech_stack_markdown?: string | null;
+	implementation_markdown?: string | null;
+	outcome_markdown?: string | null;
 	metadata?: {
 		technologies?: (number | Technology)[] | null;
 	};
-	liveLink?: string | null;
-	snapshotLink?: string | null;
-	githubLink?: string | null;
+	live_link?: string | null;
+	snapshot_link?: string | null;
+	github_link?: string | null;
 	thumbnail?: (number | null) | Media;
+	hero_image?: (number | null) | Media;
 	images?: (number | Media)[] | null;
 	display?: {
 		featured?: boolean | null;
@@ -688,10 +697,10 @@ export interface MediaSelect<T extends boolean = true> {
 export interface ProjectsSelect<T extends boolean = true> {
 	title?: T;
 	slug?: T;
-	clientName?: T;
+	client_name?: T;
 	status?: T;
-	businessChallenge?: T;
-	contributionHighlights?:
+	business_challenge?: T;
+	contribution_highlights?:
 		| T
 		| {
 				statement?: T;
@@ -704,17 +713,23 @@ export interface ProjectsSelect<T extends boolean = true> {
 				metric?: T;
 				id?: T;
 		  };
+	summary?: T;
 	description?: T;
 	description_markdown?: T;
+	intro_markdown?: T;
+	tech_stack_markdown?: T;
+	implementation_markdown?: T;
+	outcome_markdown?: T;
 	metadata?:
 		| T
 		| {
 				technologies?: T;
 		  };
-	liveLink?: T;
-	snapshotLink?: T;
-	githubLink?: T;
+	live_link?: T;
+	snapshot_link?: T;
+	github_link?: T;
 	thumbnail?: T;
+	hero_image?: T;
 	images?: T;
 	display?:
 		| T

@@ -6,6 +6,11 @@ import PayloadIcon from "~icons/logos/payload";
 import ShopifyIcon from "~icons/logos/shopify";
 import StrapiIcon from "~icons/logos/strapi-icon";
 import SvelteKitIcon from "~icons/logos/svelte-kit";
+import ArchiveIcon from "~icons/lucide/archive";
+import CircleCheckIcon from "~icons/lucide/circle-check";
+import CircleQuestionMarkIcon from "~icons/lucide/circle-question-mark";
+import EqualApproximatelyIcon from "~icons/lucide/equal-approximately";
+import UserIcon from "~icons/lucide/user";
 import OcticonRocket24 from "~icons/octicon/rocket-24";
 import ApolloIcon from "~icons/skill-icons/apollo";
 import AWSIcon from "~icons/skill-icons/aws-dark";
@@ -79,6 +84,11 @@ export const CodeIconVite = ViteIcon;
 export const CodeIconWebpack = WebpackIcon;
 export const CodeIconWooCommerce = WooCommerceIcon;
 export const CodeIconWordPress = WordPressIcon;
+export const UiIconUser = UserIcon;
+export const UiIconCircleCheck = CircleCheckIcon;
+export const UiIconEqualApproximately = EqualApproximatelyIcon;
+export const UiIconArchive = ArchiveIcon;
+export const UiIconCircleQuestionMark = CircleQuestionMarkIcon;
 
 export const codeIcons = {
 	cms: {
