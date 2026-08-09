@@ -55,4 +55,33 @@
 			border: 1px solid var(--color-accent-3);
 		}
 	}
+
+	:global([data-theme="light"]) {
+		.tag {
+			&.primary {
+				color: var(--color-primary-text);
+				background: var(--color-primary);
+			}
+
+			&.secondary {
+				color: var(--color-secondary-text);
+				background: var(--color-secondary);
+			}
+
+			&.accent-1 {
+				color: var(--color-accent-1-text);
+				background: var(--color-accent-1);
+			}
+
+			&.accent-2 {
+				color: var(--color-accent-2-text);
+				background: var(--color-accent-2);
+			}
+
+			&.accent-3 {
+				color: var(--color-accent-3-text);
+				background: var(--color-accent-3);
+			}
+		}
+	}
 </style>

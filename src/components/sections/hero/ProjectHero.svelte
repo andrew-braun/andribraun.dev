@@ -94,7 +94,7 @@
 					height: auto;
 					object-fit: cover;
 					border-radius: var(--border-radius-lg);
-					transform: perspective(300px) rotateY(-5deg) rotateX(1deg) rotateZ(-1deg);
+					transform: perspective(320px) rotateY(-5deg) rotateX(1deg) rotateZ(1deg);
 					transform-origin: center center;
 				}
 			}
