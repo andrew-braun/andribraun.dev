@@ -17,12 +17,12 @@
 	);
 </script>
 
-<a class="card card--{color}" href={project.liveLink} target="_blank" rel="noopener noreferrer">
+<a class="card card--{color}" href={project.slug} target="_blank" rel="noopener noreferrer">
 	<div class="card-content">
 		<h3 class="title">{project.title}</h3>
-		{#if project.description_markdown}
+		<!-- {#if project.description_markdown}
 			<p class="description">{project.description_markdown}</p>
-		{/if}
+		{/if} -->
 		<div class="footer">
 			{#if technologies.length > 0}
 				<ul class="tech-pills" aria-label="Technologies used">

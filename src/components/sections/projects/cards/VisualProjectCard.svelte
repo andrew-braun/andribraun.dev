@@ -15,7 +15,7 @@
 	const image = $derived(populated(project.images?.[0]) ?? populated(project.thumbnail));
 </script>
 
-<a class="card" href={project.liveLink} target="_blank" rel="noopener noreferrer">
+<a class="card" href={project.slug} target="_blank" rel="noopener noreferrer">
 	<div class="image-wrapper">
 		{#if image}
 			<img src={image.url} alt={image.alt} class="card-image" loading="lazy" />
