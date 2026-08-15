@@ -1,5 +1,5 @@
 <script lang="ts">
-	interface TitleProps {
+	export interface TitleProps {
 		tag?: string;
 		tagAttributes?: Record<string, string>;
 		superTitle?: string;

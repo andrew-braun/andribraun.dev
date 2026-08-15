@@ -4,6 +4,7 @@
 	import Button from "$components/ui/buttons/Button.svelte";
 	import type { Media, Project } from "$lib/cms/payload";
 	import { CodeIconGitHub, RocketIcon } from "$lib/data/icons";
+	import { capitalizeFirstLetter } from "$lib/utils/text";
 	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
 	import {
 		UiIconCamera as CameraIcon,
@@ -80,12 +81,17 @@
 		</div>
 	</div>
 	<div class="info-bar">
-		<!-- {#if client_name} -->
-		<IconBox Icon={UiIconUser} title="Client" text={client_name} orientation="horizontal" />
-		<!-- {/if} -->
-		<!-- {#if status} -->
-		<IconBox Icon={statusIcon} title="Status" text={status} orientation="horizontal" />
-		<!-- {/if} -->
+		{#if client_name}
+			<IconBox Icon={UiIconUser} title="Client" text={client_name} orientation="horizontal" />
+		{/if}
+		{#if status}
+			<IconBox
+				Icon={statusIcon}
+				title="Status"
+				text={capitalizeFirstLetter(status)}
+				orientation="horizontal"
+			/>
+		{/if}
 	</div>
 </Container>
 
@@ -152,6 +158,15 @@
 					}
 				}
 			}
+
+			@media (max-width: $breakpoint-md) {
+				grid-template-columns: 1fr;
+
+				.column-2 {
+					grid-row: 1;
+					grid-column: 1;
+				}
+			}
 		}
 	}
 
@@ -160,6 +175,7 @@
 		gap: var(--space-lg);
 		align-items: center;
 		justify-content: center;
+		margin-inline: auto;
 		margin-top: var(--space-xl);
 	}
 </style>

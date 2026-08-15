@@ -1,39 +1,55 @@
 <script lang="ts">
+	import type { TitleProps } from "$components/text/Title.svelte";
+	import Title from "$components/text/Title.svelte";
+	import type { Media } from "$lib/cms/payload";
 	import type { ImageDataProps } from "$ts/general";
 	import { marked } from "marked";
 	import TwoColumn from "./TwoColumn.svelte";
 
 	interface ImageTextProps {
-		image: ImageDataProps;
+		image: ImageDataProps | Media;
 		text: string;
+		titleProps?: TitleProps;
 		widerSide: "left" | "right";
 		smallColumn: "25%" | "33%" | "50%" | "66%" | "75%";
 		imageProps?: Record<string, unknown>;
+		imageSide?: "left" | "right";
 	}
 
 	let {
 		image,
 		text,
+		titleProps,
 		widerSide = "left",
 		smallColumn = "33%",
-		imageProps = {}
+		imageProps = {},
+		imageSide = "left"
 	}: ImageTextProps = $props();
 
 	const markdownText = $derived(marked.parse(text));
+
+	const src = $derived(image?.src ?? image?.url ?? "");
 </script>
 
 {#snippet imageSnippet()}
 	<div class="image-wrapper">
-		<enhanced:img src={image.src} alt={image.alt} class="image" {...imageProps} loading="lazy" />
+		<enhanced:img {src} alt={image?.alt ?? ""} class="image" {...imageProps} loading="lazy" />
 	</div>
 {/snippet}
 
 {#snippet textSnippet()}
+	{#if titleProps}
+		<Title {...titleProps} />
+	{/if}
 	<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
 	{@html markdownText}
 {/snippet}
 
-<TwoColumn {smallColumn} {widerSide} leftContent={imageSnippet} rightContent={textSnippet} />
+{#if imageSide === "left"}
+	<TwoColumn {smallColumn} {widerSide} leftContent={imageSnippet} rightContent={textSnippet} />
+{:else}
+	<TwoColumn {smallColumn} {widerSide} leftContent={textSnippet} rightContent={imageSnippet} />
+{/if}
 
 <style lang="scss">
 	.image-wrapper {
