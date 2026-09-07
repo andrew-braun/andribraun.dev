@@ -1,15 +1,16 @@
 <script lang="ts">
 	import type { Snippet } from "svelte";
+	import type { ClassValue } from "svelte/elements";
 	interface Props {
 		children: Snippet;
 		element?: "div" | "section" | "article" | "main";
-		class?: string;
+		class?: ClassValue;
 	}
 
 	let { children, element = "div", class: className }: Props = $props();
 </script>
 
-<svelte:element this={element} class={["container", className].join(" ")}>
+<svelte:element this={element} class={["container", className]}>
 	{@render children()}
 </svelte:element>
 

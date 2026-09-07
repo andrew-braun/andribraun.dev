@@ -17,7 +17,7 @@
 	);
 </script>
 
-<a class="card card--{color}" href={project.slug} target="_blank" rel="noopener noreferrer">
+<a class="card card--{color}" href="/{project.slug}">
 	<div class="card-content">
 		<h3 class="title">{project.title}</h3>
 		<!-- {#if project.description_markdown}
@@ -112,14 +112,6 @@
 			font-size: var(--font-size-h4);
 			font-weight: 700;
 			line-height: var(--line-height-tight);
-		}
-
-		.description {
-			flex: 1;
-			margin: 0;
-			font-size: var(--font-size-sm);
-			line-height: var(--line-height-relaxed);
-			opacity: 0.8;
 		}
 	}
 

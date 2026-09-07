@@ -68,7 +68,6 @@ function absoluteUrl(media: Media): Media {
 }
 
 export function formatProjectData(project: Project) {
-	console.log("formatProjectData", project);
 	return {
 		...project,
 		thumbnail:

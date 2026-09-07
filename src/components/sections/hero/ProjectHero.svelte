@@ -2,7 +2,8 @@
 	import IconBox from "$components/content-blocks/IconBox.svelte";
 	import Container from "$components/layout/containers/Container.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
-	import type { Media, Project } from "$lib/cms/payload";
+	import { populatedMedia } from "$lib/cms/media";
+	import type { Project } from "$lib/cms/payload";
 	import { CodeIconGitHub, RocketIcon } from "$lib/data/icons";
 	import { capitalizeFirstLetter } from "$lib/utils/text";
 	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
@@ -24,7 +25,7 @@
 	let { title, description, live_link, snapshot_link, github_link, images, client_name, status } =
 		$derived(project);
 
-	let heroImage = $derived(images?.[0]) as Media;
+	const heroImage = $derived(populatedMedia(images?.[0]));
 
 	const statusIcon = $derived.by(() => {
 		switch (status) {
@@ -58,13 +59,17 @@
 			<!-- <p class="overview"></p> -->
 			<div class="links">
 				{#if live_link}
-					<Button variant="filled" Icon={RocketIcon} href={live_link}>Visit live site</Button>
+					<Button variant="filled" Icon={RocketIcon} href={live_link} target="_blank"
+						>Visit live site</Button
+					>
 				{/if}
 				{#if snapshot_link}
 					<Button variant="gradient" Icon={CameraIcon} href={snapshot_link}>View snapshot</Button>
 				{/if}
 				{#if github_link}
-					<Button variant="outline" Icon={CodeIconGitHub} href={github_link}>View on GitHub</Button>
+					<Button variant="outline" Icon={CodeIconGitHub} href={github_link} target="_blank"
+						>View on GitHub</Button
+					>
 				{/if}
 			</div>
 		</div>

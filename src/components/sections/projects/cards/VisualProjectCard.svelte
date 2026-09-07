@@ -1,5 +1,6 @@
 <script lang="ts">
-	import type { Media, Project } from "$lib/cms/payload";
+	import { populatedMedia } from "$lib/cms/media";
+	import type { Project } from "$lib/cms/payload";
 
 	interface Props {
 		project: Project;
@@ -7,15 +8,11 @@
 
 	const { project }: Props = $props();
 
-	// A relationship is only a `Media` object when it was populated at this depth.
-	const populated = (relation: number | Media | null | undefined): Media | null =>
-		typeof relation === "object" && relation !== null && relation.url ? relation : null;
-
 	// A gallery image wins over the thumbnail when both are present.
-	const image = $derived(populated(project.images?.[0]) ?? populated(project.thumbnail));
+	const image = $derived(populatedMedia(project.images?.[0]) ?? populatedMedia(project.thumbnail));
 </script>
 
-<a class="card" href={project.slug} target="_blank" rel="noopener noreferrer">
+<a class="card" href="/{project.slug}">
 	<div class="image-wrapper">
 		{#if image}
 			<img src={image.url} alt={image.alt} class="card-image" loading="lazy" />

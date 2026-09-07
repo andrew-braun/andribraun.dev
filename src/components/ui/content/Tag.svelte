@@ -28,30 +28,37 @@
 		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		white-space: nowrap;
+		cursor: default;
 		border-radius: var(--border-radius-sm);
+		opacity: 0.85;
+		transition: var(--transition-md);
+
+		&:hover {
+			opacity: 1;
+		}
 
 		&.primary {
-			color: var(--color-primary);
+			// color: var(--color-primary);
 			border: 1px solid var(--color-primary);
 		}
 
 		&.secondary {
-			color: var(--color-secondary);
+			// color: var(--color-secondary);
 			border: 1px solid var(--color-secondary);
 		}
 
 		&.accent-1 {
-			color: var(--color-accent-1);
+			// color: var(--color-accent-1);
 			border: 1px solid var(--color-accent-1);
 		}
 
 		&.accent-2 {
-			color: var(--color-accent-2);
+			// color: var(--color-accent-2);
 			border: 1px solid var(--color-accent-2);
 		}
 
 		&.accent-3 {
-			color: var(--color-accent-3);
+			// color: var(--color-accent-3);
 			border: 1px solid var(--color-accent-3);
 		}
 	}
@@ -59,27 +66,27 @@
 	:global([data-theme="light"]) {
 		.tag {
 			&.primary {
-				color: var(--color-primary-text);
+				// color: var(--color-primary-text);
 				background: var(--color-primary);
 			}
 
 			&.secondary {
-				color: var(--color-secondary-text);
+				// color: var(--color-secondary-text);
 				background: var(--color-secondary);
 			}
 
 			&.accent-1 {
-				color: var(--color-accent-1-text);
+				// color: var(--color-accent-1-text);
 				background: var(--color-accent-1);
 			}
 
 			&.accent-2 {
-				color: var(--color-accent-2-text);
+				// color: var(--color-accent-2-text);
 				background: var(--color-accent-2);
 			}
 
 			&.accent-3 {
-				color: var(--color-accent-3-text);
+				// color: var(--color-accent-3-text);
 				background: var(--color-accent-3);
 			}
 		}

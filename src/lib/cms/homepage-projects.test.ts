@@ -5,12 +5,16 @@ import { load } from "../../routes/+page.server";
 
 vi.mock("$lib/cms/payload", () => ({
 	cmsMediaUrl: (url: string) => `https://cms.example.test${url}`,
-	getProjects: vi.fn()
+	getProjects: vi.fn(),
+	// This suite covers hide-filtering, not media formatting, so pass documents through
+	// unchanged. The real implementation reaches for private env vars.
+	formatProjectData: (project: Project) => project
 }));
 
 const visibleProject: Project = {
 	id: 1,
 	title: "Visible project",
+	slug: "visible-project",
 	display: { hide: false },
 	createdAt: "2026-01-01T00:00:00.000Z",
 	updatedAt: "2026-01-01T00:00:00.000Z"
@@ -19,6 +23,7 @@ const visibleProject: Project = {
 const hiddenProject: Project = {
 	id: 2,
 	title: "Hidden project",
+	slug: "hidden-project",
 	display: { hide: true },
 	createdAt: "2026-01-01T00:00:00.000Z",
 	updatedAt: "2026-01-01T00:00:00.000Z"

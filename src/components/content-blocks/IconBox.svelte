@@ -36,7 +36,7 @@
 			display: grid;
 			grid-template-columns: 1fr 3fr;
 
-			.icon {
+			:global(.icon) {
 				grid-column: 1;
 			}
 

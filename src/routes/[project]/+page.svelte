@@ -7,9 +7,9 @@
 	import Title from "$components/text/Title.svelte";
 	import Tag from "$components/ui/content/Tag.svelte";
 	import type { Technology } from "$lib/cms/payload-types";
+	import { populatedMedia } from "$lib/cms/media";
 
 	let { data } = $props();
-	console.log(data);
 	const { project } = $derived(data);
 	const { intro_markdown, tech_stack_markdown } = $derived(project);
 	const { metadata } = $derived(project);
@@ -24,7 +24,7 @@
 
 {#snippet techStackTechnologies()}
 	{#if technologies?.length}
-		<div id="project-technologies" class="technology-tags">
+		<div class="technology-tags">
 			{#each technologies as technology (technology?.id)}
 				{#if technology?.name}
 					<Tag text={technology?.name} color="random" />
@@ -48,7 +48,7 @@
 		{#if intro_markdown}
 			<section id="project-introduction">
 				<ImageText
-					image={project?.images?.[1]}
+					image={populatedMedia(project?.images?.[1])}
 					text={intro_markdown}
 					widerSide="right"
 					smallColumn="50%"

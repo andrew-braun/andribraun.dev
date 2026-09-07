@@ -7,7 +7,7 @@
 	import TwoColumn from "./TwoColumn.svelte";
 
 	interface ImageTextProps {
-		image: ImageDataProps | Media;
+		image?: ImageDataProps | Media | null;
 		text: string;
 		titleProps?: TitleProps;
 		widerSide: "left" | "right";
@@ -28,13 +28,19 @@
 
 	const markdownText = $derived(marked.parse(text));
 
-	const src = $derived(image?.src ?? image?.url ?? "");
+	// `ImageDataProps` carries `src`, a Payload `Media` carries `url`; neither has both.
+	const src = $derived.by(() => {
+		if (!image) return "";
+		return ("src" in image ? image.src : image.url) ?? "";
+	});
 </script>
 
 {#snippet imageSnippet()}
-	<div class="image-wrapper">
-		<enhanced:img {src} alt={image?.alt ?? ""} class="image" {...imageProps} loading="lazy" />
-	</div>
+	{#if src}
+		<div class="image-wrapper">
+			<enhanced:img {src} alt={image?.alt ?? ""} class="image" {...imageProps} loading="lazy" />
+		</div>
+	{/if}
 {/snippet}
 
 {#snippet textSnippet()}
