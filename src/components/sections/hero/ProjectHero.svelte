@@ -1,20 +1,11 @@
 <script lang="ts">
-	import IconBox from "$components/content-blocks/IconBox.svelte";
 	import Container from "$components/layout/containers/Container.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
 	import { populatedMedia } from "$lib/cms/media";
 	import type { Project } from "$lib/cms/payload";
 	import { CodeIconGitHub, RocketIcon } from "$lib/data/icons";
-	import { capitalizeFirstLetter } from "$lib/utils/text";
 	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
-	import {
-		UiIconCamera as CameraIcon,
-		UiIconArchive,
-		UiIconCircleCheck,
-		UiIconCircleQuestionMark,
-		UiIconEqualApproximately,
-		UiIconUser
-	} from "$root/src/lib/data/icons";
+	import { UiIconCamera as CameraIcon } from "$root/src/lib/data/icons";
 
 	interface Props {
 		project: Project;
@@ -22,26 +13,9 @@
 
 	let { project }: Props = $props();
 
-	let { title, description, live_link, snapshot_link, github_link, images, client_name, status } =
-		$derived(project);
+	let { title, description, live_link, snapshot_link, github_link, images } = $derived(project);
 
 	const heroImage = $derived(populatedMedia(images?.[0]));
-
-	const statusIcon = $derived.by(() => {
-		switch (status) {
-			case "ongoing":
-				return UiIconEqualApproximately;
-
-			case "completed":
-				return UiIconCircleCheck;
-			case "live":
-				return UiIconCircleCheck;
-			case "archived":
-				return UiIconArchive;
-			default:
-				return UiIconCircleQuestionMark;
-		}
-	});
 </script>
 
 <Container element="section" class={["text-image-hero"]}>
@@ -84,19 +58,6 @@
 				</div>
 			{/if}
 		</div>
-	</div>
-	<div class="info-bar">
-		{#if client_name}
-			<IconBox Icon={UiIconUser} title="Client" text={client_name} orientation="horizontal" />
-		{/if}
-		{#if status}
-			<IconBox
-				Icon={statusIcon}
-				title="Status"
-				text={capitalizeFirstLetter(status)}
-				orientation="horizontal"
-			/>
-		{/if}
 	</div>
 </Container>
 
@@ -173,14 +134,5 @@
 				}
 			}
 		}
-	}
-
-	.info-bar {
-		display: flex;
-		gap: var(--space-lg);
-		align-items: center;
-		justify-content: center;
-		margin-inline: auto;
-		margin-top: var(--space-xl);
 	}
 </style>

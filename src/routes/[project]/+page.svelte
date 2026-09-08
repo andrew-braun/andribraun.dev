@@ -3,6 +3,7 @@
 	import TwoColumn from "$components/layout/columns/TwoColumn.svelte";
 	import Container from "$components/layout/containers/Container.svelte";
 	import ProjectHero from "$components/sections/hero/ProjectHero.svelte";
+	import ProjectContext from "$components/sections/projects/ProjectContext.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Tag from "$components/ui/content/Tag.svelte";
@@ -42,6 +43,7 @@
 {/snippet}
 
 <ProjectHero {project} />
+<ProjectContext clientName={project.client_name} status={project.status} />
 
 <Container>
 	<div class="project-overview">
