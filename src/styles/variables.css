@@ -189,6 +189,8 @@
 	--site-max-width: 1920px;
 	--text-max-width: 65ch;
 	--element-max-width: 85ch;
+	--header-max-height: 120px;
+	--header-max-height-scrolled: 80px;
 }
 
 /* ============================================

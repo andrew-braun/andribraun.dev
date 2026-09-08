@@ -28,6 +28,7 @@
 		position: sticky;
 		top: 0;
 		z-index: 90;
+		max-height: var(--header-max-height);
 		padding: var(--space-md) var(--spacing-gutters);
 		color: var(--color-text);
 		background-color: var(--color-background);
@@ -35,16 +36,18 @@
 		transition:
 			background-color var(--transition-md),
 			color var(--transition-md),
-			padding var(--transition-md);
+			padding var(--transition-md),
+			height var(--transition-md);
 
 		&.scrolled {
+			max-height: var(--header-max-height-scrolled);
 			padding-top: var(--space-sm);
 			padding-bottom: var(--space-xs);
 			background-color: transparent;
 			backdrop-filter: blur(10px);
 
 			:global(.logo) {
-				width: 90px;
+				max-width: 90px;
 			}
 		}
 

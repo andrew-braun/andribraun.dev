@@ -20,90 +20,114 @@
 {#if cards.length || narrative}
 	<section id="project-outcome">
 		<Title title="Outcome" tag="h2" />
-		{#if cards.length}
-			<ul class:single={cards.length === 1} class="impact-cards">
-				{#each cards as outcome, index (outcome.id ?? index)}
-					<li class={["card", assignColor(index)]}>
-						{#if outcome.metric?.trim()}
-							<p class="metric">{outcome.metric.trim()}</p>
-						{/if}
-						<p class="statement">{outcome.statement.trim()}</p>
-					</li>
-				{/each}
-			</ul>
-		{/if}
-		{#if narrative}
-			<div class="narrative">
-				<Markdown text={narrative} maxWidth="var(--text-max-width)" />
-			</div>
-		{/if}
+		<div class="container">
+			{#if cards.length}
+				<ul class:single={cards.length === 1} class="impact-cards">
+					{#each cards as outcome, index (outcome.id ?? index)}
+						<li class={["card", assignColor(index)]}>
+							{#if outcome.metric?.trim()}
+								<p class="metric">{outcome.metric.trim()}</p>
+							{/if}
+							<p class="statement">{outcome.statement.trim()}</p>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+			{#if narrative}
+				<div class="narrative">
+					<Markdown text={narrative} maxWidth="var(--text-max-width)" />
+				</div>
+			{/if}
+		</div>
 	</section>
 {/if}
 
 <style lang="scss">
-	.impact-cards {
+	.container {
+		position: relative;
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
-		gap: var(--space-lg);
-		padding: 0;
-		margin: 0;
-		list-style: none;
-
-		/* A lone card stretched across the full page reads as a banner, not a result. */
-		&.single {
-			grid-template-columns: minmax(0, var(--text-max-width));
-		}
-
-		.card {
-			display: flex;
-			flex-direction: column;
-			gap: var(--space-sm);
-			padding: var(--space-lg);
-			background-color: var(--color-surface-raised);
-			border-top: var(--border-width-primary) solid var(--card-accent);
-			border-radius: var(--border-radius-lg);
-
-			&.primary {
-				--card-accent: var(--color-primary);
-			}
-
-			&.secondary {
-				--card-accent: var(--color-secondary);
-			}
-
-			&.accent-1 {
-				--card-accent: var(--color-accent-1);
-			}
-
-			&.accent-2 {
-				--card-accent: var(--color-accent-2);
-			}
-
-			&.accent-3 {
-				--card-accent: var(--color-accent-3);
-			}
-
-			/* A metric is emphasised when present, but its absence must not leave a gap. */
-			.metric {
-				margin: 0;
-				font-size: var(--font-size-xl);
-				font-weight: var(--font-weight-bold);
-				line-height: var(--line-height-tight);
-				color: var(--card-accent);
-			}
-
-			.statement {
-				margin: 0;
-				line-height: var(--line-height-relaxed);
-			}
-		}
+		grid-template-columns: 2fr 3fr;
+		gap: var(--space-xl);
 
 		@media (max-width: $breakpoint-sm) {
-			gap: var(--space-md);
+			grid-template-rows: auto;
+			grid-template-columns: 1fr;
 		}
-	}
 
-	.narrative {
-		margin-top: var(--space-xl);
+		.impact-cards {
+			display: flex;
+			flex-direction: column;
+			grid-column: 1;
+			gap: var(--space-lg);
+			padding: 0;
+			margin: 0;
+			list-style: none;
+
+			@media (max-width: $breakpoint-sm) {
+				grid-row: 2;
+			}
+
+			.card {
+				display: flex;
+				flex-direction: column;
+				gap: var(--space-sm);
+				padding: var(--space-lg);
+				background-color: var(--color-surface-raised);
+				border-top: var(--border-width-primary) solid var(--card-accent);
+				border-radius: var(--border-radius-lg);
+
+				&.primary {
+					--card-accent: var(--color-primary);
+				}
+
+				&.secondary {
+					--card-accent: var(--color-secondary);
+				}
+
+				&.accent-1 {
+					--card-accent: var(--color-accent-1);
+				}
+
+				&.accent-2 {
+					--card-accent: var(--color-accent-2);
+				}
+
+				&.accent-3 {
+					--card-accent: var(--color-accent-3);
+				}
+
+				/* A metric is emphasised when present, but its absence must not leave a gap. */
+				.metric {
+					margin: 0;
+					font-size: var(--font-size-xl);
+					font-weight: var(--font-weight-bold);
+					line-height: var(--line-height-tight);
+					color: var(--card-accent);
+				}
+
+				.statement {
+					margin: 0;
+					line-height: var(--line-height-relaxed);
+				}
+			}
+
+			@media (max-width: $breakpoint-sm) {
+				gap: var(--space-md);
+			}
+		}
+
+		.narrative {
+			position: sticky;
+			top: var(--header-max-height-scrolled);
+			grid-column: 2;
+			align-self: start;
+
+			@media (max-width: $breakpoint-sm) {
+				position: relative;
+				top: unset;
+				grid-row: 1;
+				grid-column: 1;
+			}
+		}
 	}
 </style>

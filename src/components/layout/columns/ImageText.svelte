@@ -69,6 +69,7 @@
 		position: sticky;
 		top: var(--space-md);
 		align-self: start;
+		padding-top: var(--header-max-height-scrolled);
 
 		.image {
 			width: 100%;

@@ -73,11 +73,14 @@
 			gap: var(--space-lg);
 
 			.column-1 {
-				grid-column: 1;
-
 				.title {
 					line-height: var(--line-height-tight);
-					text-align: center;
+
+					// text-align: center;
+
+					@media (max-width: $breakpoint-md) {
+						text-align: center;
+					}
 				}
 
 				.summary {
@@ -86,7 +89,7 @@
 					margin-inline: auto;
 					font-size: var(--font-size-md);
 					line-height: var(--line-height-relaxed);
-					text-align: center;
+					text-align: left;
 				}
 
 				.links {
