@@ -37,7 +37,7 @@
 			background-color var(--transition-md),
 			color var(--transition-md),
 			padding var(--transition-md),
-			height var(--transition-md);
+			max-height var(--transition-md);
 
 		&.scrolled {
 			max-height: var(--header-max-height-scrolled);
@@ -47,7 +47,7 @@
 			backdrop-filter: blur(10px);
 
 			:global(.logo) {
-				max-width: 90px;
+				width: 90px;
 			}
 		}
 

@@ -20,9 +20,9 @@
 {#if cards.length || narrative}
 	<section id="project-outcome">
 		<Title title="Outcome" tag="h2" />
-		<div class="container">
+		<div class:no-cards={!cards.length} class="container">
 			{#if cards.length}
-				<ul class:single={cards.length === 1} class="impact-cards">
+				<ul class="impact-cards">
 					{#each cards as outcome, index (outcome.id ?? index)}
 						<li class={["card", assignColor(index)]}>
 							{#if outcome.metric?.trim()}
@@ -44,10 +44,19 @@
 
 <style lang="scss">
 	.container {
-		position: relative;
 		display: grid;
 		grid-template-columns: 2fr 3fr;
 		gap: var(--space-xl);
+
+		/* With no cards beside it, the narrative centres rather than leaving a dead column. */
+		&.no-cards {
+			grid-template-columns: minmax(0, 1fr);
+
+			.narrative {
+				grid-column: 1;
+				justify-self: center;
+			}
+		}
 
 		@media (max-width: $breakpoint-sm) {
 			grid-template-rows: auto;

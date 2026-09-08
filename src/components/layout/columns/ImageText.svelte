@@ -67,9 +67,8 @@
 <style lang="scss">
 	.image-wrapper {
 		position: sticky;
-		top: var(--space-md);
+		top: calc(var(--header-max-height-scrolled) + var(--space-md));
 		align-self: start;
-		padding-top: var(--header-max-height-scrolled);
 
 		.image {
 			width: 100%;

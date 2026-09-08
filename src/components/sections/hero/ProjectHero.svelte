@@ -76,8 +76,6 @@
 				.title {
 					line-height: var(--line-height-tight);
 
-					// text-align: center;
-
 					@media (max-width: $breakpoint-md) {
 						text-align: center;
 					}
