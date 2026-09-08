@@ -30,36 +30,36 @@
 		white-space: nowrap;
 		cursor: default;
 		border-radius: var(--border-radius-sm);
-		opacity: 0.85;
-		transition: var(--transition-md);
+		transition: all var(--transition-fs);
 
 		&:hover {
-			opacity: 1;
+			filter: brightness(1.1);
+			transform: scale(1.05);
 		}
 
 		&.primary {
 			// color: var(--color-primary);
-			border: 1px solid var(--color-primary);
+			border: 2px solid var(--color-primary);
 		}
 
 		&.secondary {
 			// color: var(--color-secondary);
-			border: 1px solid var(--color-secondary);
+			border: 2px solid var(--color-secondary);
 		}
 
 		&.accent-1 {
 			// color: var(--color-accent-1);
-			border: 1px solid var(--color-accent-1);
+			border: 2px solid var(--color-accent-1);
 		}
 
 		&.accent-2 {
 			// color: var(--color-accent-2);
-			border: 1px solid var(--color-accent-2);
+			border: 2px solid var(--color-accent-2);
 		}
 
 		&.accent-3 {
 			// color: var(--color-accent-3);
-			border: 1px solid var(--color-accent-3);
+			border: 2px solid var(--color-accent-3);
 		}
 	}
 

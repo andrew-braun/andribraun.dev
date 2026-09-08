@@ -2,7 +2,7 @@
 	import type { Snippet } from "svelte";
 
 	interface TwoColumnProps {
-		smallColumn?: "25%" | "33%" | "50%" | "66%" | "75%";
+		smallColumn?: "25%" | "33%" | "40%" | "50%" | "66%" | "75%";
 		widerSide?: "left" | "right";
 		leftContent: Snippet | string;
 		rightContent: Snippet | string;
@@ -52,6 +52,11 @@
 
 		&.small-width-25 {
 			--small-width: 1fr;
+			--large-width: 3fr;
+		}
+
+		&.small-width-40 {
+			--small-width: 2fr;
 			--large-width: 3fr;
 		}
 

@@ -1,16 +1,12 @@
 <script lang="ts">
 	import ImageText from "$components/layout/columns/ImageText.svelte";
-	import TwoColumn from "$components/layout/columns/TwoColumn.svelte";
 	import Container from "$components/layout/containers/Container.svelte";
 	import ProjectHero from "$components/sections/hero/ProjectHero.svelte";
 	import ProjectChallengeOutcome from "$components/sections/projects/ProjectChallengeOutcome.svelte";
 	import ProjectContext from "$components/sections/projects/ProjectContext.svelte";
 	import ProjectContribution from "$components/sections/projects/ProjectContribution.svelte";
 	import ProjectOutcome from "$components/sections/projects/ProjectOutcome.svelte";
-	import Markdown from "$components/text/Markdown.svelte";
-	import Title from "$components/text/Title.svelte";
-	import Tag from "$components/ui/content/Tag.svelte";
-	import type { Technology } from "$lib/cms/payload-types";
+	import ProjectTechnology from "$components/sections/projects/ProjectTechnology.svelte";
 	import { populatedMedia } from "$lib/cms/media";
 
 	let { data } = $props();
@@ -25,33 +21,7 @@
 	const contributionHighlights = $derived(project.contribution_highlights ?? []);
 	const outcomes = $derived(project.outcomes ?? []);
 	const { metadata } = $derived(project);
-	const technologies: Technology[] = $derived.by(() => {
-		return (
-			metadata?.technologies?.filter(
-				(tech): tech is Technology => !!tech && typeof tech !== "number"
-			) ?? []
-		);
-	});
 </script>
-
-{#snippet techStackTechnologies()}
-	{#if technologies?.length}
-		<div class="technology-tags">
-			{#each technologies as technology (technology?.id)}
-				{#if technology?.name}
-					<Tag text={technology?.name} color="random" />
-				{/if}
-			{/each}
-		</div>
-	{/if}
-{/snippet}
-
-{#snippet techStackMarkdown()}
-	{#if tech_stack_markdown}
-		<Title title="Tech Stack" tag="h2" />
-		<Markdown text={tech_stack_markdown} />
-	{/if}
-{/snippet}
 
 <ProjectHero {project} />
 <ProjectContext clientName={project.client_name} status={project.status} />
@@ -73,16 +43,7 @@
 
 		<ProjectChallengeOutcome challenge={business_challenge} outcome={outcomes[0]} />
 
-		{#if technologies?.length || tech_stack_markdown}
-			<section id="project-technologies">
-				<TwoColumn
-					smallColumn="33%"
-					widerSide="right"
-					leftContent={techStackTechnologies}
-					rightContent={techStackMarkdown}
-				/>
-			</section>
-		{/if}
+		<ProjectTechnology technologies={metadata?.technologies} markdown={tech_stack_markdown} />
 
 		{#if implementation_markdown}
 			<section id="project-implementation">
@@ -108,11 +69,5 @@
 		display: flex;
 		flex-direction: column;
 		gap: calc(var(--spacing-vertical-section) * 2);
-	}
-
-	.technology-tags {
-		display: flex;
-		flex-wrap: wrap;
-		gap: var(--space-md);
 	}
 </style>
