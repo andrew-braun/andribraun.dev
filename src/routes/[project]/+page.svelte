@@ -3,7 +3,10 @@
 	import TwoColumn from "$components/layout/columns/TwoColumn.svelte";
 	import Container from "$components/layout/containers/Container.svelte";
 	import ProjectHero from "$components/sections/hero/ProjectHero.svelte";
+	import ProjectChallengeOutcome from "$components/sections/projects/ProjectChallengeOutcome.svelte";
 	import ProjectContext from "$components/sections/projects/ProjectContext.svelte";
+	import ProjectContribution from "$components/sections/projects/ProjectContribution.svelte";
+	import ProjectOutcome from "$components/sections/projects/ProjectOutcome.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Tag from "$components/ui/content/Tag.svelte";
@@ -12,7 +15,15 @@
 
 	let { data } = $props();
 	const { project } = $derived(data);
-	const { intro_markdown, tech_stack_markdown } = $derived(project);
+	const {
+		business_challenge,
+		intro_markdown,
+		tech_stack_markdown,
+		implementation_markdown,
+		outcome_markdown
+	} = $derived(project);
+	const contributionHighlights = $derived(project.contribution_highlights ?? []);
+	const outcomes = $derived(project.outcomes ?? []);
 	const { metadata } = $derived(project);
 	const technologies: Technology[] = $derived.by(() => {
 		return (
@@ -60,6 +71,8 @@
 			</section>
 		{/if}
 
+		<ProjectChallengeOutcome challenge={business_challenge} outcome={outcomes[0]} />
+
 		{#if technologies?.length || tech_stack_markdown}
 			<section id="project-technologies">
 				<TwoColumn
@@ -70,6 +83,23 @@
 				/>
 			</section>
 		{/if}
+
+		{#if implementation_markdown}
+			<section id="project-implementation">
+				<ImageText
+					image={populatedMedia(project?.images?.[2])}
+					text={implementation_markdown}
+					widerSide="left"
+					smallColumn="50%"
+					imageSide="left"
+					titleProps={{ title: "Key Implementation Details", tag: "h2" }}
+				/>
+			</section>
+		{/if}
+
+		<ProjectContribution highlights={contributionHighlights} />
+
+		<ProjectOutcome outcomes={outcomes.slice(1)} markdown={outcome_markdown} />
 	</div>
 </Container>
 

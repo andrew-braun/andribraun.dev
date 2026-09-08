@@ -13,7 +13,7 @@
 
 	let { project }: Props = $props();
 
-	let { title, description, live_link, snapshot_link, github_link, images } = $derived(project);
+	let { title, summary, live_link, snapshot_link, github_link, images } = $derived(project);
 
 	const heroImage = $derived(populatedMedia(images?.[0]));
 </script>
@@ -27,8 +27,8 @@
 			<h1 class="title">
 				{title}
 			</h1>
-			{#if description}
-				<p class="description">{description}</p>
+			{#if summary}
+				<p class="summary">{summary}</p>
 			{/if}
 			<!-- <p class="overview"></p> -->
 			<div class="links">
@@ -77,6 +77,15 @@
 
 				.title {
 					line-height: var(--line-height-tight);
+					text-align: center;
+				}
+
+				.summary {
+					max-width: 48ch;
+					margin-block: var(--space-lg);
+					margin-inline: auto;
+					font-size: var(--font-size-md);
+					line-height: var(--line-height-relaxed);
 					text-align: center;
 				}
 

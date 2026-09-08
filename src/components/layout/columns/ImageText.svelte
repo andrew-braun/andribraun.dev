@@ -47,11 +47,18 @@
 	{#if titleProps}
 		<Title {...titleProps} />
 	{/if}
-	<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
-	{@html markdownText}
+	<div class="text-content">
+		<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
+		{@html markdownText}
+	</div>
 {/snippet}
 
-{#if imageSide === "left"}
+{#if !src}
+	<!-- With no media column to balance against, the measure is centred rather than left-hugging. -->
+	<div class="text-only">
+		{@render textSnippet()}
+	</div>
+{:else if imageSide === "left"}
 	<TwoColumn {smallColumn} {widerSide} leftContent={imageSnippet} rightContent={textSnippet} />
 {:else}
 	<TwoColumn {smallColumn} {widerSide} leftContent={textSnippet} rightContent={imageSnippet} />
@@ -69,5 +76,14 @@
 			object-fit: contain;
 			border-radius: var(--border-radius-lg);
 		}
+	}
+
+	.text-content {
+		max-width: var(--text-max-width);
+	}
+
+	.text-only {
+		max-width: var(--text-max-width);
+		margin-inline: auto;
 	}
 </style>

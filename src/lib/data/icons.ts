@@ -7,6 +7,7 @@ import ShopifyIcon from "~icons/logos/shopify";
 import StrapiIcon from "~icons/logos/strapi-icon";
 import SvelteKitIcon from "~icons/logos/svelte-kit";
 import ArchiveIcon from "~icons/lucide/archive";
+import ArrowRightIcon from "~icons/lucide/arrow-right";
 import CameraIcon from "~icons/lucide/camera";
 import CircleCheckIcon from "~icons/lucide/circle-check";
 import CircleQuestionMarkIcon from "~icons/lucide/circle-question-mark";
@@ -89,6 +90,7 @@ export const UiIconUser = UserIcon;
 export const UiIconCircleCheck = CircleCheckIcon;
 export const UiIconEqualApproximately = EqualApproximatelyIcon;
 export const UiIconArchive = ArchiveIcon;
+export const UiIconArrowRight = ArrowRightIcon;
 export const UiIconCircleQuestionMark = CircleQuestionMarkIcon;
 export const UiIconCamera = CameraIcon;
 
