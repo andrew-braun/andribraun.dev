@@ -1,5 +1,5 @@
 <script lang="ts">
-	import type { Tab } from "./tabs";
+	import { tabIndexFromKey, type Tab } from "./tabs";
 
 	interface TabListProps {
 		// Full set of tabs to render as clickable triggers.
@@ -12,23 +12,32 @@
 
 	const { tabs, currentTab, setActiveTab }: TabListProps = $props();
 
+	let tabListEl = $state<HTMLDivElement | undefined>();
+
 	// Simple click handler wrapper for template readability.
 	const selectTab = (index: number) => {
 		setActiveTab(index);
 	};
 
-	// Horizontal arrow navigation with wrap-around behavior.
-	// This keeps keyboard interaction fast and predictable.
-	const handleKeydown = ({ event, currentTab }: { event: KeyboardEvent; currentTab: number }) => {
-		const direction = event.key === "ArrowLeft" ? -1 : event.key === "ArrowRight" ? 1 : 0;
-		if (direction !== 0) {
-			// Modular arithmetic wraps index at boundaries (first/last tab).
-			setActiveTab((currentTab + direction + tabs.length) % tabs.length);
+	const focusTab = (index: number) => {
+		const triggers = tabListEl?.querySelectorAll<HTMLButtonElement>('[role="tab"]');
+		triggers?.[index]?.focus();
+	};
+
+	// Roving tabindex: arrows wrap, Home/End jump, and DOM focus follows the selection.
+	const handleKeydown = (event: KeyboardEvent) => {
+		const nextIndex = tabIndexFromKey(event.key, currentTab, tabs.length);
+		if (nextIndex === null) {
+			return;
 		}
+
+		event.preventDefault();
+		setActiveTab(nextIndex);
+		focusTab(nextIndex);
 	};
 </script>
 
-<div class="tab-list" role="tablist" aria-label="About Me Tabs">
+<div bind:this={tabListEl} class="tab-list" role="tablist" aria-label="About Me Tabs">
 	{#each tabs as tab, index (tab.value)}
 		<!-- Active class is visual only; semantic active state uses aria-selected. -->
 		<!-- Bidirectional ARIA links connect trigger to its tabpanel by id. -->
@@ -36,8 +45,10 @@
 			class="tab-trigger"
 			class:active={currentTab === index}
 			onclick={() => selectTab(index)}
-			onkeydown={(event) => handleKeydown({ event, currentTab })}
+			onkeydown={handleKeydown}
 			role="tab"
+			type="button"
+			tabindex={currentTab === index ? 0 : -1}
 			aria-selected={currentTab === index}
 			aria-controls={`tab-${index}`}
 			id={`tab-label-${index}`}
@@ -87,6 +98,11 @@
 			background: transparent;
 			border: none;
 			border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+
+			&:focus-visible {
+				outline: 2px solid var(--color-accent-1);
+				outline-offset: 2px;
+			}
 
 			&:nth-child(1) {
 				margin-left: 0;
