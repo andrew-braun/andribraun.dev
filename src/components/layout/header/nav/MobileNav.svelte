@@ -9,6 +9,8 @@
 
 	let isOpen = $state(false);
 
+	const drawerId = "mobile-nav-drawer";
+
 	const toggleMenu = () => {
 		isOpen = !isOpen;
 	};
@@ -23,20 +25,22 @@
 {/snippet}
 
 <div>
-	<MenuButton {isOpen} onClick={toggleMenu} />
+	<MenuButton {isOpen} onClick={toggleMenu} controls={drawerId} />
 
 	<Drawer
+		id={drawerId}
 		{isOpen}
 		position="right"
 		onClose={handleClose}
 		{header}
+		label="Main navigation"
 		styles={{ background: "blur", width: "full" }}
 	>
-		<div class="nav-links">
+		<nav class="nav-links">
 			{#each navItems as navItem (navItem.href)}
 				<MobileNavLink {navItem} onClick={handleClose} />
 			{/each}
-		</div>
+		</nav>
 	</Drawer>
 </div>
 

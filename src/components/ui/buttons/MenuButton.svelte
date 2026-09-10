@@ -1,9 +1,18 @@
 <script lang="ts">
 	export let isOpen = false;
 	export let onClick = () => {};
+	export let controls: string | undefined = undefined;
 </script>
 
-<button class="menu-button" class:open={isOpen} onclick={onClick} aria-label="Toggle Menu">
+<button
+	class="menu-button"
+	class:open={isOpen}
+	onclick={onClick}
+	type="button"
+	aria-label={isOpen ? "Close menu" : "Open menu"}
+	aria-expanded={isOpen}
+	aria-controls={controls}
+>
 	<span></span>
 	<span></span>
 	<span></span>
