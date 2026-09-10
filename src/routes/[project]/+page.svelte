@@ -26,48 +26,42 @@
 <ProjectHero {project} />
 <ProjectContext clientName={project.client_name} status={project.status} />
 
-<Container>
-	<div class="project-overview">
-		{#if intro_markdown}
-			<section id="project-introduction">
-				<ImageText
-					image={populatedMedia(project?.images?.[1])}
-					text={intro_markdown}
-					widerSide="right"
-					smallColumn="50%"
-					imageSide="right"
-					titleProps={{ title: "Introduction", tag: "h2" }}
-				/>
-			</section>
-		{/if}
+{#if intro_markdown}
+	<Container element="section" id="project-introduction" spacing="section">
+		<ImageText
+			image={populatedMedia(project?.images?.[1])}
+			text={intro_markdown}
+			widerSide="right"
+			smallColumn="50%"
+			imageSide="right"
+			titleProps={{ title: "Introduction", tag: "h2", eyebrow: "01", accent: "primary" }}
+		/>
+	</Container>
+{/if}
 
-		<ProjectChallengeOutcome challenge={business_challenge} outcome={outcomes[0]} />
+<ProjectChallengeOutcome challenge={business_challenge} outcome={outcomes[0]} tone="secondary" />
 
-		<ProjectTechnology technologies={metadata?.technologies} markdown={tech_stack_markdown} />
+<ProjectTechnology technologies={metadata?.technologies} markdown={tech_stack_markdown} />
 
-		{#if implementation_markdown}
-			<section id="project-implementation">
-				<ImageText
-					image={populatedMedia(project?.images?.[2])}
-					text={implementation_markdown}
-					widerSide="left"
-					smallColumn="50%"
-					imageSide="left"
-					titleProps={{ title: "Key Implementation Details", tag: "h2" }}
-				/>
-			</section>
-		{/if}
+{#if implementation_markdown}
+	<Container element="section" id="project-implementation" spacing="section" bleed tone="accent-3">
+		<ImageText
+			image={populatedMedia(project?.images?.[2])}
+			text={implementation_markdown}
+			widerSide="left"
+			smallColumn="50%"
+			imageSide="left"
+			leadParagraph
+			titleProps={{
+				title: "Key Implementation Details",
+				tag: "h2",
+				eyebrow: "04",
+				accent: "accent-3"
+			}}
+		/>
+	</Container>
+{/if}
 
-		<ProjectContribution highlights={contributionHighlights} />
+<ProjectContribution highlights={contributionHighlights} />
 
-		<ProjectOutcome outcomes={outcomes.slice(1)} markdown={outcome_markdown} />
-	</div>
-</Container>
-
-<style lang="scss">
-	.project-overview {
-		display: flex;
-		flex-direction: column;
-		gap: calc(var(--spacing-vertical-section) * 2);
-	}
-</style>
+<ProjectOutcome outcomes={outcomes.slice(1)} markdown={outcome_markdown} tone="accent-2" />

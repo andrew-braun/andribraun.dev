@@ -129,10 +129,6 @@ textarea::placeholder {
 	opacity: 0.85;
 }
 
-.container {
-	padding: var(--space-xl);
-}
-
 @media (width <= 48rem) {
 	body {
 		font-size: var(--font-size-sm);

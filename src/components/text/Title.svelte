@@ -1,10 +1,17 @@
 <script lang="ts">
+	import SectionEyebrow from "$components/text/SectionEyebrow.svelte";
+	import type { ColorVariant } from "$ts/style";
+
 	export interface TitleProps {
 		tag?: string;
 		tagAttributes?: Record<string, string>;
 		superTitle?: string;
 		title: string;
 		subtitle?: string;
+		/** Section number for the eyebrow above the title, e.g. "02". */
+		eyebrow?: string | undefined;
+		/** Colours the eyebrow. Has no effect without one. */
+		accent?: ColorVariant | undefined;
 	}
 
 	let {
@@ -12,11 +19,16 @@
 		tagAttributes = {},
 		superTitle = "",
 		title = "",
-		subtitle = ""
+		subtitle = "",
+		eyebrow,
+		accent
 	}: TitleProps = $props();
 </script>
 
 <div class="title-container">
+	{#if eyebrow}
+		<SectionEyebrow number={eyebrow} color={accent} />
+	{/if}
 	{#if superTitle}
 		<span class="title title-small">{superTitle}</span>
 	{/if}

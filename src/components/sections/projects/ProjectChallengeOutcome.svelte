@@ -1,15 +1,20 @@
 <script lang="ts">
+	import Container from "$components/layout/containers/Container.svelte";
+	import SectionEyebrow from "$components/text/SectionEyebrow.svelte";
 	import type { Project } from "$lib/cms/payload";
 	import { UiIconArrowRight } from "$lib/data/icons";
+	import type { ColorVariant } from "$ts/style";
 
 	type Outcome = NonNullable<Project["outcomes"]>[number];
 
 	interface Props {
 		challenge?: string | null | undefined;
 		outcome?: Outcome | null | undefined;
+		/** Band tint. A tinted section bleeds to the viewport edges. */
+		tone?: ColorVariant | undefined;
 	}
 
-	let { challenge, outcome }: Props = $props();
+	let { challenge, outcome, tone }: Props = $props();
 
 	const challengeText = $derived(challenge?.trim());
 	const outcomeText = $derived(outcome?.statement?.trim());
@@ -20,7 +25,14 @@
 </script>
 
 {#if challengeText || outcomeText}
-	<section id="project-challenge-outcome">
+	<Container
+		element="section"
+		id="project-challenge-outcome"
+		spacing="section"
+		bleed={Boolean(tone)}
+		{tone}
+	>
+		<SectionEyebrow number="02" color="secondary" />
 		<div class:connected={hasBothEnds} class="progress">
 			{#if challengeText}
 				<div class="endpoint">
@@ -53,7 +65,7 @@
 				</div>
 			{/if}
 		</div>
-	</section>
+	</Container>
 {/if}
 
 <style lang="scss">

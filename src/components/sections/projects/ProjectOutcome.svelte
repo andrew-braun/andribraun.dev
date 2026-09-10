@@ -1,26 +1,30 @@
 <script lang="ts">
+	import Container from "$components/layout/containers/Container.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
 	import Title from "$components/text/Title.svelte";
 	import type { Project } from "$lib/cms/payload";
 	import { assignColor } from "$styles/variables";
+	import type { ColorVariant } from "$ts/style";
 
 	type Outcome = NonNullable<Project["outcomes"]>[number];
 
 	interface Props {
 		outcomes?: Outcome[] | null | undefined;
 		markdown?: string | null | undefined;
+		/** Band tint. A tinted section bleeds to the viewport edges. */
+		tone?: ColorVariant | undefined;
 	}
 
-	let { outcomes, markdown }: Props = $props();
+	let { outcomes, markdown, tone }: Props = $props();
 
 	const cards = $derived((outcomes ?? []).filter((outcome) => Boolean(outcome.statement?.trim())));
 	const narrative = $derived(markdown?.trim());
 </script>
 
 {#if cards.length || narrative}
-	<section id="project-outcome">
-		<Title title="Outcome" tag="h2" />
-		<div class:no-cards={!cards.length} class="container">
+	<Container element="section" id="project-outcome" spacing="section" bleed={Boolean(tone)} {tone}>
+		<Title title="Outcome" tag="h2" eyebrow="06" accent="accent-2" />
+		<div class:no-cards={!cards.length} class="outcome-layout">
 			{#if cards.length}
 				<ul class="impact-cards">
 					{#each cards as outcome, index (outcome.id ?? index)}
@@ -39,11 +43,11 @@
 				</div>
 			{/if}
 		</div>
-	</section>
+	</Container>
 {/if}
 
 <style lang="scss">
-	.container {
+	.outcome-layout {
 		display: grid;
 		grid-template-columns: 2fr 3fr;
 		gap: var(--space-xl);

@@ -14,6 +14,8 @@
 		smallColumn: "25%" | "33%" | "50%" | "66%" | "75%";
 		imageProps?: Record<string, unknown>;
 		imageSide?: "left" | "right";
+		/** Promotes the first parsed paragraph to a larger lead. Only suits multi-paragraph copy. */
+		leadParagraph?: boolean;
 	}
 
 	let {
@@ -23,7 +25,8 @@
 		widerSide = "left",
 		smallColumn = "33%",
 		imageProps = {},
-		imageSide = "left"
+		imageSide = "left",
+		leadParagraph = false
 	}: ImageTextProps = $props();
 
 	const markdownText = $derived(marked.parse(text));
@@ -47,7 +50,7 @@
 	{#if titleProps}
 		<Title {...titleProps} />
 	{/if}
-	<div class="text-content">
+	<div class={["text-content", { lead: leadParagraph }]}>
 		<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
 		{@html markdownText}
 	</div>
@@ -80,6 +83,12 @@
 
 	.text-content {
 		max-width: var(--text-max-width);
+
+		/* Markdown is injected with {@html}, so its paragraphs are outside Svelte's scoping. */
+		&.lead :global(p:first-child) {
+			font-size: var(--font-size-lg);
+			line-height: var(--line-height-relaxed);
+		}
 	}
 
 	.text-only {

@@ -151,7 +151,7 @@
 			label="Message"
 			name="message"
 			maxlength={5000}
-			placeholder="This is where the magic happens. Your hopes. Your dreams. Your secret family recipes. Or, you know, work stuff about projects. That's probably why you're here, now that I think about it. Either way, let's get this train rolling! The train has a dining car, though, so that family recipe could come in handy."
+			placeholder="Well, here you are--just you, your keyboard, and this text area. This is where it all begins, so, go on... type that first letter."
 			required={true}
 			actionAttributes={contactForm.fields.message.as("text")}
 			error={errorState.fieldErrors.message.join(", ")}

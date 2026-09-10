@@ -1,17 +1,21 @@
 <script lang="ts">
 	import TwoColumn from "$components/layout/columns/TwoColumn.svelte";
+	import Container from "$components/layout/containers/Container.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Tag from "$components/ui/content/Tag.svelte";
 	import type { Technology } from "$lib/cms/payload-types";
 	import { assignColor } from "$styles/variables";
+	import type { ColorVariant } from "$ts/style";
 
 	interface Props {
 		technologies?: (number | Technology)[] | null | undefined;
 		markdown?: string | null | undefined;
+		/** Band tint. A tinted section bleeds to the viewport edges. */
+		tone?: ColorVariant | undefined;
 	}
 
-	let { technologies, markdown }: Props = $props();
+	let { technologies, markdown, tone }: Props = $props();
 
 	// Display order doubles as assignment order. `tool` sits last on purpose: 112 of the 181
 	// CMS records carry it, so ranking it below every sharper category sends Vite to Frontend
@@ -83,15 +87,21 @@
 {/snippet}
 
 {#if groups.length || narrative}
-	<section id="project-technologies">
-		<Title title="Tech Stack" tag="h2" />
+	<Container
+		element="section"
+		id="project-technologies"
+		spacing="section"
+		bleed={Boolean(tone)}
+		{tone}
+	>
+		<Title title="Tech Stack" tag="h2" eyebrow="03" accent="accent-1" />
 		<TwoColumn
 			smallColumn="40%"
 			widerSide="right"
 			leftContent={index}
 			rightContent={narrativeText}
 		/>
-	</section>
+	</Container>
 {/if}
 
 <style lang="scss">

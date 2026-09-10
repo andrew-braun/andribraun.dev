@@ -23,9 +23,8 @@
 	.tag {
 		display: inline-block;
 		padding: var(--space-xs) var(--space-sm);
-		font-size: var(--font-size-sm);
+		font-size: var(--font-size-xs);
 		font-weight: var(--font-weight-bold);
-		text-transform: uppercase;
 		letter-spacing: 0.05em;
 		white-space: nowrap;
 		cursor: default;
@@ -39,27 +38,27 @@
 
 		&.primary {
 			// color: var(--color-primary);
-			border: 2px solid var(--color-primary);
+			border: 1px solid var(--color-primary);
 		}
 
 		&.secondary {
 			// color: var(--color-secondary);
-			border: 2px solid var(--color-secondary);
+			border: 1px solid var(--color-secondary);
 		}
 
 		&.accent-1 {
 			// color: var(--color-accent-1);
-			border: 2px solid var(--color-accent-1);
+			border: 1px solid var(--color-accent-1);
 		}
 
 		&.accent-2 {
 			// color: var(--color-accent-2);
-			border: 2px solid var(--color-accent-2);
+			border: 1px solid var(--color-accent-2);
 		}
 
 		&.accent-3 {
 			// color: var(--color-accent-3);
-			border: 2px solid var(--color-accent-3);
+			border: 1px solid var(--color-accent-3);
 		}
 	}
 

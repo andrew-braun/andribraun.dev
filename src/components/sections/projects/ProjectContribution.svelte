@@ -1,15 +1,19 @@
 <script lang="ts">
+	import Container from "$components/layout/containers/Container.svelte";
 	import Title from "$components/text/Title.svelte";
 	import type { Project } from "$lib/cms/payload";
+	import type { ColorVariant } from "$ts/style";
 	import { marked } from "marked";
 
 	type Highlight = NonNullable<Project["contribution_highlights"]>[number];
 
 	interface Props {
 		highlights?: Highlight[] | null | undefined;
+		/** Band tint. A tinted section bleeds to the viewport edges. */
+		tone?: ColorVariant | undefined;
 	}
 
-	let { highlights }: Props = $props();
+	let { highlights, tone }: Props = $props();
 
 	const statements = $derived(
 		(highlights ?? []).filter((highlight) => Boolean(highlight.statement?.trim()))
@@ -17,8 +21,14 @@
 </script>
 
 {#if statements.length}
-	<section id="project-contribution">
-		<Title title="What I Contributed" tag="h2" />
+	<Container
+		element="section"
+		id="project-contribution"
+		spacing="section"
+		bleed={Boolean(tone)}
+		{tone}
+	>
+		<Title title="What I Contributed" tag="h2" eyebrow="05" accent="primary" />
 		<ul class="contribution-list">
 			{#each statements as highlight, index (highlight.id ?? index)}
 				<li class="statement">
@@ -27,32 +37,23 @@
 				</li>
 			{/each}
 		</ul>
-	</section>
+	</Container>
 {/if}
 
 <style lang="scss">
 	.contribution-list {
 		display: grid;
 		grid-template-columns: repeat(2, minmax(0, 1fr));
-		gap: var(--space-xl) var(--space-2xl);
+		gap: var(--space-2xl) var(--space-3xl);
 		padding: 0;
 		margin: 0;
 		list-style: none;
 
 		.statement {
-			position: relative;
 			padding-left: var(--space-lg);
 			line-height: var(--line-height-relaxed);
-
-			&::before {
-				position: absolute;
-				top: 0.6em;
-				left: 0;
-				width: var(--space-md);
-				height: 2px;
-				content: "";
-				background-color: var(--color-primary);
-			}
+			border-left: var(--border-width-primary) solid
+				color-mix(in srgb, var(--color-primary) 60%, transparent);
 		}
 
 		@media (max-width: $breakpoint-sm) {

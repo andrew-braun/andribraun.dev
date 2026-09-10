@@ -91,7 +91,6 @@
 
 				.links {
 					display: flex;
-					justify-content: center;
 				}
 			}
 
