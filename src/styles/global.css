@@ -24,6 +24,11 @@ Turns off all animations and transitions for users who prefer reduced motion.
 	}
 }
 
+/* A modal dialog does not lock background scroll on its own. */
+body:has(dialog[open]) {
+	overflow: hidden;
+}
+
 *,
 *::before,
 *::after {

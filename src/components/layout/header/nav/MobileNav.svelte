@@ -48,5 +48,7 @@
 	.nav-links {
 		display: flex;
 		flex-direction: column;
+		gap: var(--space-sm);
+		padding: var(--space-md);
 	}
 </style>

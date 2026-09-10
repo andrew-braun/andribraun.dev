@@ -22,6 +22,8 @@
 		padding: var(--space-md);
 		font-size: var(--font-size-md);
 		text-decoration: none;
+		background: var(--color-background-translucent);
+		border-radius: var(--border-radius-lg);
 
 		&.active-link {
 			color: var(--color-accent-2-fg);

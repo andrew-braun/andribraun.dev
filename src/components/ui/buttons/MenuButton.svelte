@@ -1,7 +1,11 @@
 <script lang="ts">
-	export let isOpen = false;
-	export let onClick = () => {};
-	export let controls: string | undefined = undefined;
+	interface Props {
+		isOpen?: boolean;
+		onClick?: () => void;
+		controls?: string;
+	}
+
+	let { isOpen = false, onClick = () => {}, controls }: Props = $props();
 </script>
 
 <button
@@ -10,7 +14,7 @@
 	onclick={onClick}
 	type="button"
 	aria-label={isOpen ? "Close menu" : "Open menu"}
-	aria-expanded={isOpen}
+	aria-expanded={controls ? isOpen : undefined}
 	aria-controls={controls}
 >
 	<span></span>
