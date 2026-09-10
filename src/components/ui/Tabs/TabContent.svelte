@@ -47,6 +47,7 @@
 	role="tabpanel"
 	aria-labelledby={`tab-label-${index}`}
 	aria-hidden={!isActive}
+	inert={!isActive}
 >
 	{@render children()}
 </div>

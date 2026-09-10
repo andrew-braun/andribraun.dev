@@ -26,3 +26,30 @@ export function defineTab<TProps extends Record<string, unknown>>(tab: {
 }): Tab {
 	return tab;
 }
+
+/**
+ * Next tab index for a tablist key, or `null` if the key is not a tab command.
+ * Left/Right wrap; Home/End jump to the ends.
+ */
+export function tabIndexFromKey(
+	key: string,
+	currentIndex: number,
+	tabCount: number
+): number | null {
+	if (tabCount <= 0) {
+		return null;
+	}
+
+	switch (key) {
+		case "ArrowLeft":
+			return (currentIndex - 1 + tabCount) % tabCount;
+		case "ArrowRight":
+			return (currentIndex + 1) % tabCount;
+		case "Home":
+			return 0;
+		case "End":
+			return tabCount - 1;
+		default:
+			return null;
+	}
+}
