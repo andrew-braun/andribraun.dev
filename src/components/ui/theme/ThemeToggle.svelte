@@ -1,30 +1,33 @@
 <script lang="ts">
-	import { applyTheme, readStoredTheme, themes, type Theme } from "$utils/theme/toggle";
+	import { applyTheme, isTheme, readStoredTheme, type Theme } from "$utils/theme/toggle";
 	import { Switch } from "bits-ui";
 	import { onMount } from "svelte";
 
 	let currentTheme: Theme = $state("dark");
-	let checked = $state(true);
 
 	onMount(() => {
 		const storedTheme = readStoredTheme();
-		if (storedTheme) {
-			currentTheme = storedTheme;
-			checked = currentTheme === "dark";
-		}
+		const appliedTheme = document.body.getAttribute("data-theme");
+		currentTheme = storedTheme ?? (isTheme(appliedTheme) ? appliedTheme : "dark");
 	});
 
-	const toggleTheme = () => {
-		// Indexed so adding a third theme needs no change here.
-		const nextIndex = (themes.indexOf(currentTheme) + 1) % themes.length;
-		currentTheme = themes[nextIndex] ?? themes[0];
+	const checked = $derived(currentTheme === "dark");
+	// Purpose + current state in the accessible name; bits-ui already exposes on/off via aria-checked.
+	const label = $derived(`Color theme: ${currentTheme}`);
 
+	function handleCheckedChange(isChecked: boolean) {
+		currentTheme = isChecked ? "dark" : "light";
 		applyTheme(currentTheme);
-	};
+	}
 </script>
 
 <div class="theme-switch-wrapper">
-	<Switch.Root bind:checked onclick={toggleTheme} class="theme-switch">
+	<Switch.Root
+		{checked}
+		onCheckedChange={handleCheckedChange}
+		class="theme-switch"
+		aria-label={label}
+	>
 		<Switch.Thumb class="theme-switch-thumb" />
 	</Switch.Root>
 </div>
@@ -40,6 +43,11 @@
 				border: none;
 				border-radius: var(--border-radius-xl);
 				transition: var(--transition-md);
+
+				&:focus-visible {
+					outline: 2px solid var(--color-accent-1);
+					outline-offset: 4px;
+				}
 
 				&[data-state="checked"] {
 					.theme-switch-thumb {
