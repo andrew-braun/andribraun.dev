@@ -70,7 +70,8 @@ export default [
 		}
 	},
 	{
-		ignores: [".netlify/", "build/", ".svelte-kit/", "dist/"]
+		// `.ai/` is the separate agent-workspace repo, outside this tsconfig project.
+		ignores: [".netlify/", "build/", ".svelte-kit/", "dist/", ".ai/"]
 	},
 	{
 		// Generated from the Payload schema; not ours to lint.

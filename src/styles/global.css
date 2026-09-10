@@ -1,6 +1,27 @@
 html {
 	box-sizing: border-box;
-	scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
+/*
+Turns off all animations and transitions for users who prefer reduced motion.
+ */
+@media (prefers-reduced-motion: reduce) {
+	*,
+	*::before,
+	*::after {
+		scroll-behavior: auto !important;
+		transition-delay: 0s !important;
+		transition-duration: 0.01ms !important;
+		animation-duration: 0.01ms !important;
+		animation-delay: 0s !important;
+		animation-iteration-count: 1 !important;
+	}
 }
 
 *,
@@ -85,8 +106,16 @@ select {
 	font-family: inherit;
 	font-size: inherit;
 	line-height: inherit;
-	outline: none;
 	border: none;
+}
+
+/*
+ * Two-tone focus ring to ensure that the focused element is always clearly visible despite color scheme changes
+ */
+:where(a, button, input, textarea, select, summary, [tabindex]:not([tabindex="-1"])):focus-visible {
+	outline: 2px solid var(--color-text);
+	outline-offset: 2px;
+	box-shadow: 0 0 0 2px var(--color-background);
 }
 
 input::placeholder,

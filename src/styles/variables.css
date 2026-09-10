@@ -94,7 +94,6 @@
 	/* Interactive states */
 	--color-primary-hover: hsl(324deg 84% 55%);
 	--color-secondary-hover: hsl(172deg 100% 40%);
-	--color-focus-ring: var(--color-primary);
 	--color-disabled: var(--neutral-300);
 
 	/* Feedback colors */

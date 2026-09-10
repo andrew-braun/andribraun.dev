@@ -63,12 +63,6 @@
 				transform-origin: bottom left;
 			}
 		}
-
-		// Focus states for accessibility
-		&:focus-visible {
-			outline: 2px solid var(--underline-color);
-			outline-offset: 4px;
-		}
 	}
 
 	.active-link {
