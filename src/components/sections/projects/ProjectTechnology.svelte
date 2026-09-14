@@ -4,9 +4,11 @@
 	import Markdown from "$components/text/Markdown.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Tag from "$components/ui/content/Tag.svelte";
+	import TintedCard from "$components/ui/content/TintedCard.svelte";
 	import type { Technology } from "$lib/cms/payload-types";
 	import { assignColor } from "$styles/variables";
 	import type { ColorVariant } from "$ts/style";
+	import { marked, type Tokens } from "marked";
 
 	interface Props {
 		technologies?: (number | Technology)[] | null | undefined;
@@ -63,6 +65,19 @@
 	);
 
 	const narrative = $derived(markdown?.trim());
+
+	// A lone bullet list becomes one card per point. Anything richer stays Markdown, so no
+	// authored prose is ever dropped.
+	const cards = $derived.by(() => {
+		const tokens = marked.lexer(narrative ?? "").filter((token) => token.type !== "space");
+		const [list] = tokens;
+
+		if (tokens.length !== 1 || list?.type !== "list") return [];
+
+		return list.items.map((item: Tokens.ListItem) =>
+			marked.parseInline(item.text.trim(), { async: false })
+		);
+	});
 </script>
 
 {#snippet index()}
@@ -81,7 +96,18 @@
 {/snippet}
 
 {#snippet narrativeText()}
-	{#if narrative}
+	{#if cards.length}
+		<ul class="cards">
+			{#each cards as html, index (html)}
+				<li class={{ lead: index === 0 }}>
+					<TintedCard color={assignColor(index)}>
+						<!-- eslint-disable-next-line svelte/no-at-html-tags -- CMS content authored by site owner -->
+						{@html html}
+					</TintedCard>
+				</li>
+			{/each}
+		</ul>
+	{:else if narrative}
 		<Markdown text={narrative} />
 	{/if}
 {/snippet}
@@ -156,6 +182,35 @@
 
 		@media (max-width: $breakpoint-sm) {
 			gap: var(--space-md);
+		}
+	}
+
+	.cards {
+		column-gap: var(--space-md);
+		padding: 0;
+		margin: 0;
+		list-style: none;
+		columns: 2;
+
+		li {
+			margin: 0 0 var(--space-md);
+			font-size: var(--font-size-sm);
+			break-inside: avoid;
+		}
+
+		/* The first point leads at full width; the rest flow down two columns, then across,
+		   which suits these unordered points. */
+		.lead {
+			font-size: var(--font-size-md);
+			column-span: all;
+
+			@media (max-width: $breakpoint-sm) {
+				font-size: var(--font-size-sm);
+			}
+		}
+
+		@media (max-width: $breakpoint-md) {
+			columns: 1;
 		}
 	}
 </style>
