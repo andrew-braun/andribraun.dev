@@ -64,6 +64,16 @@ reads its build configuration from `netlify.toml`:
 
 Create a Netlify site from the repository, then set `CMS_URL`, `CMS_KEY`, and
 `RESEND_API_KEY` in the site's environment-variable settings. Configure them for
-the build and Functions scopes so server-rendered project data and contact-form
-email work in deployed environments. Keep production secrets out of
-`netlify.toml` and the repository.
+the build and Functions scopes so prerendering and contact-form email work in
+deployed environments. Keep production secrets out of `netlify.toml` and the
+repository.
+
+Every page is prerendered to static HTML at build time, so:
+
+- the CMS must be reachable during `pnpm build`; if it isn't, the build fails and
+  the previous deploy stays live;
+- CMS edits go live on the next build. The CMS triggers one automatically through
+  a Netlify build hook (`SITE_BUILD_HOOK_URL` in the CMS's production environment)
+  when projects, technologies or media change.
+
+The contact form is a remote function, so it still runs as a Netlify Function.

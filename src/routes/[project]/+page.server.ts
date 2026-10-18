@@ -3,22 +3,12 @@ import { error } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 
 export const load: PageServerLoad = async ({ params }) => {
-	const projectEntity = await getProjectBySlug(params.project);
+	const { docs } = await getProjectBySlug(params.project);
+	const projectDoc = docs[0];
 
-	if (
-		!projectEntity ||
-		!projectEntity.docs ||
-		projectEntity.docs.length === 0 ||
-		!projectEntity.docs[0]
-	) {
+	if (!projectDoc || projectDoc.display?.hide) {
 		error(404, "Not found");
 	}
 
-	const project = formatProjectData(projectEntity.docs[0]);
-
-	if (project) {
-		return { project };
-	}
-
-	error(404, "Not found");
+	return { project: formatProjectData(projectDoc) };
 };

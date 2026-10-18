@@ -91,6 +91,12 @@
 </script>
 
 <div class="form-container">
+	<noscript>
+		<p>
+			This form needs JavaScript. You can also email me directly at
+			<a href="mailto:andri@andribraun.dev">andri@andribraun.dev</a>.
+		</p>
+	</noscript>
 	<form
 		bind:this={formElement}
 		class:form-hidden={displaySuccessDialog}
@@ -151,7 +157,7 @@
 			label="Message"
 			name="message"
 			maxlength={5000}
-			placeholder="Well, here you are--just you, your keyboard, and this text area. This is where it all begins, so, go on... type that first letter."
+			placeholder="Well, here you are--just you, your keyboard, and this text area. Man, you could cut the tension with a knife right now."
 			required={true}
 			actionAttributes={contactForm.fields.message.as("text")}
 			error={errorState.fieldErrors.message.join(", ")}

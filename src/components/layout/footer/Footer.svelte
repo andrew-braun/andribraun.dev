@@ -7,7 +7,7 @@
 		<div class="footer-columns">
 			<div class={["footer-column", "attribution"]}>
 				<p class="attribution-text">
-					Designed and hand-coded by <a href="https://github.com/andrew-braun" target="_blank">
+					Designed and developed by <a href="https://github.com/andrew-braun" target="_blank">
 						Andri Braun</a
 					>
 				</p>
