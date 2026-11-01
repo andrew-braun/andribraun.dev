@@ -2,6 +2,8 @@
 	import ExcitingText from "$components/text/ExcitingText.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
+	import Image from "$components/ui/Image.svelte";
+	import heroPortrait from "$lib/assets/img/profile/andri-in-milan-square.png?w=840;420&enhanced";
 	import { RocketIcon } from "$lib/data/icons";
 	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
 </script>
@@ -37,12 +39,14 @@
 		<div class="image">
 			<div class="image-pop"></div>
 			<!-- Never renders wider than 420px, so 1x and 2x of that cover every screen. -->
-			<enhanced:img
-				src="$lib/assets/img/profile/andri-in-milan-square.png?w=840;420"
+			<Image
+				image={{
+					src: heroPortrait,
+					alt: "Andri Braun in a black button-up shirt, glasses, and long, brown hair, smiling, sitting in front of a leafy green background."
+				}}
 				sizes="420px"
 				fetchpriority="high"
 				class="hero-image"
-				alt="Andri Braun in a black button-up shirt, glasses, and long, brown hair, smiling, sitting in front of a leafy green background."
 			/>
 		</div>
 	</section>
@@ -117,22 +121,17 @@
 			}
 
 			&.right {
-				:global(picture) {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-				}
-
 				.image {
 					position: relative;
 					aspect-ratio: 1 / 1;
 
-					.hero-image {
+					/* Rendered inside Image, out of reach of this component's scoped styles. */
+					:global(.hero-image) {
+						position: relative;
 						z-index: 10;
-						display: block;
 						width: clamp(200px, 80%, 420px);
-						height: auto;
 						aspect-ratio: 1 / 1;
+						margin-inline: auto;
 						border-radius: 50%;
 					}
 

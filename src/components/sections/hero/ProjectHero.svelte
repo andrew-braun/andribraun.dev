@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Container from "$components/layout/containers/Container.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
-	import { cmsImageSrcset, cmsImageUrl, populatedMedia } from "$lib/cms/media";
+	import Image from "$components/ui/Image.svelte";
+	import { populatedMedia } from "$lib/cms/media";
 	import type { Project } from "$lib/cms/payload";
 	import { CodeIconGitHub, RocketIcon } from "$lib/data/icons";
 	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
@@ -48,17 +49,14 @@
 			</div>
 		</div>
 		<div class="column-2">
-			{#if heroImage?.url}
+			{#if heroImage}
 				<div class="image-wrapper">
-					<img
-						src={cmsImageUrl(heroImage.url, 1280)}
-						srcset={cmsImageSrcset(heroImage.url, [640, 960, 1280, 1920])}
+					<Image
+						image={heroImage}
 						sizes="(max-width: 992px) 85vw, 48vw"
-						width={heroImage.width}
-						height={heroImage.height}
+						widths={[640, 960, 1280, 1920]}
 						fetchpriority="high"
 						class="hero-image"
-						alt={heroImage.alt || `Hero image for ${title}`}
 					/>
 				</div>
 			{/if}
@@ -116,9 +114,9 @@
 						padding: var(--space-sm);
 					}
 
-					.hero-image {
+					/* Rendered inside Image, out of reach of this component's scoped styles. */
+					:global(.hero-image) {
 						width: 90%;
-						height: auto;
 						object-fit: cover;
 						border-radius: var(--border-radius-lg);
 						transform: perspective(320px) rotateY(-5deg) rotateX(1deg) rotateZ(1deg);

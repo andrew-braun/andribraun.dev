@@ -77,14 +77,19 @@
 		background-color: var(--color-surface-raised);
 	}
 
+	/* enhanced:img wraps local images in a <picture>, which has to pass these down too. */
+	.frame :global(picture),
+	.frame-image {
+		object-fit: inherit;
+		object-position: inherit;
+		border-radius: inherit;
+	}
+
 	.frame-image {
 		display: block;
 		width: 100%;
 		height: 100%;
 		color: transparent; /* The browser paints alt text in this colour while loading. */
-		object-fit: inherit;
-		object-position: inherit;
-		border-radius: inherit;
 		transition: opacity var(--transition-md);
 	}
 </style>

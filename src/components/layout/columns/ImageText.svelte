@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { TitleProps } from "$components/text/Title.svelte";
 	import Title from "$components/text/Title.svelte";
-	import { cmsImageSrcset, cmsImageUrl } from "$lib/cms/media";
+	import Image from "$components/ui/Image.svelte";
 	import type { Media } from "$lib/cms/payload";
 	import type { ImageDataProps } from "$ts/general";
 	import { marked } from "marked";
@@ -13,7 +13,6 @@
 		titleProps?: TitleProps;
 		widerSide: "left" | "right";
 		smallColumn: "25%" | "33%" | "50%" | "66%" | "75%";
-		imageProps?: Record<string, unknown>;
 		imageSide?: "left" | "right";
 		/** Promotes the first parsed paragraph to a larger lead. Only suits multi-paragraph copy. */
 		leadParagraph?: boolean;
@@ -25,42 +24,22 @@
 		titleProps,
 		widerSide = "left",
 		smallColumn = "33%",
-		imageProps = {},
 		imageSide = "left",
 		leadParagraph = false
 	}: ImageTextProps = $props();
 
 	const markdownText = $derived(marked.parse(text));
-
-	// About tabs pass local `?enhanced` imports; project pages pass CMS `Media`.
-	const localImage = $derived(image && "src" in image ? image : null);
-	const cmsImage = $derived(image && "url" in image && image.url ? image : null);
 </script>
 
 {#snippet imageSnippet()}
-	{#if localImage}
+	{#if image}
 		<div class="image-wrapper">
-			<enhanced:img
-				src={localImage.src}
-				sizes="(max-width: 768px) 100vw, 33vw"
-				alt={localImage.alt}
-				class="image"
-				{...imageProps}
+			<!-- About tabs sit in a narrower column than project pages. -->
+			<Image
+				{image}
+				sizes={"src" in image ? "(max-width: 768px) 100vw, 33vw" : "(max-width: 768px) 100vw, 50vw"}
 				loading="lazy"
-			/>
-		</div>
-	{:else if cmsImage?.url}
-		<div class="image-wrapper">
-			<img
-				src={cmsImageUrl(cmsImage.url, 960)}
-				srcset={cmsImageSrcset(cmsImage.url, [480, 960, 1440])}
-				sizes="(max-width: 768px) 100vw, 50vw"
-				width={cmsImage.width}
-				height={cmsImage.height}
-				alt={cmsImage.alt}
 				class="image"
-				{...imageProps}
-				loading="lazy"
 			/>
 		</div>
 	{/if}
@@ -76,7 +55,7 @@
 	</div>
 {/snippet}
 
-{#if !localImage && !cmsImage}
+{#if !image}
 	<!-- With no media column to balance against, the measure is centred rather than left-hugging. -->
 	<div class="text-only">
 		{@render textSnippet()}
@@ -93,10 +72,8 @@
 		top: calc(var(--header-max-height-scrolled) + var(--space-md));
 		align-self: start;
 
-		.image {
-			width: 100%;
-			height: fit-content;
-			object-fit: contain;
+		/* Rendered inside Image, out of reach of this component's scoped styles. */
+		:global(.image) {
 			border-radius: var(--border-radius-lg);
 		}
 	}

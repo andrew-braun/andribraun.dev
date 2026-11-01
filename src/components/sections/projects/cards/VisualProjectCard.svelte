@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { cmsImageSrcset, cmsImageUrl, populatedMedia } from "$lib/cms/media";
+	import Image from "$components/ui/Image.svelte";
+	import { populatedMedia } from "$lib/cms/media";
 	import type { Project } from "$lib/cms/payload";
 
 	interface Props {
@@ -14,17 +15,14 @@
 
 <a class="card" href="/{project.slug}">
 	<div class="image-wrapper">
-		{#if image?.url}
+		{#if image}
 			<!-- `cover` scales wide screenshots to the card's height, so phones need about 500px. -->
-			<img
-				src={cmsImageUrl(image.url, 800)}
-				srcset={cmsImageSrcset(image.url, [480, 640, 800, 1200])}
+			<Image
+				{image}
 				sizes="(max-width: 1200px) 500px, 40vw"
-				width={image.width}
-				height={image.height}
-				alt={image.alt}
-				class="card-image"
+				widths={[480, 640, 800, 1200]}
 				loading="lazy"
+				class="card-image"
 			/>
 		{/if}
 	</div>
@@ -44,7 +42,7 @@
 		text-decoration: none;
 		border-radius: var(--border-radius-lg);
 
-		&:hover .card-image {
+		&:hover :global(.card-image) {
 			transform: scale(1.04);
 		}
 
@@ -62,15 +60,15 @@
 		height: 100%;
 		overflow: hidden;
 		background-color: var(--neutral-100);
-	}
 
-	.card-image {
-		display: block;
-		width: 100%;
-		height: 100%;
-		object-fit: cover;
-		object-position: top center;
-		transition: transform var(--transition-md);
+		/* Rendered inside Image, out of reach of this component's scoped styles. */
+		:global(.card-image) {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			object-position: top center;
+			transition: transform var(--transition-md);
+		}
 	}
 
 	.overlay {

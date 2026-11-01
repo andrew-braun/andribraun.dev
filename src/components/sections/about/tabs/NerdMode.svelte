@@ -3,6 +3,7 @@
 	import TwoColumn from "$components/layout/columns/TwoColumn.svelte";
 	import BlockRow from "$components/layout/rows/BlockRow.svelte";
 	import Markdown from "$components/text/Markdown.svelte";
+	import Image from "$components/ui/Image.svelte";
 	import { codeIcons } from "$root/src/lib/data/icons";
 	import type { ImageDataProps } from "$ts/general";
 
@@ -16,12 +17,7 @@
 
 {#snippet leftColumn()}
 	<div class="image-wrapper">
-		<enhanced:img
-			src={image.src}
-			sizes="(max-width: 768px) 100vw, 33vw"
-			alt={image.alt}
-			class="image"
-		/>
+		<Image {image} sizes="(max-width: 768px) 100vw, 33vw" class="image" />
 	</div>
 {/snippet}
 
@@ -46,10 +42,8 @@
 		top: var(--space-md);
 		align-self: start;
 
-		.image {
-			width: 100%;
-			height: fit-content;
-			object-fit: contain;
+		/* Rendered inside Image, out of reach of this component's scoped styles. */
+		:global(.image) {
 			border-radius: var(--border-radius-lg);
 		}
 	}
