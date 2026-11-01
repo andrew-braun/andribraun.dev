@@ -1,3 +1,5 @@
+import { dev } from "$app/environment";
+import { siteData } from "$lib/data/site/site-data";
 import type { Media } from "./payload-types";
 
 /**
@@ -14,4 +16,21 @@ import type { Media } from "./payload-types";
  */
 export function populatedMedia(relation: number | Media | null | undefined): Media | null {
 	return typeof relation === "object" && relation !== null && relation.url ? relation : null;
+}
+
+/**
+ * A resized CMS image from Netlify Image CDN, which also picks AVIF or WebP from the
+ * browser's Accept header. The CDN only exists on Netlify, so dev gets the original.
+ *
+ * The URL is absolute because the prerender crawler follows root-relative image URLs, and
+ * would fail the build trying to render `/.netlify/images` as a page.
+ */
+export function cmsImageUrl(url: string, width: number, extraParams = ""): string {
+	return dev
+		? url
+		: `${siteData.url}/.netlify/images?url=${encodeURIComponent(url)}&w=${width}${extraParams}`;
+}
+
+export function cmsImageSrcset(url: string, widths: number[]): string {
+	return widths.map((width) => `${cmsImageUrl(url, width)} ${width}w`).join(", ");
 }

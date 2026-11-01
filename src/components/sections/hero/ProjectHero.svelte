@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Container from "$components/layout/containers/Container.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
-	import { populatedMedia } from "$lib/cms/media";
+	import { cmsImageSrcset, cmsImageUrl, populatedMedia } from "$lib/cms/media";
 	import type { Project } from "$lib/cms/payload";
 	import { CodeIconGitHub, RocketIcon } from "$lib/data/icons";
 	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
@@ -48,12 +48,17 @@
 			</div>
 		</div>
 		<div class="column-2">
-			{#if heroImage && heroImage.url}
+			{#if heroImage?.url}
 				<div class="image-wrapper">
-					<enhanced:img
-						src={heroImage?.url}
+					<img
+						src={cmsImageUrl(heroImage.url, 1280)}
+						srcset={cmsImageSrcset(heroImage.url, [640, 960, 1280, 1920])}
+						sizes="(max-width: 992px) 85vw, 48vw"
+						width={heroImage.width}
+						height={heroImage.height}
+						fetchpriority="high"
 						class="hero-image"
-						alt={heroImage?.alt || `Hero image for ${title}`}
+						alt={heroImage.alt || `Hero image for ${title}`}
 					/>
 				</div>
 			{/if}

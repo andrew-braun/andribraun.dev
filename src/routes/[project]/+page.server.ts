@@ -1,4 +1,4 @@
-import { populatedMedia } from "$lib/cms/media";
+import { cmsImageUrl, populatedMedia } from "$lib/cms/media";
 import { formatProjectData, getProjectBySlug } from "$lib/cms/payload";
 import { siteData } from "$lib/data/site/site-data";
 import { error } from "@sveltejs/kit";
@@ -21,7 +21,7 @@ export const load: PageServerLoad = async ({ params }) => {
 			title: `${project.title ?? project.slug} | Andri Braun`,
 			description: project.summary ?? siteData.description,
 			// Built conditionally: `exactOptionalPropertyTypes` rejects `image: undefined`.
-			...(image ? { image } : {})
+			...(image ? { image: cmsImageUrl(image, 1200, "&h=630&fit=cover&position=top&fm=jpg") } : {})
 		}
 	};
 };

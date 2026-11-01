@@ -16,7 +16,12 @@
 
 {#snippet leftColumn()}
 	<div class="image-wrapper">
-		<enhanced:img src={image.src} alt={image.alt} class="image" />
+		<enhanced:img
+			src={image.src}
+			sizes="(max-width: 768px) 100vw, 33vw"
+			alt={image.alt}
+			class="image"
+		/>
 	</div>
 {/snippet}
 

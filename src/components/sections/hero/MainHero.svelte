@@ -2,7 +2,6 @@
 	import ExcitingText from "$components/text/ExcitingText.svelte";
 	import Title from "$components/text/Title.svelte";
 	import Button from "$components/ui/buttons/Button.svelte";
-	import AndriProfilePicture from "$lib/assets/img/profile/andri-in-milan-square.png?enhanced";
 	import { RocketIcon } from "$lib/data/icons";
 	import StarBackground from "$root/src/lib/assets/images/svgs/StarBackground.svelte";
 </script>
@@ -37,8 +36,11 @@
 	<section class="hero-section right">
 		<div class="image">
 			<div class="image-pop"></div>
+			<!-- Never renders wider than 420px, so 1x and 2x of that cover every screen. -->
 			<enhanced:img
-				src={AndriProfilePicture}
+				src="$lib/assets/img/profile/andri-in-milan-square.png?w=840;420"
+				sizes="420px"
+				fetchpriority="high"
 				class="hero-image"
 				alt="Andri Braun in a black button-up shirt, glasses, and long, brown hair, smiling, sitting in front of a leafy green background."
 			/>

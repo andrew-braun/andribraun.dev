@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { TitleProps } from "$components/text/Title.svelte";
 	import Title from "$components/text/Title.svelte";
+	import { cmsImageSrcset, cmsImageUrl } from "$lib/cms/media";
 	import type { Media } from "$lib/cms/payload";
 	import type { ImageDataProps } from "$ts/general";
 	import { marked } from "marked";
@@ -31,17 +32,36 @@
 
 	const markdownText = $derived(marked.parse(text));
 
-	// `ImageDataProps` carries `src`, a Payload `Media` carries `url`; neither has both.
-	const src = $derived.by(() => {
-		if (!image) return "";
-		return ("src" in image ? image.src : image.url) ?? "";
-	});
+	// About tabs pass local `?enhanced` imports; project pages pass CMS `Media`.
+	const localImage = $derived(image && "src" in image ? image : null);
+	const cmsImage = $derived(image && "url" in image && image.url ? image : null);
 </script>
 
 {#snippet imageSnippet()}
-	{#if src}
+	{#if localImage}
 		<div class="image-wrapper">
-			<enhanced:img {src} alt={image?.alt ?? ""} class="image" {...imageProps} loading="lazy" />
+			<enhanced:img
+				src={localImage.src}
+				sizes="(max-width: 768px) 100vw, 33vw"
+				alt={localImage.alt}
+				class="image"
+				{...imageProps}
+				loading="lazy"
+			/>
+		</div>
+	{:else if cmsImage?.url}
+		<div class="image-wrapper">
+			<img
+				src={cmsImageUrl(cmsImage.url, 960)}
+				srcset={cmsImageSrcset(cmsImage.url, [480, 960, 1440])}
+				sizes="(max-width: 768px) 100vw, 50vw"
+				width={cmsImage.width}
+				height={cmsImage.height}
+				alt={cmsImage.alt}
+				class="image"
+				{...imageProps}
+				loading="lazy"
+			/>
 		</div>
 	{/if}
 {/snippet}
@@ -56,7 +76,7 @@
 	</div>
 {/snippet}
 
-{#if !src}
+{#if !localImage && !cmsImage}
 	<!-- With no media column to balance against, the measure is centred rather than left-hugging. -->
 	<div class="text-only">
 		{@render textSnippet()}

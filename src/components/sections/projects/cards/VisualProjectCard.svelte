@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { populatedMedia } from "$lib/cms/media";
+	import { cmsImageSrcset, cmsImageUrl, populatedMedia } from "$lib/cms/media";
 	import type { Project } from "$lib/cms/payload";
 
 	interface Props {
@@ -14,8 +14,18 @@
 
 <a class="card" href="/{project.slug}">
 	<div class="image-wrapper">
-		{#if image}
-			<img src={image.url} alt={image.alt} class="card-image" loading="lazy" />
+		{#if image?.url}
+			<!-- `cover` scales wide screenshots to the card's height, so phones need about 500px. -->
+			<img
+				src={cmsImageUrl(image.url, 800)}
+				srcset={cmsImageSrcset(image.url, [480, 640, 800, 1200])}
+				sizes="(max-width: 1200px) 500px, 40vw"
+				width={image.width}
+				height={image.height}
+				alt={image.alt}
+				class="card-image"
+				loading="lazy"
+			/>
 		{/if}
 	</div>
 	<div class="overlay">

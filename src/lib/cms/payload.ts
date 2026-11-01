@@ -42,6 +42,14 @@ export async function getProjects(opts: { depth?: number; limit?: number } = {})
 }
 
 /**
+ * Fetch the projects the site may show, leaving out any marked hidden in the CMS.
+ */
+export async function getVisibleProjects(opts: { depth?: number; limit?: number } = {}) {
+	const { docs } = await getProjects(opts);
+	return docs.filter((project) => !project.display?.hide);
+}
+
+/**
  * Fetch a single project by its Payload document ID.
  */
 export async function getProjectById(id: Project["id"], opts: { depth?: number } = {}) {
