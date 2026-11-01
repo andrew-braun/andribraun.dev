@@ -61,7 +61,7 @@
 </script>
 
 <section id="portfolio" class="page-section">
-	<Title title="Projects" tag="h2" />
+	<Title title="Projects" subtitle="selected from recent projects" tag="h2" />
 	<Bento items={gridItems}>
 		{#snippet cellSnippet(item, index)}
 			<GridItem {...item} color={assignColor(index)} />

@@ -7,7 +7,10 @@ declare global {
 			message: string;
 		}
 		// interface Locals {}
-		// interface PageData {}
+		/** Optional per-page metadata; the root layout falls back to `siteData` for anything missing. */
+		interface PageData {
+			seo?: { title: string; description: string; image?: string };
+		}
 		// interface PageState {}
 		// interface Platform {}
 	}

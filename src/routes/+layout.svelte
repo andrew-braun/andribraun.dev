@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { page } from "$app/state";
 	import { siteData } from "$lib/data/site/site-data";
 	import { setInitialTheme } from "$lib/utils/theme/toggle";
 	import type { Snippet } from "svelte";
@@ -13,11 +14,40 @@
 	let { children }: { children: Snippet } = $props();
 
 	setInitialTheme();
+
+	const seo = $derived({
+		title: siteData.title,
+		description: siteData.description,
+		image: `${siteData.url}/og-image.png`,
+		...page.data.seo
+	});
+	// The prerender host is a placeholder, so the origin is fixed rather than read from the URL.
+	const canonical = $derived(`${siteData.url}${page.url.pathname}`);
+
+	const person = {
+		"@context": "https://schema.org",
+		"@type": "Person",
+		name: "Andri Braun",
+		url: siteData.url,
+		jobTitle: "Web Developer",
+		sameAs: ["https://github.com/andrew-braun", "https://www.linkedin.com/in/andribraun"]
+	};
 </script>
 
 <svelte:head>
-	<title>{siteData.title}</title>
-	<meta name="description" content={siteData.description} />
+	<title>{seo.title}</title>
+	<meta name="description" content={seo.description} />
+	<link rel="canonical" href={canonical} />
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="AndriBraun.dev" />
+	<meta property="og:title" content={seo.title} />
+	<meta property="og:description" content={seo.description} />
+	<meta property="og:url" content={canonical} />
+	<meta property="og:image" content={seo.image} />
+	<meta name="twitter:card" content="summary_large_image" />
+	<svelte:element this={"script"} type="application/ld+json"
+		>{JSON.stringify(person)}</svelte:element
+	>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="" />
