@@ -2,6 +2,7 @@
 	import type { Project } from "$lib/cms/payload";
 	import type { ComponentProps } from "svelte";
 
+	import { testimonials } from "$components/sections/projects/projects-data";
 	import Title from "$components/text/Title.svelte";
 	import Bento from "$components/ui/layouts/Bento.svelte";
 	import { assignColor } from "$styles/variables";
@@ -31,17 +32,14 @@
 		projects
 			.toSorted((a, b) => (a.display?.order ?? UNORDERED) - (b.display?.order ?? UNORDERED))
 			.forEach((project, index) => {
-				// Check if we should insert a testimonial card
-				if (index > 0 && index % testimonialFrequency === 0) {
-					items.push({
-						type: "testimonial",
-						testimonial: {
-							quote:
-								"This is a testimonial quote that highlights the impact of the projects showcased here.",
-							author: "Jane Doe, CEO of Tech Company",
-							context: "Jane worked with Andri on a project and provided this feedback."
-						}
-					});
+				// The nth testimonial follows every `testimonialFrequency`-th project. None yet means none shown.
+				const testimonial =
+					index % testimonialFrequency === 0
+						? testimonials[index / testimonialFrequency - 1]
+						: undefined;
+
+				if (testimonial) {
+					items.push({ type: "testimonial", testimonial });
 				}
 
 				// Standard project card

@@ -1,9 +1,5 @@
 <script lang="ts">
-	interface Testimonial {
-		quote: string;
-		author: string;
-		context: string;
-	}
+	import type { Testimonial } from "$components/sections/projects/projects-data";
 
 	interface Props {
 		testimonial: Testimonial;
