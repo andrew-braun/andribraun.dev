@@ -7,3 +7,9 @@
 
 [images]
   remote_images = ['https://cms\.andribraun\.dev/api/media/file/.*']
+
+# Browsers enforce CORS on @font-face, and the confirmation email renders on another origin.
+[[headers]]
+  for = "/fonts/space-mono/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"

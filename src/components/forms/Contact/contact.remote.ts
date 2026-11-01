@@ -2,7 +2,10 @@ import { form } from "$app/server";
 import { createContactFormEntry } from "$root/src/lib/cms/payload";
 import { sendEmail } from "$utils/email/email";
 import { error } from "@sveltejs/kit";
-import { renderContactNotification } from "./contact-email.server";
+import {
+	renderContactConfirmationVariables,
+	renderContactNotification
+} from "./contact-email.server";
 import { processContactSubmission } from "./contact-submission.server";
 import { contactFormSchema, type ContactFormData } from "./contact.schema";
 
@@ -18,12 +21,12 @@ async function handleSubmit(data: ContactFormData) {
 					htmlContent: renderContactNotification(submission)
 				});
 			},
-			confirmVisitor: async (submission) => {
+			confirmVisitor: async (submission, referenceId) => {
 				await sendEmail({
 					toEmail: submission.email,
 					subject: "Thank you for contacting Andri Braun!",
 					template: "contact-confirmation",
-					variables: { name: submission.name }
+					variables: renderContactConfirmationVariables(submission, referenceId)
 				});
 			},
 			createReferenceId: () => crypto.randomUUID()
