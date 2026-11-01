@@ -21,7 +21,14 @@ export const load: PageServerLoad = async ({ params }) => {
 			title: `${project.title ?? project.slug} | Andri Braun`,
 			description: project.summary ?? siteData.description,
 			// Built conditionally: `exactOptionalPropertyTypes` rejects `image: undefined`.
-			...(image ? { image: cmsImageUrl(image, 1200, "&h=630&fit=cover&position=top&fm=jpg") } : {})
+			...(image
+				? {
+						image: new URL(
+							cmsImageUrl(image, 1200, "&h=630&fit=cover&position=top&fm=jpg"),
+							siteData.url
+						).href
+					}
+				: {})
 		}
 	};
 };

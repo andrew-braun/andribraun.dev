@@ -10,6 +10,13 @@ const config = {
 	},
 	kit: {
 		adapter: adapter(),
+		prerender: {
+			handleHttpError: ({ path, status, message }) => {
+				// Netlify serves this endpoint after deploy; it does not exist during prerendering.
+				if (path === "/.netlify/images" && status === 404) return;
+				throw new Error(message);
+			}
+		},
 		alias: {
 			$components: "./src/components",
 			$styles: "./src/styles",
